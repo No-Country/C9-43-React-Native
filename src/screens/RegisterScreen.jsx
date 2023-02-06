@@ -1,8 +1,6 @@
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-// TODO: Agregar flechita volver atrás
-
-export const LoginScreen = () => {
+export const RegisterScreen = () => {
   return (
     <View style={ styles.container }>
 
@@ -12,11 +10,7 @@ export const LoginScreen = () => {
         />
 
         <Text style={ styles.title }>
-            Bienvenido a House Quest!
-        </Text>
-
-        <Text style={ styles.subtitle }>
-            Ingresar con mi e-Mail
+            Ingresá tus datos
         </Text>
 
         <View style={ styles.inputs }>
@@ -31,9 +25,14 @@ export const LoginScreen = () => {
                 placeholder='Contraseña'
             />
 
-            <TouchableOpacity style={ styles.joinButton }>
-                <Text style={ styles.joinButtonText }>
-                    Ingresar
+            <TextInput 
+                style={ styles.passwordInput }
+                placeholder='Repetir contraseña'
+            />
+
+            <TouchableOpacity style={ styles.registerButton }>
+                <Text style={ styles.registerButtonText }>
+                    Registrarme
                 </Text>
             </TouchableOpacity>
 
@@ -52,19 +51,14 @@ const styles = StyleSheet.create({
         marginTop: 102
     },
     title: {
+        marginTop: 54,
         fontWeight: '600',
-        fontSize: 20,
-        marginTop: 46
-    },
-    subtitle: {
-        marginTop: 30,
-        fontWeight: '300',
-        fontSize: 15
+        fontSize: 20
     },
     inputs: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 18
+        marginTop: 21
     },
     emailInput: {
         width: 326,
@@ -99,7 +93,7 @@ const styles = StyleSheet.create({
 
         elevation: 3,
     },
-    joinButton: {
+    registerButton: {
         marginTop: 30,
         width: 160,
         height: 38,
@@ -108,10 +102,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#D9D9D9',
         borderRadius: 4
     },
-    joinButtonText: {
+    registerButtonText: {
         fontWeight: '500',
         fontSize: 14,
         letterSpacing: 1.25
     }
 
 })
+
