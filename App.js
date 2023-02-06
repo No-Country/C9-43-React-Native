@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar, StyleSheet } from 'react-native';
-import { LoginScreen, MainScreen, RegisterScreen } from './src/screens';
+import { HomeScreen, LoginScreen, MainScreen, RegisterScreen } from './src/screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,7 +14,8 @@ export default function App() {
 
           {/* <MainScreen /> */}
           {/* <LoginScreen /> */}
-          <RegisterScreen />
+          {/* <RegisterScreen /> */}
+          <HomeScreen />
         </>
       /* </Stack.Navigator>
     </NavigationContainer> */
