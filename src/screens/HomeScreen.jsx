@@ -44,7 +44,7 @@ export const HomeScreen = () => {
                     Destacados
                 </Text>
 
-                //! Agregar carousel
+                {/* //! Agregar carousel */}
 
             </View>
 
