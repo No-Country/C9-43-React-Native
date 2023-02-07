@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
-export const MainScreen = () => {
+export const MainScreen = ({ navigation }) => {
   return (
     <View style={ styles.container }>
 
@@ -18,15 +18,15 @@ export const MainScreen = () => {
 
         <View style={ styles.buttonsContainer }>
 
-            <TouchableOpacity style={ styles.buttonLogin }>
+            <TouchableOpacity style={ styles.buttonLogin } onPress={() => navigation.navigate("LoginScreen")}>
                 <Text style={ styles.buttonLoginText }>Iniciar sesión</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={ styles.buttonRegister }>
+            <TouchableOpacity style={ styles.buttonRegister } onPress={() => navigation.navigate("RegisterScreen")}>
                 <Text style={ styles.buttonRegisterText }>Registrarme</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={ styles.buttonSkip }>
+            <TouchableOpacity style={ styles.buttonSkip } onPress={() => navigation.navigate("HomeScreen")}>
                 <Text style={ styles.buttonSkipText }>Skip</Text>
             </TouchableOpacity>
 
