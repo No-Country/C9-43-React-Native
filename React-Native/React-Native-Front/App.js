@@ -11,7 +11,7 @@ export default function App() {
       <Stack.Navigator> */
         <>
           <StatusBar backgroundColor="black" style='light' />
-
+ 
           <MainScreen />
           {/* <LoginScreen /> */}
           {/* <RegisterScreen /> */}
