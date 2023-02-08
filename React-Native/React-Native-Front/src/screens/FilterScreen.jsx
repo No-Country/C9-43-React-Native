@@ -1,7 +1,6 @@
-import { TextInput } from "@react-native-material/core";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, TextInput } from "react-native";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 // import { MaterialCommunityIcons } from '@expo/vector-icons';
 //TODO preguntar a las chicas el tema del width del input porque el ancho que dan en la el celu queda muy corto
