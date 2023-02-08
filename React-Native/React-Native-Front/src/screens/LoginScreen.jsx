@@ -1,7 +1,5 @@
-import { Image, StyleSheet, Text, View } from "react-native";
-import { Button, IconButton, TextInput } from "@react-native-material/core";
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { AntDesign, Ionicons } from '@expo/vector-icons';
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 
 // TODO: Ver logo y bordes inputs
@@ -44,33 +42,32 @@ export const LoginScreen = ({ navigation }) => {
                 inputContainerStyle={{ backgroundColor: '#D9D9D9' }}
             />
 
-            <TextInput 
-                style={ styles.passwordInput }
-                secureTextEntry={ secured }
-                autoCapitalize='none'
-                autoComplete='off'
-                autoCorrect={ false }
-                variant='outlined'
-                placeholder='Ingresa tu contraseña'
-                placeholderTextColor={ '#414141' }
-                inputContainerStyle={{ backgroundColor: '#D9D9D9' }}
-                trailing={ props => (
-                    <IconButton 
-                        icon={ props => <Ionicons name={ secured ? 'eye-outline' : 'eye-off-outline' } size={24} color="black" {...props} />} {...props}
-                        onPress={ () => setSecured( prev => !prev ) }
-                    />
-                )}
-                
-            />
+            <View style={ styles.passwordInputView }>
+                <TextInput 
+                    style={ styles.passwordInput }
+                    secureTextEntry={ secured }
+                    autoCapitalize='none'
+                    autoComplete='off'
+                    autoCorrect={ false }
+                    placeholder='Ingresa tu contraseña'
+                    placeholderTextColor={ '#414141' }
+                />
+                <Ionicons 
+                    style={ styles.passwordInputIcon }
+                    name={ secured ? 'eye-outline' : 'eye-off-outline' }
+                    size={24} 
+                    color="black"
+                    onPress={ () => setSecured( prev => !prev )}
+                />
+            </View>
 
-            <Button 
+            <TouchableOpacity
                 style={ styles.joinButton }
-                title='Ingresar'
-                color='#000000'
-                tintColor="#FFFFFF"
-                titleStyle={{ fontSize: 14, letterSpacing: 1.25 }}
-                uppercase={ false }
-            />
+            >
+                <Text style={ styles.joinButtonText }>
+                    Ingresar
+                </Text>
+            </TouchableOpacity>
 
         </View>
 
@@ -107,16 +104,41 @@ const styles = StyleSheet.create({
     inputs: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 29
+        marginTop: 45,
+        width: '100%',
+        paddingHorizontal: 16
     },
     emailInput: {
-        width: 327,
-        height: 56
+        width: '100%',
+        height: 56,
+        paddingLeft: 16,
+        borderWidth: 1,
+        borderRadius: 4,
+        borderColor: '#414141',
+        backgroundColor: '#E4E4E4',
+        fontSize: 16,
+        color: '#414141'
+    },
+    passwordInputView: {
+        width: '100%',
+        flexDirection: 'row',
+        height: 56,
+        marginTop: 20,
+        alignItems: 'center',
+        backgroundColor: '#E4E4E4',
+        borderWidth: 1,
+        borderRadius: 4,
+        borderColor: '#414141'
     },
     passwordInput: {
-        marginTop: 20, 
-        width: 327,
-        height: 56
+        flex: 1,
+        height: 56,
+        paddingLeft: 16,
+        fontSize: 16,
+        color: '#414141'
+    },
+    passwordInputIcon: {
+        marginHorizontal: 20,
     },
     joinButton: {
         marginTop: 73,
@@ -124,6 +146,12 @@ const styles = StyleSheet.create({
         height: 49,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 4
+        borderRadius: 4,
+        backgroundColor: '#000000'
+    },
+    joinButtonText: {
+        color: '#FFFFFF',
+        fontWeight: '500',
+        letterSpacing: 1.25
     }
 })
