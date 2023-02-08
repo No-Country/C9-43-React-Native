@@ -1,98 +1,80 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { Button } from "@react-native-material/core"
+import { Image, ImageBackground, StyleSheet, Text, View } from "react-native"
 
 export const MainScreen = ({ navigation }) => {
   return (
-    <View style={ styles.container }>
-
-        <View style={ styles.logoContainer }>
+    <ImageBackground
+        style={styles.container}
+        source={require('../../assets/bg-image.png')}
+    >
+        
+        <View style={styles.logoContainer}>
             <Image 
-                source={ require('../../assets/logo.png') }
+                source={ require('../../assets/logoMain.png') }
+                style={styles.image}
             />
         </View>
 
-        <View style={ styles.lorem }>
-            <Text style={ styles.title }>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru
-            </Text>
-        </View>
+        <Text style={styles.title}>
+            Home Quest es la app que te permite publicar tu inmueble y también encontrar el de tus sueños.
+        </Text>
 
-        <View style={ styles.buttonsContainer }>
+        <View style={styles.buttonsContainer}>
 
-            <TouchableOpacity style={ styles.buttonLogin } onPress={() => navigation.navigate("LoginScreen")}>
-                <Text style={ styles.buttonLoginText }>Iniciar sesión</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={ styles.buttonRegister } onPress={() => navigation.navigate("RegisterScreen")}>
-                <Text style={ styles.buttonRegisterText }>Registrarme</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={ styles.buttonSkip } onPress={() => navigation.navigate("HomeScreen")}>
-                <Text style={ styles.buttonSkipText }>Skip</Text>
-            </TouchableOpacity>
+            <Button title='Iniciar sesión' titleStyle={styles.buttonWeight}  color='#000' uppercase={false} contentContainerStyle={styles.buttonLogin} onPress={() => navigation.navigate("LoginScreen")}/>
+            
+            <Button title='Registrarme' color='#000' titleStyle={styles.buttonWeight} contentContainerStyle={styles.buttonRegister}  variant="text"  uppercase={false}  onPress={() => navigation.navigate("RegisterScreen")} />
+            
+            <Button title='Skip'  uppercase={false} variant='text' color='#000' titleStyle={{fontWeight: '700'}} contentContainerStyle={{marginTop: 21}} onPress={() => navigation.navigate("HomeScreen")}/>
 
         </View>
-
-    </View>
+    </ImageBackground>
   )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white',
         alignItems: 'center'
     },
     logoContainer: {
-        top: 102
+        marginTop: 157
     },
-    lorem: {
-        top: 228,
-        width: 291,
-        height: 60
+    image: {
+        width: 89, 
+        height: 66
     },
     title: {
-        textAlign: 'left',
+        marginTop: 39,
+        width: 248,
+        height: 45, 
         fontSize: 13,
-        fontWeight: '300'
+        fontWeight: '500',
+        textAlign: 'center',
+        lineHeight: 16
     },
     buttonsContainer: {
-        top: 419,
-        justifyContent: 'center',
-        alignItems: 'center',
+        marginTop: 174,
     },
     buttonLogin: {
-        justifyContent: 'center',
-        backgroundColor: 'black',
+        width: 328,
+        height: 49
+    },
+    buttonRegister: {
         width: 328,
         height: 49,
-        borderRadius: 4
-    },
+        borderColor: 'black',
+        borderWidth: 1.5,
+        borderRadius: 4,
+        marginTop: 21
+    },  
     buttonLoginText: {
         color: 'white',
         textAlign: 'center',
         letterSpacing: 1.25,
         fontWeight: '500'
     },
-    buttonRegister: {
-        justifyContent: 'center',
-        width: 328,
-        height: 49,
-        top: 21,
-        borderWidth: 1,
-        borderRadius: 4
-    },
-    buttonRegisterText: {
-        color: 'black',
-        textAlign: 'center',
-        letterSpacing: 1.25,
+    buttonWeight: {
         fontWeight: '500'
-    },
-    buttonSkip: {
-        top: 36
-    },
-    buttonSkipText: {
-        textAlign: 'center',
-        fontWeight: '700',
-        letterSpacing: 1.25
     }
 })
