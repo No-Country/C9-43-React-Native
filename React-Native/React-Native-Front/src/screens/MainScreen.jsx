@@ -33,7 +33,7 @@ export const MainScreen = ({ navigation }) => {
             </Pressable>
             
 
-            <Pressable style={styles.buttonSkip} onPress={() => navigation.navigate("HomeScreen")}>
+            <Pressable style={styles.buttonSkip} onPress={() => navigation.navigate("Filtros avanzados")}>
 
                 <Text style={styles.buttonSkipText}>Skip</Text>
                 
