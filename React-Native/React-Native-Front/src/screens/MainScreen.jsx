@@ -1,5 +1,4 @@
-import { Button } from "@react-native-material/core"
-import { Image, ImageBackground, StyleSheet, Text, View } from "react-native"
+import { Image, ImageBackground, Pressable, StyleSheet, Text, View } from "react-native"
 
 export const MainScreen = ({ navigation }) => {
   return (
@@ -21,13 +20,27 @@ export const MainScreen = ({ navigation }) => {
 
         <View style={styles.buttonsContainer}>
 
-            <Button title='Iniciar sesión' titleStyle={styles.buttonWeight}  color='#000' uppercase={false} contentContainerStyle={styles.buttonLogin} onPress={() => navigation.navigate("LoginScreen")}/>
+            <Pressable style={[styles.button, styles.buttonLogin]} onPress={() => navigation.navigate("LoginScreen")}>
+
+                <Text style={[styles.buttonText, styles.buttonLoginText]}>Iniciar sesión</Text>
+
+            </Pressable>
+
+            <Pressable style={[styles.button, styles.buttonRegister]} onPress={() => navigation.navigate("RegisterScreen")}>
+
+                <Text style={styles.buttonText}>Registrarme</Text>
+                
+            </Pressable>
             
-            <Button title='Registrarme' color='#000' titleStyle={styles.buttonWeight} contentContainerStyle={styles.buttonRegister}  variant="text"  uppercase={false}  onPress={() => navigation.navigate("RegisterScreen")} />
-            
-            <Button title='Skip'  uppercase={false} variant='text' color='#000' titleStyle={{fontWeight: '700'}} contentContainerStyle={{marginTop: 21}} onPress={() => navigation.navigate("HomeScreen")}/>
+
+            <Pressable style={styles.buttonSkip} onPress={() => navigation.navigate("HomeScreen")}>
+
+                <Text style={styles.buttonSkipText}>Skip</Text>
+                
+            </Pressable>
 
         </View>
+
     </ImageBackground>
   )
 }
@@ -56,25 +69,36 @@ const styles = StyleSheet.create({
     buttonsContainer: {
         marginTop: 174,
     },
-    buttonLogin: {
-        width: 328,
-        height: 49
-    },
-    buttonRegister: {
+    button: {
         width: 328,
         height: 49,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 4
+    },
+    buttonLogin: {
+        backgroundColor: '#000'
+    },
+    buttonText: {
+        fontWeight: '500',
+        letterSpacing: 1.25,
+    },
+    buttonLoginText: {
+        color: '#ffffff',
+    },
+    buttonRegister: {
         borderColor: 'black',
         borderWidth: 1.5,
-        borderRadius: 4,
         marginTop: 21
     },  
-    buttonLoginText: {
-        color: 'white',
-        textAlign: 'center',
-        letterSpacing: 1.25,
-        fontWeight: '500'
+    buttonSkip: {
+        marginTop: 21,  //TODO preguntar por el margin de aca
+        width: 328,
+        height: 49,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    buttonWeight: {
-        fontWeight: '500'
+    buttonSkipText: {
+        fontWeight: '700'
     }
 })
