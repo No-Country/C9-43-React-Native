@@ -16,7 +16,7 @@ const MainStack = () => {
         <Stack.Screen
           name="LoginScreen"
           component={LoginScreen}
-          options={{ headerShown: true }}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="RegisterScreen"
