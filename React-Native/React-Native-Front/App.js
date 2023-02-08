@@ -1,3 +1,4 @@
+import { SafeAreaView } from 'react-native-safe-area-context';
 import * as SplashScreen from 'expo-splash-screen';
 import MainStack from './navigation/MainStack';
 
@@ -9,7 +10,9 @@ export default function App() {
   setTimeout( SplashScreen.hideAsync, 2000 );
 
   return (
-     <MainStack />
+    <SafeAreaView>
+      <MainStack />
+    </SafeAreaView>
   );
 
 }
