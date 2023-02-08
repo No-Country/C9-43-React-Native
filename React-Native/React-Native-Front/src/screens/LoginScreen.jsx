@@ -11,7 +11,7 @@ export const LoginScreen = ({ navigation }) => {
     const [secured, setSecured] = useState(true);
 
   return (
-    <SafeAreaView style={ styles.container }>
+    <View style={ styles.container }>
 
         <AntDesign 
             name="arrowleft" 
@@ -74,7 +74,7 @@ export const LoginScreen = ({ navigation }) => {
 
         </View>
 
-    </SafeAreaView>
+    </View>
   )
 }
 
