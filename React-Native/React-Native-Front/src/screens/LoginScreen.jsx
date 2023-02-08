@@ -1,10 +1,25 @@
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
+import { Button, IconButton, TextInput } from "@react-native-material/core";
+import { AntDesign, Ionicons } from '@expo/vector-icons';
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useState } from "react";
 
-// TODO: Agregar flechita volver atrás
+// TODO: Ver logo y bordes inputs
 
-export const LoginScreen = () => {
+export const LoginScreen = ({ navigation }) => {
+
+    const [secured, setSecured] = useState(true);
+
   return (
-    <View style={ styles.container }>
+    <SafeAreaView style={ styles.container }>
+
+        <AntDesign 
+            name="arrowleft" 
+            size={24} 
+            color="black" 
+            style={ styles.arrow }
+            onPress={ () => navigation.navigate('MainScreen') }
+        />
 
         <Image
             style={ styles.logo } 
@@ -23,95 +38,92 @@ export const LoginScreen = () => {
 
             <TextInput 
                 style={ styles.emailInput }
-                placeholder='E-mail'
+                variant='outlined'
+                placeholder='Ingresa tu E-mail'
+                placeholderTextColor={'#414141'}
+                inputContainerStyle={{ backgroundColor: '#D9D9D9' }}
             />
 
             <TextInput 
                 style={ styles.passwordInput }
-                placeholder='Contraseña'
+                secureTextEntry={ secured }
+                autoCapitalize='none'
+                autoComplete='off'
+                autoCorrect={ false }
+                variant='outlined'
+                placeholder='Ingresa tu contraseña'
+                placeholderTextColor={ '#414141' }
+                inputContainerStyle={{ backgroundColor: '#D9D9D9' }}
+                trailing={ props => (
+                    <IconButton 
+                        icon={ props => <Ionicons name={ secured ? 'eye-outline' : 'eye-off-outline' } size={24} color="black" {...props} />} {...props}
+                        onPress={ () => setSecured( prev => !prev ) }
+                    />
+                )}
+                
             />
 
-            <TouchableOpacity style={ styles.joinButton }>
-                <Text style={ styles.joinButtonText }>
-                    Ingresar
-                </Text>
-            </TouchableOpacity>
+            <Button 
+                style={ styles.joinButton }
+                title='Ingresar'
+                color='#000000'
+                tintColor="#FFFFFF"
+                titleStyle={{ fontSize: 14, letterSpacing: 1.25 }}
+                uppercase={ false }
+            />
 
         </View>
 
-    </View>
+    </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#FFFFFF'
+    },
+    arrow: {
+        alignSelf: 'flex-start',
+        marginTop: 46,
+        left: 27
     },
     logo: {
-        marginTop: 102
+        marginTop: 40,
+        width: 89,
+        height: 66
     },
     title: {
         fontWeight: '600',
         fontSize: 20,
-        marginTop: 46
+        marginTop: 32
     },
     subtitle: {
-        marginTop: 30,
+        marginTop: 11,
         fontWeight: '300',
         fontSize: 15
     },
     inputs: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 18
+        marginTop: 29
     },
     emailInput: {
-        width: 326,
-        height: 47,
-        backgroundColor: '#D9D9D9',
-        paddingLeft: 19,
-        borderRadius: 5,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-
-        elevation: 3,
+        width: 327,
+        height: 56
     },
     passwordInput: {
-        marginTop: 30,
-        width: 326,
-        height: 47,
-        backgroundColor: '#D9D9D9',
-        paddingLeft: 19,
-        borderRadius: 5,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-
-        elevation: 3,
+        marginTop: 20, 
+        width: 327,
+        height: 56
     },
     joinButton: {
-        marginTop: 30,
+        marginTop: 73,
         width: 160,
-        height: 38,
+        height: 49,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#D9D9D9',
         borderRadius: 4
-    },
-    joinButtonText: {
-        fontWeight: '500',
-        fontSize: 14,
-        letterSpacing: 1.25
     }
-
 })
