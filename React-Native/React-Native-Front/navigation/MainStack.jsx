@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { TabNavigator } from "../src/components/TabNavigator";
-import { FilterScreen, HomeScreen, LoginScreen, MainScreen, RegisterScreen } from "../src/screens";
+import { FilterScreen, LoginScreen, MainScreen, RegisterScreen } from "../src/screens";
 
 const Stack = createNativeStackNavigator();
 
@@ -38,11 +38,11 @@ const MainStack = () => {
         <Stack.Screen
           name="Filtros avanzados"
           component={FilterScreen}
-          options={{ headerShown: true, headerStyle: {backgroundColor: '#D9D9D9'}, headerTitleStyle: {
-            fontWeight: '400', fontSize: 16
-          }}}  
-        />
-
+          options={{ headerShown: false, headerStyle: {backgroundColor: '#D9D9D9', height: 106 }, headerTitleStyle: {
+            fontWeight: '400', fontSize: 16, 
+          }}}
+          
+          />
       </Stack.Navigator>
       
     </NavigationContainer>
