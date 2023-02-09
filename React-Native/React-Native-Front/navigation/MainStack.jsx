@@ -38,19 +38,11 @@ const MainStack = () => {
         <Stack.Screen
           name="Filtros avanzados"
           component={FilterScreen}
-<<<<<<< HEAD
           options={{ headerShown: false, headerStyle: {backgroundColor: '#D9D9D9', height: 106 }, headerTitleStyle: {
             fontWeight: '400', fontSize: 16, 
           }}}
           
           />
-=======
-          options={{ headerShown: true, headerStyle: {backgroundColor: '#D9D9D9'}, headerTitleStyle: {
-            fontWeight: '400', fontSize: 16
-          }}}  
-        />
-
->>>>>>> e88865d61b3a8557df0ef38b1069e46929906cd9
       </Stack.Navigator>
       
     </NavigationContainer>
