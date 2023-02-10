@@ -17,7 +17,7 @@ const MainStack = () => {
         <Stack.Screen
           name="HomeScreen"
           component={TabNavigator}
-          options={{ headerShown: true }}
+          options={{ headerShown: false }}
         />
 
         <Stack.Screen
