@@ -10,7 +10,7 @@ import {
 //TODO erase title height
 export const MainScreen = ({ navigation }) => {
   return (
-    <ScrollView>
+    
       <ImageBackground
         style={styles.container}
         source={require("../../assets/bg-image.png")}
@@ -52,7 +52,7 @@ export const MainScreen = ({ navigation }) => {
           </Pressable>
         </View>
       </ImageBackground>
-    </ScrollView>
+    
   );
 };
 
@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+    resizeMode: "contain"
   },
   logoContainer: {
     marginTop: 157,

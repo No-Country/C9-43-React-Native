@@ -14,7 +14,7 @@ const MainStack = () => {
         <Stack.Screen
           name="HomeScreen"
           component={ TabNavigator }
-          options={{ headerShown: true }}
+          options={{ headerShown: false }}
         />
 
         <Stack.Screen
@@ -41,7 +41,6 @@ const MainStack = () => {
           options={{ headerShown: false, headerStyle: {backgroundColor: '#D9D9D9', height: 106 }, headerTitleStyle: {
             fontWeight: '400', fontSize: 16, 
           }}}
-          
           />
       </Stack.Navigator>
       

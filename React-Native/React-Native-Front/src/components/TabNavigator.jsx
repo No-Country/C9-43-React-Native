@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { tabIconOptions } from "../helpers";
-import { HomeScreen } from "../screens";
+import { FilterScreen, HomeScreen, MenuScreen } from "../screens";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -52,7 +52,7 @@ export const TabNavigator = () => {
 
         <BottomTab.Screen 
           name="Menú" 
-          component={ HomeScreen } 
+          component={ MenuScreen } 
         />
 
         {/* <Tab.Screen name="Favorites" component={ FavoritesScreen } /> */}
