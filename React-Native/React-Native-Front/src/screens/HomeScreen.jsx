@@ -1,123 +1,94 @@
 import {
-  FlatList,
-  Image,
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
   ImageBackground,
 } from "react-native";
 import HighlightedCarousel from "../components/HighlightedCarousel";
-import { AntDesign } from "@expo/vector-icons";
+import HomeScreenHeader from "../components/HomeScreenHeader";
+import HomeDirectOwners from "../components/HomeDirectOwners";
 
 export const HomeScreen = () => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <ImageBackground
-          source={require("../../assets/HighlightedData/home.png")}
-          style={styles.header}
-        >
-          <AntDesign
-            name="arrowleft"
-            size={24}
-            color="black"
-            style={styles.arrow}
-            onPress={() => navigation.navigate("MainScreen")}
-          />
-          <Image
-            source={require("../../assets/logo.png")}
-            style={styles.logo}
-          />
-          <Text style={styles.headerTitle}>¡Hola!</Text>
-          <Text style={styles.headerSubtitle}>¿Qué estás buscando?</Text>
-          <TextInput
-            style={styles.search}
-            placeholder="Inicia una nueva búsqueda"
-          />
-          <Image
-            source={require("../../assets/magnifyingGlass.png")}
-            style={styles.searchIcon}
-          />
-        </ImageBackground>
-
+        <HomeScreenHeader />
         <View style={styles.publishView}>
           <Text style={styles.bodyTitle}>Publica tu anuncio. Es gratis!</Text>
           <TouchableOpacity style={styles.publishButton}>
-            <Text style={styles.publishText}>Publicar anuncio</Text>
+            <ImageBackground
+              source={require("../../assets/Home/publish-button.png")}
+              style={[styles.publishButton]}
+            >
+              <View
+                style={{
+                  width: 240,
+                  height: 45,
+                  backgroundColor: "#018349",
+                  position: "absolute",
+                  bottom: 0,
+                }}
+              >
+                <Text
+                  style={[
+                    styles.buttonText,
+                    { textAlign: "center", marginTop: 9 },
+                  ]}
+                >
+                  Publicar
+                </Text>
+              </View>
+            </ImageBackground>
           </TouchableOpacity>
         </View>
         <View style={styles.featuredView}>
           <Text style={styles.featuredTitle}>Destacados</Text>
         </View>
-        <View>
+        <View style={styles.carousel}>
           <HighlightedCarousel />
         </View>
+      </View>
+      <View style={styles.ownersContainer}>
+        <HomeDirectOwners />
       </View>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  buttonText: {
+    fontSize: 16,
+    fontWeight: "500",
+    color: "#fff",
+  },
   container: {
     flex: 1,
     alignItems: "center",
   },
-  arrow: {
-    alignSelf: "flex-start",
-    marginTop: 46,
-    left: 27,
-  },
-  header: {
+  ownersContainer: {
+    flex: 1,
     alignItems: "center",
-    width: "100%",
+    borderRadius: 20,
   },
-  logo: {
-    marginTop: 18,
-  },
-  headerTitle: {
-    marginTop: 18,
-    fontSize: 16,
-    fontWeight: "600",
-  },
-  headerSubtitle: {
-    marginTop: 12,
-    fontSize: 16,
-    fontWeight: "600",
-  },
-  search: {
-    width: 296,
-    height: 50,
-    backgroundColor: "#FFFFFF",
-    marginTop: 36,
-    marginBottom: 30,
-    borderWidth: 1,
-    borderColor: "#979797",
-    textAlign: "center",
-  },
-  searchIcon: {
-    width: 18,
-    height: 18,
-    position: "absolute",
-    top: 196,
-    left: 75,
-  },
+
   publishView: {
     marginTop: 24,
   },
   bodyTitle: {
-    fontSize: 16,
+    fontSize: 19,
     textAlign: "center",
+    fontWeight: "500",
   },
   publishButton: {
-    height: 50,
-    width: 296,
-    backgroundColor: "#979797",
+    height: 198,
+    width: 246,
     justifyContent: "center",
     alignItems: "center",
     marginTop: 24,
+    marginLeft: 50,
+    marginRight: 50,
   },
   publishText: {
     color: "#FFFFFF",
@@ -129,7 +100,12 @@ const styles = StyleSheet.create({
     marginTop: 38,
   },
   featuredTitle: {
-    fontSize: 20,
+    fontSize: 16,
     marginLeft: 17,
+    fontWeight: "500",
+  },
+  carousel: {
+    marginLeft: 0,
+    marginRight: 0,
   },
 });
