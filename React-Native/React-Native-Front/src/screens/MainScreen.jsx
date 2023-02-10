@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    resizeMode: "contain"
+    paddingBottom: 100,
   },
   logoContainer: {
     marginTop: 157,

@@ -7,15 +7,26 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  ImageBackground,
 } from "react-native";
-import HighlightedCard from "../components/HighlightedCard";
 import HighlightedCarousel from "../components/HighlightedCarousel";
+import { AntDesign } from "@expo/vector-icons";
 
 export const HomeScreen = () => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <View style={styles.header}>
+        <ImageBackground
+          source={require("../../assets/HighlightedData/home.png")}
+          style={styles.header}
+        >
+          <AntDesign
+            name="arrowleft"
+            size={24}
+            color="black"
+            style={styles.arrow}
+            onPress={() => navigation.navigate("MainScreen")}
+          />
           <Image
             source={require("../../assets/logo.png")}
             style={styles.logo}
@@ -30,7 +41,8 @@ export const HomeScreen = () => {
             source={require("../../assets/magnifyingGlass.png")}
             style={styles.searchIcon}
           />
-        </View>
+        </ImageBackground>
+
         <View style={styles.publishView}>
           <Text style={styles.bodyTitle}>Publica tu anuncio. Es gratis!</Text>
           <TouchableOpacity style={styles.publishButton}>
@@ -53,9 +65,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
   },
+  arrow: {
+    alignSelf: "flex-start",
+    marginTop: 46,
+    left: 27,
+  },
   header: {
     alignItems: "center",
-    backgroundColor: "#D9D9D9",
     width: "100%",
   },
   logo: {
@@ -64,10 +80,12 @@ const styles = StyleSheet.create({
   headerTitle: {
     marginTop: 18,
     fontSize: 16,
+    fontWeight: "600",
   },
   headerSubtitle: {
     marginTop: 12,
     fontSize: 16,
+    fontWeight: "600",
   },
   search: {
     width: 296,
