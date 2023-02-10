@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   TouchableHighlight,
+  StatusBar,
 } from "react-native";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -15,6 +16,7 @@ import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 export const FilterScreen = ({ navigation }) => {
   return (
     <View style={styles.containerScreen}>
+      <StatusBar />
       <View style={styles.header}>
         <View style={styles.headerInternalContainer}>
           <TouchableHighlight onPress={() => navigation.navigate("MainScreen")}>
@@ -28,20 +30,20 @@ export const FilterScreen = ({ navigation }) => {
       </View>
 
       <View style={styles.container}>
-        <Text style={styles.ubicationText}>Ubicación</Text>
-        <View style={styles.ubicationInput}>
+        <Text style={styles.searchText}>Ubicación</Text>
+        <View style={styles.searchInput}>
           <MaterialIcons
-            style={styles.ubicationSearchIcon}
+            style={styles.searchIcon}
             name="search"
             size={24}
             color="#979797"
           />
           <TextInput
-            style={styles.ubicationTextInput}
+            style={styles.searchTextInput}
             placeholder="Barrio,localidad..."
           />
           <MaterialCommunityIcons
-            style={styles.ubicationCloseIcon}
+            style={styles.searchCloseIcon}
             name="close-circle-outline"
             size={24}
             color="black"
@@ -118,16 +120,14 @@ export const FilterScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   containerScreen: {
     flex: 1,
-    alignItems: "center",
     backgroundColor: "white",
   },
   header: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    height: 64,
+    height: '10%',
     paddingHorizontal: 20,
-    width: "100%",
   },
   headerText: {
     fontWeight: "400",
@@ -147,16 +147,14 @@ const styles = StyleSheet.create({
   },
   container: {
     paddingHorizontal: 16,
-    alignSelf: "flex-start",
-    width: "100%",
   },
-  ubicationText: {
+  searchText: {
     fontWeight: "500",
     fontSize: 16,
     lineHeight: 24,
     color: "#1E1E1E",
   },
-  ubicationInput: {
+  searchInput: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
@@ -169,14 +167,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "red",
   },
-  ubicationTextInput: {
+  searchTextInput: {
     flex: 1,
     textAlign: "left",
   },
-  ubicationSearchIcon: {
-    padding: 15,
+  searchIcon: {
+    padding: 10,
   },
-  ubicationCloseIcon: {
+  searchCloseIcon: {
     paddingRight: 18,
   },
   separator: {
@@ -184,18 +182,18 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   operatorText: {
+    marginTop: 18,
     fontWeight: "500",
     fontSize: 16,
     letterSpacing: 0.15,
     lineHeight: 24,
-    marginTop: 24,
     color: "#1D283E",
   },
   operatorContainer: {
-    marginTop: 16,
-    width: 233,
+    marginTop: 14,
+    width: '100%',
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
     alignItems: "center",
     alignSelf: "center",
   },
@@ -218,12 +216,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   separatorOperator: {
-    marginTop: 31,
+    marginTop: 22,
     borderBottomColor: "#CAC4D0",
     borderBottomWidth: 1,
   },
   propertyText: {
-    marginTop: 13,
+    marginTop: 10,
     fontWeight: "500",
     fontSize: 16,
     lineHeight: 24,
@@ -258,7 +256,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.15,
   },
   separatorProperty: {
-    marginTop: 35,
+    marginTop: 38,
     borderBottomColor: "#CAC4D0",
     borderBottomWidth: 1,
   },
@@ -297,6 +295,7 @@ const styles = StyleSheet.create({
   button: {
     width: 328,
     height: 40,
+    marginTop: 45,
     borderRadius: 4,
     alignSelf: "center",
     justifyContent: "center",

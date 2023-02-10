@@ -41,15 +41,11 @@ const MainStack = () => {
         <Stack.Screen
           name="Filtros avanzados"
           component={FilterScreen}
-          options={{
-            headerShown: false,
-            headerStyle: { backgroundColor: "#D9D9D9", height: 106 },
-            headerTitleStyle: {
-              fontWeight: "400",
-              fontSize: 16,
-            },
-          }}
-        />
+          options={{ headerShown: false, headerStyle: {backgroundColor: '#D9D9D9', height: 106 }, headerTitleStyle: {
+            fontWeight: '400', fontSize: 16, 
+          }}}
+          
+          />
       </Stack.Navigator>
     </NavigationContainer>
   );
