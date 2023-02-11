@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { tabIconOptions } from "../helpers";
-import { FilterScreen, HomeScreen, MenuScreen } from "../screens";
+import { tabIconOptions } from "../src/helpers";
+import { HomeScreen, MenuScreen, PostScreen } from "../src/screens";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -42,7 +42,8 @@ export const TabNavigator = () => {
 
         <BottomTab.Screen 
           name="Publicar" 
-          component={ HomeScreen } 
+          component={ PostScreen } 
+          options={{ headerShown: false }}
         />
 
         <BottomTab.Screen 

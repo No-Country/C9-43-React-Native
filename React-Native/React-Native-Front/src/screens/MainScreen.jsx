@@ -7,7 +7,9 @@ import {
   View,
   ScrollView,
 } from "react-native";
+
 //TODO erase title height
+
 export const MainScreen = ({ navigation }) => {
   return (
     
