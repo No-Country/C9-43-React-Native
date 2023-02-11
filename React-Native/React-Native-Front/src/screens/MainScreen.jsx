@@ -7,8 +7,8 @@ import {
   View,
   StatusBar,
 } from "react-native";
+import { GreenButton } from "../components/index";
 
-//TODO erase title height
 
 export const MainScreen = ({ navigation }) => {
   return (
@@ -30,15 +30,9 @@ export const MainScreen = ({ navigation }) => {
         </Text>
 
         <View style={styles.buttonsContainer}>
-          <Pressable
-            style={[styles.button, styles.buttonLogin]}
-            onPress={() => navigation.navigate("LoginScreen")}
-          >
-            <Text style={[styles.buttonText, styles.buttonLoginText]}>
-              Iniciar sesión
-            </Text>
+          <Pressable  onPress={() => navigation.navigate("LoginScreen")}>
+          <GreenButton  route='LoginScreen' text='Iniciar sesión'/>
           </Pressable>
-
           <Pressable
             style={[styles.button, styles.buttonRegister]}
             onPress={() => navigation.navigate("RegisterScreen")}
@@ -73,9 +67,7 @@ const styles = StyleSheet.create({
     height: 66,
   },
   title: {
-    // marginTop: 39,
     width: '60%',
-    // height: 45,
     fontSize: 16,
     fontWeight: "500",
     textAlign: "center",
@@ -92,9 +84,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 4,
   },
-  buttonLogin: {
-    backgroundColor: "#018349",
-  },
   buttonText: {
     fontWeight: "500",
     fontSize: 14,
@@ -110,7 +99,7 @@ const styles = StyleSheet.create({
     marginTop: 21,
   },
   buttonSkip: {
-    marginTop: 21, //TODO preguntar por el margin de aca
+    marginTop: 21, 
     width: 328,
     height: 49,
     alignItems: "center",
