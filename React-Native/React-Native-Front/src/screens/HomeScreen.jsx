@@ -12,7 +12,7 @@ import {
 import HighlightedCarousel from "../components/HighlightedCarousel";
 import { AntDesign } from "@expo/vector-icons";
 
-export const HomeScreen = () => {
+export const HomeScreen = ({ navigation }) => {
   return (
     <ScrollView>
       <View style={styles.container}>

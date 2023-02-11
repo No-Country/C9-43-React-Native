@@ -9,7 +9,7 @@ import {
 
 
 export const MenuScreen = () => {
-  return (
+  return (  
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>Menú</Text>
