@@ -5,6 +5,7 @@ import {
   View,
   ImageBackground,
   StyleSheet,
+  TouchableOpacity,
 } from "react-native";
 
 const HomeScreenHeader = () => {
@@ -20,14 +21,25 @@ const HomeScreenHeader = () => {
         />
         <Text style={styles.headerTitle}>¡Hola!</Text>
         <Text style={styles.headerSubtitle}>¿Qué estás buscando?</Text>
-        <TextInput
-          style={styles.search}
-          placeholder="Inicia una nueva búsqueda"
-        />
-        <Image
-          source={require("../../assets/magnifyingGlass.png")}
-          style={styles.searchIcon}
-        />
+        <TouchableOpacity>
+          <View style={[styles.search, { flexDirection: "row" }]}>
+            <Image
+              source={require("../../assets/magnifyingGlass.png")}
+              style={{ marginTop: 16, left: 17 }}
+            />
+            <Text
+              style={{
+                marginTop: 16,
+                left: 25,
+                fontSize: 14,
+                color: "#979797",
+                fontWeight: "400",
+              }}
+            >
+              Inicia una nueva búsqueda
+            </Text>
+          </View>
+        </TouchableOpacity>
       </ImageBackground>
     </View>
   );
