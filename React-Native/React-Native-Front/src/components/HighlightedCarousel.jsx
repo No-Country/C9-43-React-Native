@@ -14,8 +14,9 @@ const HighlightedCarousel = () => {
     <View>
       <FlatList
         showsHorizontalScrollIndicator={false}
-        snapToInterval={385}
+        snapToInterval={365}
         horizontal={true}
+        infinite={true}
         data={HighlightedCards}
         renderItem={({ item }) => <View>{item.component}</View>}
         keyExtractor={(item) => item.key}

@@ -8,9 +8,7 @@ const Stack = createNativeStackNavigator();
 const MainStack = () => {
   return (
     <NavigationContainer>
-
       <Stack.Navigator initialRouteName="MainScreen">
-
         <Stack.Screen
           name="HomeScreen"
           component={ TabNavigator }
@@ -32,7 +30,7 @@ const MainStack = () => {
         <Stack.Screen
           name="RegisterScreen"
           component={RegisterScreen}
-          options={{ headerShown: true }}
+          options={{ headerShown: false }}
         />
 
         <Stack.Screen
@@ -44,7 +42,6 @@ const MainStack = () => {
           
           />
       </Stack.Navigator>
-      
     </NavigationContainer>
   );
 };

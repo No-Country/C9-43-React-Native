@@ -1,5 +1,4 @@
-import { AntDesign } from "@expo/vector-icons"
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export const Phase1Screen = () => {
   return (
@@ -13,7 +12,7 @@ export const Phase1Screen = () => {
             </Text>
             <Image 
                 style={ styles.mainImage }
-                source={ require('../../assets/images/Speech_Bubble.png') }
+                source={ require('../../../assets/images/Speech_Bubble.png') }
             />
             <TouchableOpacity
                 style={ styles.mainImageButton }
