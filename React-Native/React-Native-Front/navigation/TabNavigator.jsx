@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { tabIconOptions } from "../src/helpers";
 import { HomeScreen, MenuScreen, PostScreen } from "../src/screens";
+import { SearchNavigation } from "./SearchNavigation";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -32,7 +33,7 @@ export const TabNavigator = () => {
 
         <BottomTab.Screen 
           name="Buscar" 
-          component={ HomeScreen }
+          component={ SearchNavigation }
         />
 
         <BottomTab.Screen 
