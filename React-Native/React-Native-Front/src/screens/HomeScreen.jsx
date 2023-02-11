@@ -10,14 +10,14 @@ import HighlightedCarousel from "../components/HighlightedCarousel";
 import HomeScreenHeader from "../components/HomeScreenHeader";
 import HomeDirectOwners from "../components/HomeDirectOwners";
 
-export const HomeScreen = () => {
+export const HomeScreen = ({ navigation }) => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <HomeScreenHeader />
+        <HomeScreenHeader navigation={navigation}/>
         <View style={styles.publishView}>
           <Text style={styles.bodyTitle}>Publica tu anuncio. Es gratis!</Text>
-          <TouchableOpacity style={styles.publishButton}>
+          <TouchableOpacity style={styles.publishButton} >
             <ImageBackground
               source={require("../../assets/Home/publish-button.png")}
               style={[styles.publishButton]}

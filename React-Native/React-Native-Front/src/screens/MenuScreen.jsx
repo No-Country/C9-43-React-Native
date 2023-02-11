@@ -4,12 +4,13 @@ import {
   StyleSheet,
   Text,
   Image,
-  TouchableHighlight,
+  Pressable,
 } from "react-native";
 
+//TODO make the shadow of the header
 
 export const MenuScreen = () => {
-  return (
+  return (  
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>Menú</Text>
@@ -25,54 +26,40 @@ export const MenuScreen = () => {
         </View>
       </View>
 
-      <TouchableHighlight>
-        <View style={styles.optionsSubContainer}>
+      <Pressable style={styles.optionsSubContainer}>
           <Image source={require("../../assets/icons/dollarHouse-icon.png")} />
-          <Text style={styles.optionsText}>Publicar</Text>
-        </View>
-      </TouchableHighlight>
+          <Text style={styles.optionsText}>Publicar</Text>        
+      </Pressable>
 
-      <TouchableHighlight>
-        <View style={styles.optionsSubContainer}>
+      <Pressable style={styles.optionsSubContainer}>
           <Image source={require("../../assets/icons/message-icon.png")} />
           <Text style={styles.optionsText}>Mensajes</Text>
-        </View>
-      </TouchableHighlight>
+        </Pressable>
 
-      <TouchableHighlight>
-        <View style={styles.optionsSubContainer}>
+        <Pressable style={styles.optionsSubContainer}>
           <Image source={require("../../assets/icons/favorite-icon.png")} />
           <Text style={styles.optionsText}>Favoritos</Text>
-        </View>
-      </TouchableHighlight>
-
-      <TouchableHighlight>
-        <View style={styles.optionsSubContainer}>
+        </Pressable>
+        <Pressable style={styles.optionsSubContainer}>
           <Image source={require("../../assets/icons/language-icon.png")} />
           <Text style={styles.optionsText}>Idioma</Text>
-        </View>
-      </TouchableHighlight>
-
-      <TouchableHighlight>
-        <View style={styles.optionsSubContainer}>
-        <Image source={require("../../assets/icons/circleQuestion-icon.png")} />
+        </Pressable>
+        <Pressable style={styles.optionsSubContainer}>
+          <Image source={require("../../assets/icons/circleQuestion-icon.png")} />
           <Text style={styles.optionsText}>Faq</Text>
-        </View>
-      </TouchableHighlight>
+        </Pressable>
+        
 
-      <TouchableHighlight>
-        <View style={styles.optionsSubContainer}>
-        <Image source={require("../../assets/icons/termsAndCond-icon.png")} />
+        <Pressable style={styles.optionsSubContainer}>
+          <Image source={require("../../assets/icons/termsAndCond-icon.png")} />
           <Text style={styles.optionsText}>Términos y condiciones</Text>
-        </View>
-      </TouchableHighlight>
+        </Pressable>
+        
 
-      <TouchableHighlight>
-        <View style={styles.logoutContainer}>
+        <Pressable style={styles.optionsSubContainer}>
           <Image source={require("../../assets/icons/logout-icon.png")} />
           <Text style={styles.logoutText}>Log out</Text>
-        </View>
-      </TouchableHighlight>
+        </Pressable>
     </View>
   );
 };
