@@ -4,7 +4,7 @@ import {View, StyleSheet, Text} from 'react-native';
 export const FilteredResultScreen = () => {
   return (
     <View>
-      <Text>HOla</Text>
+      <Text>Aca van a ir las viviendas </Text>
     </View>
   );
 }
