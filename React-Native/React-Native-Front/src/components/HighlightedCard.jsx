@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, StyleSheet, Text } from "react-native";
+import { View, Image, StyleSheet, Text, ImageBackground } from "react-native";
 
 const highlightedData = [
   {
@@ -16,15 +16,19 @@ const HighlightedCard = () => {
   return (
     <View style={[styles.cardContainer, { marginTop: 30 }]}>
       <View styles={styles.cardContainer}>
-        <Image
-          styles={styles.image}
-          source={require("../../assets/HighlightedData/sala-estar-lujo-loft-representacion-3d-estanteria.png")}
-        />
+        <View>
+          <Image
+            styles={styles.image}
+            source={require("../../assets/HighlightedData/sala-estar-lujo-loft-representacion-3d-estanteria.png")}
+          />
+          <View style={styles.heartContainer}></View>
+        </View>
         <View style={{ flexDirection: "row", marginTop: 5 }}>
           <Image
             style={styles.iconType}
-            source={require("../../assets/HighlightedData/iconDepto.png")}
+            source={require("../../assets/HighlightedData/domain.png")}
           />
+
           <Text style={styles.cardTitle}> {highlightedData[0].type} </Text>
         </View>
         <Text style={styles.value}>{highlightedData[0].value} USD </Text>
@@ -32,12 +36,12 @@ const HighlightedCard = () => {
         <View style={[styles.rooms, { flexDirection: "row" }]}>
           <Image
             style={styles.image}
-            source={require("../../assets/HighlightedData/ambiente.png")}
+            source={require("../../assets/HighlightedData/rooms.png")}
           />
           <Text>{highlightedData[0].ambientes} Ambientes </Text>
           <Image
             style={styles.image}
-            source={require("../../assets/HighlightedData/baño.png")}
+            source={require("../../assets/HighlightedData/bath.png")}
           />
           <Text>{highlightedData[0].ambientes} Baños </Text>
         </View>
@@ -59,8 +63,8 @@ const styles = StyleSheet.create({
     elevation: 5,
     backgroundColor: "white",
     paddingBottom: 30,
-    marginLeft: 30,
-    marginRight: 30,
+    marginLeft: 20,
+    marginRight: 15,
   },
 
   image: {
@@ -81,7 +85,7 @@ const styles = StyleSheet.create({
   },
   value: {
     color: "#49454F",
-    fontSize: 16,
+    fontSize: 15,
     marginLeft: 20,
     fontWeight: "800",
     marginTop: 12,
@@ -89,12 +93,23 @@ const styles = StyleSheet.create({
   location: {
     marginTop: 5,
     marginLeft: 20,
-    fontSize: 15,
+    fontSize: 14,
     color: "#49454F",
+    fontWeight: "400",
   },
   rooms: {
     marginTop: 15,
-    fontSize: 15,
+    fontSize: 14,
+    fontWeight: "400",
     color: "#49454F",
+  },
+  heartContainer: {
+    height: 50,
+    backgroundColor: "#D9D9D9",
+    width: 50,
+    position: "absolute",
+    right: 0,
+    borderRadius: 10,
+    opacity: 0.4,
   },
 });
