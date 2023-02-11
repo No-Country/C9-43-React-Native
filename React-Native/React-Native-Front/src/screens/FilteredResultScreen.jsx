@@ -5,6 +5,7 @@ export const FilteredResultScreen = () => {
   return (
     <View>
       <Text>Aca van a ir las viviendas </Text>
+      <Text>x2</Text>
     </View>
   );
 }
