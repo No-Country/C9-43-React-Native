@@ -13,7 +13,7 @@ export const TabNavigator = () => {
         tabBarIcon: ({color}) => tabIconOptions( route, color ),
         headerShown: false,
         tabBarHideOnKeyboard: true,
-        tabBarActiveTintColor: '#FFFFFF',
+        tabBarActiveTintColor: '#018349',
         tabBarInactiveTintColor: '#414141',
         tabBarActiveBackgroundColor: '#979797',
         tabBarInactiveBackgroundColor: '#979797',
