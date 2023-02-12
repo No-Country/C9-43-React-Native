@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { tabIconOptions } from "../helpers";
-import { FilterScreen, HomeScreen, MenuScreen } from "../screens";
+import { tabIconOptions } from "../src/helpers";
+import { HomeScreen, MenuScreen, PostScreen } from "../src/screens";
+import { SearchNavigation } from "./SearchNavigation";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -13,7 +14,7 @@ export const TabNavigator = () => {
         tabBarIcon: ({color}) => tabIconOptions( route, color ),
         headerShown: false,
         tabBarHideOnKeyboard: true,
-        tabBarActiveTintColor: '#FFFFFF',
+        tabBarActiveTintColor: '#018349',
         tabBarInactiveTintColor: '#414141',
         tabBarActiveBackgroundColor: '#979797',
         tabBarInactiveBackgroundColor: '#979797',
@@ -32,7 +33,7 @@ export const TabNavigator = () => {
 
         <BottomTab.Screen 
           name="Buscar" 
-          component={ HomeScreen }
+          component={ SearchNavigation }
         />
 
         <BottomTab.Screen 
@@ -42,7 +43,8 @@ export const TabNavigator = () => {
 
         <BottomTab.Screen 
           name="Publicar" 
-          component={ HomeScreen } 
+          component={ PostScreen } 
+          options={{ headerShown: false }}
         />
 
         <BottomTab.Screen 

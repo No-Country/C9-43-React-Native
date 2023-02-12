@@ -5,9 +5,10 @@ import {
   View,
   ImageBackground,
   StyleSheet,
+  Pressable,
 } from "react-native";
 
-const HomeScreenHeader = () => {
+const HomeScreenHeader = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -20,10 +21,12 @@ const HomeScreenHeader = () => {
         />
         <Text style={styles.headerTitle}>¡Hola!</Text>
         <Text style={styles.headerSubtitle}>¿Qué estás buscando?</Text>
-        <TextInput
-          style={styles.search}
-          placeholder="Inicia una nueva búsqueda"
-        />
+        <Pressable onPress={() => navigation.navigate('FilteredResultScreen')} >
+          <Text
+            style={styles.search}
+            placeholder="Inicia una nueva búsqueda"
+          />
+        </Pressable>
         <Image
           source={require("../../assets/magnifyingGlass.png")}
           style={styles.searchIcon}
