@@ -6,6 +6,7 @@ import {
   LoginScreen,
   MainScreen,
   RegisterScreen,
+  FavoriteScreen,
 } from "../src/screens";
 
 const Stack = createNativeStackNavigator();
@@ -46,6 +47,9 @@ const MainStack = () => {
           }}}
           
           />
+          <Stack.Screen name="Favoritos" component={FavoriteScreen} options={{ headerShown: false, headerStyle: {backgroundColor: '#D9D9D9', height: 106 }, headerTitleStyle: {
+            fontWeight: '400', fontSize: 16, 
+          }}}
       </Stack.Navigator>
     </NavigationContainer>
   );
