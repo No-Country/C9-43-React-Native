@@ -6,6 +6,7 @@ import {
   View,
   ImageBackground,
 } from "react-native";
+
 import HighlightedCarousel from "../components/HighlightedCarousel";
 import HomeScreenHeader from "../components/HomeScreenHeader";
 import HomeDirectOwners from "../components/HomeDirectOwners";
@@ -13,11 +14,11 @@ import HomeDirectOwners from "../components/HomeDirectOwners";
 export const HomeScreen = ({ navigation }) => {
   return (
     <ScrollView>
-      <View style={styles.container}>
-        <HomeScreenHeader navigation={navigation}/>
+      <View style={[styles.container]}>
+        <HomeScreenHeader navigation={navigation} />
         <View style={styles.publishView}>
           <Text style={styles.bodyTitle}>Publica tu anuncio. Es gratis!</Text>
-          <TouchableOpacity style={styles.publishButton} >
+          <TouchableOpacity style={styles.publishButton}>
             <ImageBackground
               source={require("../../assets/Home/publish-button.png")}
               style={[styles.publishButton]}
@@ -56,6 +57,7 @@ export const HomeScreen = ({ navigation }) => {
     </ScrollView>
   );
 };
+
 
 const styles = StyleSheet.create({
   buttonText: {
