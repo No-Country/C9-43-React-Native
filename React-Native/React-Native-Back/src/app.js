@@ -19,9 +19,8 @@ app.use("/properties", propertiesRouter);
 app.use("/favorites", favoritesRouter);
 
 
-db.sync({ force: false })
+db.sync({ force: true })
   .then(() => console.log("Base de datos sincronizada"))
   .catch((error) => console.log(error));
-
 
 module.exports = app;

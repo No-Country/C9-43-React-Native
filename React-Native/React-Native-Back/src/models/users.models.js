@@ -26,17 +26,20 @@ const Users = db.define("users", {
     type: DataTypes.STRING,
     allowNull: false
   },
-  first_name: {
-    type: DataTypes.STRING,
+  profilePicture: {
+    type: DataTypes.STRING
   },
-  last_name: {
-    type: DataTypes.STRING,
+  firstName: {
+    type: DataTypes.STRING
+  },
+  lastName: {
+    type: DataTypes.STRING
   },
   location: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING
   },
-  document_id: {
-    type: DataTypes.INTEGER,
+  documentId: {
+    type: DataTypes.INTEGER
   }
 }, {
   hooks: {
