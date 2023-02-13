@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginVertical: 20,
   },
-
   imagen: {
     position: "absolute",
     top: 1,
