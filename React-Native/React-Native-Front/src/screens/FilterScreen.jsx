@@ -4,29 +4,42 @@ import {
   Text,
   TextInput,
   Image,
-  TouchableHighlight,
-  StatusBar,
   Pressable,
 } from "react-native";
 import { GreenButton } from "../components/index";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { FilterModal } from "../components/modal/FilterModal";
+import { useModal } from '../hooks/index'
+import { useState } from "react";
 
 //TODO agregar box shadow al input y a las tarjetas de depto casa terreno
 
 export const FilterScreen = ({ navigation }) => {
+  const { modalVisible, handleModalVisibility } = useModal()
+  const [operationBg, setOperationBg] = useState('')
+  const [typeOfPropertyBg, setTypeOfPropertyBg] = useState('')
+
+  const handleOperationBg = (string) => {
+    setOperationBg(string)
+  }
+
+  const handleTypeOfPropertyBg = (string) => {
+    setTypeOfPropertyBg(string)
+  }
+
   return (
     <View style={styles.containerScreen}>
-      <StatusBar />
+      {/* <StatusBar /> */}
       <View style={styles.header}>
         <View style={styles.headerInternalContainer}>
-          <TouchableHighlight onPress={() => navigation.navigate("MainScreen")}>
+          <Pressable onPress={() => navigation.navigate("MainScreen")}>
             <MaterialIcons name="arrow-back" size={24} color="black" />
-          </TouchableHighlight>
+          </Pressable>
           <Text style={styles.headerText}>Filtros avanzados</Text>
         </View>
-        <TouchableHighlight>
+        <Pressable>
           <Text style={styles.headerCleanText}>Limpiar</Text>
-        </TouchableHighlight>
+        </Pressable>
       </View>
 
       <View style={styles.container}>
@@ -51,37 +64,37 @@ export const FilterScreen = ({ navigation }) => {
         </View>
         <Text style={styles.operatorText}>Tipo de operación</Text>
         <View style={styles.operatorContainer}>
-          <View style={[styles.typesContainer]}>
-            <Text style={styles.typesText}>Venta</Text>
-          </View>
-          <View style={styles.typesContainer}>
-            <Text style={styles.typesText}>Alquiler</Text>
-          </View>
+          <Pressable style={[styles.typesContainer, operationBg === 'venta' ? styles.backgroundSelected : null]} onPress={() => handleOperationBg('venta')}>
+            <Text style={[styles.typesText, operationBg === 'venta' ? styles.textSelected : null]}>Venta</Text>
+          </Pressable>
+          <Pressable style={[styles.typesContainer, operationBg === 'alquiler' ? styles.backgroundSelected : null]} onPress={() => handleOperationBg('alquiler')}>
+            <Text style={[styles.typesText, operationBg === 'alquiler' ? styles.textSelected : null]}>Alquiler</Text>
+          </Pressable>
         </View>
         <View style={[styles.separator, styles.separatorOperator]} />
         <Text style={styles.propertyText}>Tipo de inmueble</Text>
         <View style={styles.propertyContainer}>
-          <View style={styles.propertyCardContainer}>
+          <Pressable style={[styles.propertyCardContainer, typeOfPropertyBg === 'depto' ? styles.backgroundSelected : null]} onPress={() => handleTypeOfPropertyBg('depto')}>
             <Image
               style={styles.propertyIcon}
               source={require("../../assets/domain.png")}
             />
-            <Text style={styles.propertySecondaryText}>Depto.</Text>
-          </View>
-          <View style={styles.propertyCardContainer}>
+            <Text style={[styles.propertySecondaryText, typeOfPropertyBg === 'depto' ? styles.textSelected : null]}>Depto.</Text>
+          </Pressable>
+          <Pressable style={[styles.propertyCardContainer, typeOfPropertyBg === 'casa' ? styles.backgroundSelected : null]} onPress={() => handleTypeOfPropertyBg('casa')} >
             <Image
               style={styles.propertyIcon}
               source={require("../../assets/cottage.png")}
             />
-            <Text style={styles.propertySecondaryText}>Casa</Text>
-          </View>
-          <View style={styles.propertyCardContainer}>
+            <Text style={[styles.propertySecondaryText, typeOfPropertyBg === 'casa' ? styles.textSelected : null]}>Casa</Text>
+          </Pressable>
+          <Pressable style={[styles.propertyCardContainer, typeOfPropertyBg === 'terreno' ? styles.backgroundSelected : null]} onPress={() => handleTypeOfPropertyBg('terreno')}>
             <Image
               style={styles.propertyIcon}
               source={require("../../assets/Vector.png")}
             />
-            <Text style={styles.propertySecondaryText}>Terreno</Text>
-          </View>
+            <Text style={[styles.propertySecondaryText, typeOfPropertyBg === 'terreno' ? styles.textSelected : null]}>Terreno</Text>
+          </Pressable>
         </View>
         <View style={[styles.separator, styles.separatorProperty]} />
         <Pressable style={styles.attributesContainer}>
@@ -94,7 +107,7 @@ export const FilterScreen = ({ navigation }) => {
           <Text style={styles.secondText}>Indistinto</Text>
         </Pressable>
         <View style={[styles.separator, styles.separatorMargin]} />
-        <Pressable style={styles.attributesContainer}>
+        <Pressable  style={styles.attributesContainer} onPress={handleModalVisibility}>
           <Text style={styles.primaryText}>Tipo de ambientes</Text>
           <Text style={styles.secondText}>Indistinto</Text>
         </Pressable>
@@ -103,6 +116,8 @@ export const FilterScreen = ({ navigation }) => {
           <GreenButton text="Aceptar" />
         </Pressable>
       </View>
+      {/* MODAL */}
+      <FilterModal isVisible={modalVisible} handleModalVisibility={handleModalVisibility} />
     </View>
   );
 };
@@ -282,4 +297,11 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "center",
   },
+  backgroundSelected: {
+    backgroundColor: '#D4F9E8',
+    borderColor: '#018349'
+  },
+  textSelected: {
+    color: '#018349'
+  }
 });
