@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet, FlatList, Image, Text } from "react-native";
 import HighlightedCard from "../components/HighlightedCard";
 
+
 export const FilteredResultScreen = () => {
   const HighlightedCards = [
     { key: 1, component: <HighlightedCard /> },
