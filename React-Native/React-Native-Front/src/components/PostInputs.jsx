@@ -26,7 +26,7 @@ export const PostInputs = ({ titleAndPlaceholder = [{ title: '', placeholder: ''
                 />
               </>
             )
-          } */
+          } */ 
 
           return (
             <>
