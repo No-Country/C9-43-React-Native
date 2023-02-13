@@ -4,14 +4,14 @@ import {
   Text,
   TextInput,
   Image,
-  TouchableOpacity,
   TouchableHighlight,
   StatusBar,
+  Pressable,
 } from "react-native";
+import { GreenButton } from "../components/index";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 //TODO agregar box shadow al input y a las tarjetas de depto casa terreno
-//TODO no entra el boton de aceptar siguiendo las medidas del figma!
 
 export const FilterScreen = ({ navigation }) => {
   return (
@@ -61,24 +61,14 @@ export const FilterScreen = ({ navigation }) => {
         <View style={[styles.separator, styles.separatorOperator]} />
         <Text style={styles.propertyText}>Tipo de inmueble</Text>
         <View style={styles.propertyContainer}>
-          <View
-            style={[
-              styles.propertyCardContainer,
-              styles.propertyCardContainerDepto,
-            ]}
-          >
+          <View style={styles.propertyCardContainer}>
             <Image
               style={styles.propertyIcon}
               source={require("../../assets/domain.png")}
             />
             <Text style={styles.propertySecondaryText}>Depto.</Text>
           </View>
-          <View
-            style={[
-              styles.propertyCardContainer,
-              styles.propertyCardContainerDepto,
-            ]}
-          >
+          <View style={styles.propertyCardContainer}>
             <Image
               style={styles.propertyIcon}
               source={require("../../assets/cottage.png")}
@@ -94,24 +84,24 @@ export const FilterScreen = ({ navigation }) => {
           </View>
         </View>
         <View style={[styles.separator, styles.separatorProperty]} />
-        <TouchableOpacity style={styles.priceContainer}>
-          <Text style={styles.priceText}>Precio</Text>
-          <Text style={styles.priceSecondaryText}>Indistinto</Text>
-        </TouchableOpacity>
-        <View style={[styles.separator, styles.separatorPrice]} />
-        <View style={styles.priceContainer}>
-          <Text style={styles.priceText}>Superficie</Text>
-          <Text style={styles.priceSecondaryText}>Indistinto</Text>
-        </View>
-        <View style={[styles.separator, styles.separatorPrice]} />
-        <View style={styles.priceContainer}>
-          <Text style={styles.priceText}>Tipo de ambientes</Text>
-          <Text style={styles.priceSecondaryText}>Indistinto</Text>
-        </View>
-        <View style={[styles.separator, styles.separatorPrice]} />
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Aceptar</Text>
-        </TouchableOpacity>
+        <Pressable style={styles.attributesContainer}>
+          <Text style={styles.primaryText}>Precio</Text>
+          <Text style={styles.secondText}>Indistinto</Text>
+        </Pressable>
+        <View style={[styles.separator, styles.separatorMargin]} />
+        <Pressable style={styles.attributesContainer}>
+          <Text style={styles.primaryText}>Superficie</Text>
+          <Text style={styles.secondText}>Indistinto</Text>
+        </Pressable>
+        <View style={[styles.separator, styles.separatorMargin]} />
+        <Pressable style={styles.attributesContainer}>
+          <Text style={styles.primaryText}>Tipo de ambientes</Text>
+          <Text style={styles.secondText}>Indistinto</Text>
+        </Pressable>
+        <View style={[styles.separator, styles.separatorMargin]} />
+        <Pressable style={styles.button}>
+          <GreenButton text="Aceptar" />
+        </Pressable>
       </View>
     </View>
   );
@@ -126,8 +116,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    height: '10%',
+    height: "10%",
     paddingHorizontal: 20,
+    paddingTop: 20,
   },
   headerText: {
     fontWeight: "400",
@@ -149,6 +140,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   searchText: {
+    marginTop: 10,
     fontWeight: "500",
     fontSize: 16,
     lineHeight: 24,
@@ -191,7 +183,7 @@ const styles = StyleSheet.create({
   },
   operatorContainer: {
     marginTop: 14,
-    width: '100%',
+    width: "100%",
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
@@ -260,51 +252,34 @@ const styles = StyleSheet.create({
     borderBottomColor: "#CAC4D0",
     borderBottomWidth: 1,
   },
-  priceContainer: {
+  attributesContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     marginTop: 18,
   },
-  priceText: {
+  primaryText: {
     fontWeight: "500",
     color: "#000000",
     lineHeight: 24,
     letterSpacing: 0.15,
     fontSize: 14,
   },
-  priceSecondaryText: {
+  secondText: {
     fontWeight: "500",
     fontSize: 15,
     lineHeight: 24,
     letterSpacing: 0.15,
     color: "#018349",
   },
-  separatorPrice: {
+  separatorMargin: {
     marginTop: 20,
   },
-  buttonsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: 36,
-  },
-  cancelarButton: {
-    borderWidth: 1,
-  },
   button: {
-    width: 328,
-    height: 40,
-    marginTop: 45,
+    width: "100%",
+    marginTop: 35,
     borderRadius: 4,
     alignSelf: "center",
     justifyContent: "center",
-    backgroundColor: "#018349",
-  },
-  buttonText: {
-    color: "#FFFFFF",
-    fontWeight: "500",
-    fontSize: 14,
-    textAlign: "center",
   },
 });

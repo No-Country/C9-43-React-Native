@@ -5,10 +5,11 @@ import {
   View,
   ImageBackground,
   StyleSheet,
+  Pressable,
   TouchableOpacity,
 } from "react-native";
 
-const HomeScreenHeader = () => {
+const HomeScreenHeader = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -21,23 +22,13 @@ const HomeScreenHeader = () => {
         />
         <Text style={styles.headerTitle}>¡Hola!</Text>
         <Text style={styles.headerSubtitle}>¿Qué estás buscando?</Text>
-        <TouchableOpacity>
-          <View style={[styles.search, { flexDirection: "row" }]}>
+        <TouchableOpacity onPress={() => navigation.navigate("Ubicacion")}>
+          <View style={styles.search}>
             <Image
               source={require("../../assets/magnifyingGlass.png")}
-              style={{ marginTop: 16, left: 17 }}
+              style={styles.searchIcon}
             />
-            <Text
-              style={{
-                marginTop: 16,
-                left: 25,
-                fontSize: 14,
-                color: "#979797",
-                fontWeight: "400",
-              }}
-            >
-              Inicia una nueva búsqueda
-            </Text>
+            <Text style={styles.newSearchText}>Inicia una nueva búsqueda</Text>
           </View>
         </TouchableOpacity>
       </ImageBackground>
@@ -89,12 +80,17 @@ const styles = StyleSheet.create({
     borderColor: "#979797",
     textAlign: "center",
     borderRadius: 5,
+    flexDirection: "row",
   },
   searchIcon: {
     width: 18,
     height: 18,
-    position: "absolute",
-    top: 295,
-    left: 75,
+    marginTop: 18,
+    margin: 15,
+  },
+  newSearchText: {
+    fontSize: 16,
+    fontWeight: "400",
+    marginTop: 16,
   },
 });
