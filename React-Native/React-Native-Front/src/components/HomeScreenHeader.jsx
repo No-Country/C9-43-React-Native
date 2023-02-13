@@ -22,9 +22,7 @@ const HomeScreenHeader = ({ navigation }) => {
         />
         <Text style={styles.headerTitle}>¡Hola!</Text>
         <Text style={styles.headerSubtitle}>¿Qué estás buscando?</Text>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("FilteredResultScreen")}
-        >
+        <TouchableOpacity onPress={() => navigation.navigate("Ubicacion")}>
           <View style={styles.search}>
             <Image
               source={require("../../assets/magnifyingGlass.png")}

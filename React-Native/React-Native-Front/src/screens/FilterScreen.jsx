@@ -6,14 +6,13 @@ import {
   Image,
   Pressable,
 } from "react-native";
-import { GreenButton } from '../components/index'
+import { GreenButton } from "../components/index";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { FilterModal } from "../components/modal/FilterModal";
 import { useModal } from '../hooks/index'
 import { useState } from "react";
 
 //TODO agregar box shadow al input y a las tarjetas de depto casa terreno
-
 
 export const FilterScreen = ({ navigation }) => {
   const { modalVisible, handleModalVisibility } = useModal()
@@ -80,9 +79,11 @@ export const FilterScreen = ({ navigation }) => {
               style={styles.propertyIcon}
               source={require("../../assets/domain.png")}
             />
-            <Text style={[styles.propertySecondaryText, typeOfPropertyBg === 'depto' ? styles.textSelected : null]}>Depto.</Text>
-          </Pressable>
-          <Pressable style={[styles.propertyCardContainer, typeOfPropertyBg === 'casa' ? styles.backgroundSelected : null]} onPress={() => handleTypeOfPropertyBg('casa')}>
+            <Text style={styles.propertySecondaryText}>Depto.</Text>
+          </View>
+          <View
+            style={styles.propertyCardContainer}
+          >
             <Image
               style={styles.propertyIcon}
               source={require("../../assets/cottage.png")}
@@ -108,13 +109,13 @@ export const FilterScreen = ({ navigation }) => {
           <Text style={styles.secondText}>Indistinto</Text>
         </Pressable>
         <View style={[styles.separator, styles.separatorMargin]} />
-        <Pressable  style={styles.attributesContainer} onPress={handleModalVisibility}>
+        <Pressable  style={styles.attributesContainer}>
           <Text style={styles.primaryText}>Tipo de ambientes</Text>
           <Text style={styles.secondText}>Indistinto</Text>
         </Pressable>
         <View style={[styles.separator, styles.separatorMargin]} />
         <Pressable style={styles.button}>
-          <GreenButton text='Aceptar'/>
+          <GreenButton text="Aceptar" />
         </Pressable>
       </View>
       {/* MODAL */}
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    height: '10%',
+    height: "10%",
     paddingHorizontal: 20,
     paddingTop: 20,
   },
@@ -199,7 +200,7 @@ const styles = StyleSheet.create({
   },
   operatorContainer: {
     marginTop: 14,
-    width: '100%',
+    width: "100%",
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
@@ -292,7 +293,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   button: {
-    width: '100%',
+    width: "100%",
     marginTop: 35,
     borderRadius: 4,
     alignSelf: "center",
