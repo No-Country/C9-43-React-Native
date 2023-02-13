@@ -5,3 +5,4 @@ export * from './HomeDirectOwners';
 export * from './HomeScreenHeader';
 export * from './TextedCheckbox';
 export * from './PressableStages';
+export * from './PostInputs';
