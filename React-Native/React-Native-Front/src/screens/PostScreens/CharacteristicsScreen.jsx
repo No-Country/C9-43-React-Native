@@ -1,25 +1,29 @@
 import { StyleSheet, Text, View } from "react-native"
 import { PostInputs, PostTopBar } from "../../components"
 
-export const DescriptionScreen = () => {
+export const CharacteristicsScreen = () => {
   return (
     <View style={ styles.container }>
 
         <PostTopBar />
 
         <Text style={ styles.title }>
-            Descripción
+            Características
         </Text>
 
         <PostInputs 
           titleAndPlaceholder={[ 
             { 
-              title: 'Agregá un título', 
-              placeholder: 'Ej: Departamento de 2 ambientes y 1 baño'
+              title:'Indicá la cantidad de m²',
+              placeholder: 'Ej: 45 m²'
             },
             {
-              title: 'Describí tu inmueble',
-              placeholder: 'Ej: Departamento de 2 ambientes y 1 baño'
+              title: '¿Cuántos dormitorios tiene?',
+              placeholder: 'Ej: 2'
+            },
+            {
+                title: '¿Cuántos baños tiene?',
+                placeholder: 'Ej: 1'
             }
           ]}
         />
