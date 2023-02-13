@@ -23,14 +23,23 @@ export const RegisterScreen = ({ navigation }) => {
 
         <Text style={styles.title}>Ingresá tus datos</Text>
 
-        <View style={styles.inputs}>
-          <TextInput style={styles.emailInput} placeholder="E-mail" />
-
-          <TextInput style={styles.passwordInput} placeholder="Contraseña" />
+        <View style={[styles.inputs]}>
+          <TextInput
+            style={[styles.emailInput, styles.textInputs]}
+            placeholder="Ingresa tu E-mail"
+            placeholderTextColor="#979797"
+          />
 
           <TextInput
-            style={styles.passwordInput}
-            placeholder="Repetir contraseña"
+            style={[styles.passwordInput, styles.textInputs]}
+            placeholder="Ingresa tu contraseña"
+            placeholderTextColor="#979797"
+          />
+
+          <TextInput
+            style={[styles.passwordInput, styles.textInputs]}
+            placeholder="Volvé a ingresar tu contraseña"
+            placeholderTextColor="#979797"
           />
 
           <TouchableOpacity style={styles.registerButton}>
@@ -49,21 +58,26 @@ const styles = StyleSheet.create({
   },
   arrow: {
     alignSelf: "flex-start",
-    marginTop: 46,
+    marginTop: 31,
     left: 27,
   },
   logo: {
-    marginTop: 102,
+    marginTop: 38,
   },
   title: {
-    marginTop: 54,
-    fontWeight: "600",
-    fontSize: 20,
+    marginTop: 36,
+    fontWeight: "400",
+    fontSize: 16,
   },
   inputs: {
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 21,
+    marginTop: 32,
+  },
+  textInputs: {
+    fontSize: 16,
+    fontWeight: "400",
+    marginBottom: -10,
   },
   emailInput: {
     width: 326,
@@ -71,6 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#D9D9D9",
     paddingLeft: 19,
     borderRadius: 5,
+
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -99,17 +114,19 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   registerButton: {
+    backgroundColor: "#018349",
     marginTop: 30,
-    width: 160,
-    height: 38,
+    width: 328,
+    height: 49,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#D9D9D9",
     borderRadius: 4,
+    marginTop: 50,
   },
   registerButtonText: {
     fontWeight: "500",
     fontSize: 14,
     letterSpacing: 1.25,
+    color: "#fff",
   },
 });
