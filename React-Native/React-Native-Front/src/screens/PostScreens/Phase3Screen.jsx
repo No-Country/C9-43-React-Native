@@ -1,7 +1,7 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { PostTopBar, TextedCheckbox } from "../../components";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { PostTopBar, TextedCheckbox } from "../../components"
 
-export const Phase2Screen = () => {
+export const Phase3Screen = () => {
   return (
     <View style={ styles.container }>
 
@@ -29,11 +29,8 @@ export const Phase2Screen = () => {
 
         <View style={ styles.optionsContainer }>
 
-            <TextedCheckbox text={ 'Departamento' } />
-
-            <TextedCheckbox text={ 'Casa' } />
-
-            <TextedCheckbox text={ 'Terreno' } />
+            <TextedCheckbox text='Venta' />
+            <TextedCheckbox text='Alquiler' />
 
         </View>
 
