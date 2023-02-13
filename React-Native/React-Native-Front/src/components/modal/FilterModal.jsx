@@ -2,10 +2,12 @@ import React from "react";
 import { View, StyleSheet, Modal, Text, Pressable } from "react-native";
 import { TextedCheckbox } from "../TextedCheckbox";
 
+//TODO preguntar bien como se va a ver el modal, sobretodo la opacidad del fondo
+
 export const FilterModal = ({ isVisible, handleModalVisibility }) => {
 
   return (
-    <Modal visible={isVisible} transparent={true} animationType="fade">
+    <Modal visible={isVisible} transparent={true} animationType="fade" onRequestClose={handleModalVisibility}>
       <View style={styles.mainContainer}>
       <View style={styles.container}>
         <Text style={styles.textTitle}>Tipo de ambientes</Text>

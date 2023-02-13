@@ -79,11 +79,9 @@ export const FilterScreen = ({ navigation }) => {
               style={styles.propertyIcon}
               source={require("../../assets/domain.png")}
             />
-            <Text style={styles.propertySecondaryText}>Depto.</Text>
-          </View>
-          <View
-            style={styles.propertyCardContainer}
-          >
+            <Text style={[styles.propertySecondaryText, typeOfPropertyBg === 'depto' ? styles.textSelected : null]}>Depto.</Text>
+          </Pressable>
+          <Pressable style={[styles.propertyCardContainer, typeOfPropertyBg === 'casa' ? styles.backgroundSelected : null]} onPress={() => handleTypeOfPropertyBg('casa')} >
             <Image
               style={styles.propertyIcon}
               source={require("../../assets/cottage.png")}
@@ -109,7 +107,7 @@ export const FilterScreen = ({ navigation }) => {
           <Text style={styles.secondText}>Indistinto</Text>
         </Pressable>
         <View style={[styles.separator, styles.separatorMargin]} />
-        <Pressable  style={styles.attributesContainer}>
+        <Pressable  style={styles.attributesContainer} onPress={handleModalVisibility}>
           <Text style={styles.primaryText}>Tipo de ambientes</Text>
           <Text style={styles.secondText}>Indistinto</Text>
         </Pressable>
