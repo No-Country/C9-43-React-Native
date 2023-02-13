@@ -4,25 +4,45 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 [ { title: '', placeholder: ''}, {}]
 
-export const PostInputs = ({ titleAndPlaceholder = [{ title: '', placeholder: '' }] }) => {
+export const PostInputs = ({ titleAndPlaceholder = [{ title: '', placeholder: '' }], type = '' }) => {
   return (
     <View style={ styles.container }>
 
       {
-        titleAndPlaceholder.map( input => (
-          <>
-            <Text style={ styles.title }>
-              { input.title }
-            </Text>
+        titleAndPlaceholder.map( input => {
 
-            <TextInput 
-              style={ styles.input }
-              placeholder={ input.placeholder }
-              placeholderTextColor={ '#979797' }
-              autoComplete='off'
-            />
-          </>
-        ))
+          /* if( type === 'price' ){
+            return(
+              <>
+                <Text style={ styles.title }>
+                  { input.title }
+                </Text>
+
+                <TextInput 
+                  style={ styles.input }
+                  placeholder={ input.placeholder }
+                  placeholderTextColor={ '#979797' }
+                  autoComplete='off'
+                />
+              </>
+            )
+          } */ 
+
+          return (
+            <>
+              <Text style={ styles.title }>
+                { input.title }
+              </Text>
+
+              <TextInput 
+                style={ styles.input }
+                placeholder={ input.placeholder }
+                placeholderTextColor={ '#979797' }
+                autoComplete='off'
+              />
+            </>
+          )
+        })
       }
 
 
