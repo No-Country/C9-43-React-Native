@@ -4,16 +4,14 @@ import {
   Text,
   TextInput,
   Image,
-  TouchableOpacity,
   TouchableHighlight,
   StatusBar,
   Pressable,
 } from "react-native";
-import { GreenButton } from '../components/index'
+import { GreenButton } from "../components/index";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 //TODO agregar box shadow al input y a las tarjetas de depto casa terreno
-
 
 export const FilterScreen = ({ navigation }) => {
   return (
@@ -70,9 +68,7 @@ export const FilterScreen = ({ navigation }) => {
             />
             <Text style={styles.propertySecondaryText}>Depto.</Text>
           </View>
-          <View
-            style={styles.propertyCardContainer}
-          >
+          <View style={styles.propertyCardContainer}>
             <Image
               style={styles.propertyIcon}
               source={require("../../assets/cottage.png")}
@@ -98,13 +94,13 @@ export const FilterScreen = ({ navigation }) => {
           <Text style={styles.secondText}>Indistinto</Text>
         </Pressable>
         <View style={[styles.separator, styles.separatorMargin]} />
-        <Pressable  style={styles.attributesContainer}>
+        <Pressable style={styles.attributesContainer}>
           <Text style={styles.primaryText}>Tipo de ambientes</Text>
           <Text style={styles.secondText}>Indistinto</Text>
         </Pressable>
         <View style={[styles.separator, styles.separatorMargin]} />
         <Pressable style={styles.button}>
-          <GreenButton text='Aceptar'/>
+          <GreenButton text="Aceptar" />
         </Pressable>
       </View>
     </View>
@@ -120,7 +116,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    height: '10%',
+    height: "10%",
     paddingHorizontal: 20,
     paddingTop: 20,
   },
@@ -187,7 +183,7 @@ const styles = StyleSheet.create({
   },
   operatorContainer: {
     marginTop: 14,
-    width: '100%',
+    width: "100%",
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
@@ -280,7 +276,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   button: {
-    width: '100%',
+    width: "100%",
     marginTop: 35,
     borderRadius: 4,
     alignSelf: "center",

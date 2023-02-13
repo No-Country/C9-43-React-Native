@@ -6,6 +6,7 @@ import {
   View,
   ImageBackground,
 } from "react-native";
+
 import HighlightedCarousel from "../components/HighlightedCarousel";
 import HomeScreenHeader from "../components/HomeScreenHeader";
 import HomeDirectOwners from "../components/HomeDirectOwners";
@@ -56,6 +57,7 @@ export const HomeScreen = ({ navigation }) => {
     </ScrollView>
   );
 };
+
 
 const styles = StyleSheet.create({
   buttonText: {
