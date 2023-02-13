@@ -30,7 +30,7 @@ const HomeScreenHeader = ({ navigation }) => {
               source={require("../../assets/magnifyingGlass.png")}
               style={styles.searchIcon}
             />
-            <Text style={{ marginTop: 17 }}>Inicia una nueva búsqueda</Text>
+            <Text style={styles.newSearchText}>Inicia una nueva búsqueda</Text>
           </View>
         </TouchableOpacity>
       </ImageBackground>
@@ -89,5 +89,10 @@ const styles = StyleSheet.create({
     height: 18,
     marginTop: 18,
     margin: 15,
+  },
+  newSearchText: {
+    fontSize: 16,
+    fontWeight: "400",
+    marginTop: 16,
   },
 });
