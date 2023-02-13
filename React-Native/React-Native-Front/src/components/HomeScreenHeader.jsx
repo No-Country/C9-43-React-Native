@@ -6,6 +6,7 @@ import {
   ImageBackground,
   StyleSheet,
   Pressable,
+  TouchableOpacity,
 } from "react-native";
 
 const HomeScreenHeader = ({ navigation }) => {
@@ -21,16 +22,17 @@ const HomeScreenHeader = ({ navigation }) => {
         />
         <Text style={styles.headerTitle}>¡Hola!</Text>
         <Text style={styles.headerSubtitle}>¿Qué estás buscando?</Text>
-        <Pressable onPress={() => navigation.navigate('FilteredResultScreen')} >
-          <Text
-            style={styles.search}
-            placeholder="Inicia una nueva búsqueda"
-          />
-        </Pressable>
-        <Image
-          source={require("../../assets/magnifyingGlass.png")}
-          style={styles.searchIcon}
-        />
+        <TouchableOpacity
+          onPress={() => navigation.navigate("FilteredResultScreen")}
+        >
+          <View style={styles.search}>
+            <Image
+              source={require("../../assets/magnifyingGlass.png")}
+              style={styles.searchIcon}
+            />
+            <Text style={{ marginTop: 17 }}>Inicia una nueva búsqueda</Text>
+          </View>
+        </TouchableOpacity>
       </ImageBackground>
     </View>
   );
@@ -80,12 +82,12 @@ const styles = StyleSheet.create({
     borderColor: "#979797",
     textAlign: "center",
     borderRadius: 5,
+    flexDirection: "row",
   },
   searchIcon: {
     width: 18,
     height: 18,
-    position: "absolute",
-    top: 295,
-    left: 75,
+    marginTop: 18,
+    margin: 15,
   },
 });
