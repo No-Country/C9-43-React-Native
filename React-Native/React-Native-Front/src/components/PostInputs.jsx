@@ -2,14 +2,14 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 // Recibe un arreglo de objetos. Cada arreglo de segundo nivel debe contener un título en la posicion 0 y un placeholder en la posición 1. Ejemplo: [ { title: 'Agrega un título', placeholder: 'Ej: Departamento de 2 ambientes y 1 baño'}, { title: 'Describí tu inmueble', placeholder: 'Ej: Departamento amplio a 3 cuadras del centro, amplio, ubicado en un tercer piso} ].
 
-[ { title: '', placeholder: ''}, {}]
-
 export const PostInputs = ({ titleAndPlaceholder = [{ title: '', placeholder: '' }], type = '' }) => {
   return (
     <View style={ styles.container }>
 
       {
         titleAndPlaceholder.map( input => {
+
+          const { title, placeholder } = input;
 
           /* if( type === 'price' ){
             return(
@@ -29,18 +29,19 @@ export const PostInputs = ({ titleAndPlaceholder = [{ title: '', placeholder: ''
           } */ 
 
           return (
-            <>
-              <Text style={ styles.title }>
-                { input.title }
+            <View key={ `${ title } ${ placeholder }` }>
+              <Text key={ title } style={ styles.title }>
+                { title }
               </Text>
 
               <TextInput 
+                key={ placeholder }
                 style={ styles.input }
-                placeholder={ input.placeholder }
+                placeholder={ placeholder }
                 placeholderTextColor={ '#979797' }
                 autoComplete='off'
               />
-            </>
+            </View>
           )
         })
       }
