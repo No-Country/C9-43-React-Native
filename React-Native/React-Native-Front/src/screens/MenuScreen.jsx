@@ -1,37 +1,32 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  Image,
-  Pressable,
-} from "react-native";
+import { View, StyleSheet, Text, Image, Pressable } from "react-native";
 
 //TODO make the shadow of the header
 
 export const MenuScreen = () => {
-  return (  
-    <View style={styles.container}>
+  return (
+    <View style={styles.mainContainer}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>Menú</Text>
       </View>
-      <View style={styles.profileContainer}>
-        <Image
-          style={styles.profilePicture}
-          source={require("../../assets/profile-picture.png")}
-        />
-        <View style={styles.nameContainer}>
-          <Text style={styles.nameText}>Guadalupe Gomez</Text>
-          <Text style={styles.editText}>Editar perfil</Text>
+      <View style={styles.container}>
+        <View style={styles.profileContainer}>
+          <Image
+            style={styles.profilePicture}
+            source={require("../../assets/profile-picture.png")}
+          />
+          <View style={styles.nameContainer}>
+            <Text style={styles.nameText}>Guadalupe Gomez</Text>
+            <Text style={styles.editText}>Editar perfil</Text>
+          </View>
         </View>
-      </View>
 
-      <Pressable style={styles.optionsSubContainer}>
+        <Pressable style={styles.optionsSubContainer}>
           <Image source={require("../../assets/icons/dollarHouse-icon.png")} />
-          <Text style={styles.optionsText}>Publicar</Text>        
-      </Pressable>
+          <Text style={styles.optionsText}>Publicar</Text>
+        </Pressable>
 
-      <Pressable style={styles.optionsSubContainer}>
+        <Pressable style={styles.optionsSubContainer}>
           <Image source={require("../../assets/icons/message-icon.png")} />
           <Text style={styles.optionsText}>Mensajes</Text>
         </Pressable>
@@ -45,29 +40,30 @@ export const MenuScreen = () => {
           <Text style={styles.optionsText}>Idioma</Text>
         </Pressable>
         <Pressable style={styles.optionsSubContainer}>
-          <Image source={require("../../assets/icons/circleQuestion-icon.png")} />
+          <Image
+            source={require("../../assets/icons/circleQuestion-icon.png")}
+          />
           <Text style={styles.optionsText}>Faq</Text>
         </Pressable>
-        
 
         <Pressable style={styles.optionsSubContainer}>
           <Image source={require("../../assets/icons/termsAndCond-icon.png")} />
           <Text style={styles.optionsText}>Términos y condiciones</Text>
         </Pressable>
-        
 
         <Pressable style={styles.optionsSubContainer}>
           <Image source={require("../../assets/icons/logout-icon.png")} />
           <Text style={styles.logoutText}>Log out</Text>
         </Pressable>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  mainContainer: {
     flex: 1,
-    paddingHorizontal: 30,
+    // paddingHorizontal: 30,
     backgroundColor: "#ffffff",
   },
   headerContainer: {
@@ -78,15 +74,17 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   headerText: {
-    fontWeight: '400',
+    fontWeight: "400",
     fontSize: 16,
-    
+  },
+  container: {
+    paddingHorizontal: 30
   },
   profileContainer: {
     flexDirection: "row",
     alignItems: "center",
     paddingTop: 25,
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   profilePicture: {
     width: 67,

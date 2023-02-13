@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   },
   buttonSkip: {
     marginTop: 21, 
-    width: 328,
+    width: '100%',
     height: 49,
     alignItems: "center",
     justifyContent: "center",
