@@ -7,7 +7,7 @@ const Properties = db.define("properties", {
     type: DataTypes.INTEGER,
     autoIncrement: true
   },
-  user_id: {
+  userId: {
     type: DataTypes.INTEGER,
     allowNull: false
   },
@@ -22,14 +22,14 @@ const Properties = db.define("properties", {
     type: DataTypes.FLOAT,
     allowNull: false
   },
-  image_url: {
-    type: DataTypes.STRING,
+  pictures: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
     allowNull: false
   },
   location: {
     type: DataTypes.STRING,
   },
-  sq_meters: {
+  sqMeters: {
     type: DataTypes.FLOAT,
     allowNull: false
   },
@@ -45,15 +45,15 @@ const Properties = db.define("properties", {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-  built_year: {
+  yearBuilt: {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-  is_available: {
+  isAvailable: {
     type: DataTypes.BOOLEAN,
-    allowNull: false
+    defaultValue: true
   },
-  property_type: {
+  propertyType: {
     type: DataTypes.ENUM("casa", "departmento", "penthouse", "terreno", "oficina", "otros"),
     allowNull: false
   },

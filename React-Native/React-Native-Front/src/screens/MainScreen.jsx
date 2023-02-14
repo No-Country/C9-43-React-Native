@@ -9,46 +9,45 @@ import {
 } from "react-native";
 import { GreenButton } from "../components/index";
 
-
 export const MainScreen = ({ navigation }) => {
   return (
     <ImageBackground
-    style={styles.container}
-    source={require("../../assets/bg-image.png")}
+      style={styles.container}
+      source={require("../../assets/bg-image.png")}
     >
-    <StatusBar translucent barStyle='dark-content' backgroundColor='transparent'/>
-        <View style={styles.logoContainer}>
-          <Image
-            source={require("../../assets/logo.png")}
-            style={styles.image}
-          />
-        </View>
-        
-        <Text style={styles.title}>
-          Home Quest es la app que te permite publicar tu inmueble y también
-          encontrar el de tus sueños.
-        </Text>
+      <StatusBar
+        translucent
+        barStyle="dark-content"
+        backgroundColor="transparent"
+      />
+      <View style={styles.logoContainer}>
+        <Image source={require("../../assets/logo.png")} style={styles.image} />
+      </View>
 
-        <View style={styles.buttonsContainer}>
-          <Pressable  onPress={() => navigation.navigate("LoginScreen")}>
-          <GreenButton  route='LoginScreen' text='Iniciar sesión'/>
-          </Pressable>
-          <Pressable
-            style={[styles.button, styles.buttonRegister]}
-            onPress={() => navigation.navigate("RegisterScreen")}
-          >
-            <Text style={styles.buttonText}>Registrarme</Text>
-          </Pressable>
+      <Text style={styles.title}>
+        Home Quest es la app que te permite publicar tu inmueble y también
+        encontrar el de tus sueños.
+      </Text>
 
-          <Pressable
-            style={styles.buttonSkip}
-            onPress={() => navigation.navigate("HomeScreen")}
-          >
-            <Text style={styles.buttonSkipText}>Skip</Text>
-          </Pressable>
-        </View>
-      </ImageBackground>
-    
+      <View style={styles.buttonsContainer}>
+        <Pressable onPress={() => navigation.navigate("LoginScreen")}>
+          <GreenButton route="LoginScreen" text="Iniciar sesión" />
+        </Pressable>
+        <Pressable
+          style={[styles.button, styles.buttonRegister]}
+          onPress={() => navigation.navigate("RegisterScreen")}
+        >
+          <Text style={styles.buttonText}>Registrarme</Text>
+        </Pressable>
+
+        <Pressable
+          style={styles.buttonSkip}
+          onPress={() => navigation.navigate("HomeScreen")}
+        >
+          <Text style={styles.buttonSkipText}>Skip</Text>
+        </Pressable>
+      </View>
+    </ImageBackground>
   );
 };
 
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     paddingBottom: 100,
-    resizeMode: "cover"
+    resizeMode: "cover",
   },
   logoContainer: {
     paddingVertical: 55,
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
     height: 66,
   },
   title: {
-    width: '60%',
+    width: "60%",
     fontSize: 16,
     fontWeight: "500",
     textAlign: "center",
@@ -75,10 +74,10 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     marginTop: 160,
-    width: '90%'
+    width: "90%",
   },
   button: {
-    width: '100%',
+    width: "100%",
     height: 49,
     alignItems: "center",
     justifyContent: "center",
@@ -99,7 +98,7 @@ const styles = StyleSheet.create({
     marginTop: 21,
   },
   buttonSkip: {
-    marginTop: 21, 
+    marginTop: 21,
     width: 328,
     height: 49,
     alignItems: "center",
@@ -107,5 +106,7 @@ const styles = StyleSheet.create({
   },
   buttonSkipText: {
     fontWeight: "700",
+    textAlign: "center",
+    left: 12,
   },
 });

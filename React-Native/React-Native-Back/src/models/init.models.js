@@ -1,16 +1,20 @@
 const Properties = require("./properties.models");
 const Users = require("./users.models");
 const Favorites = require("./favorites.models");
+const Pictures = require("./pictures.models");
 
 const initModels = () => {
-  Properties.belongsTo(Users, { as: "user", foreignKey: "user_id" });
-  Users.hasMany(Properties, { as: "property", foreignKey: "user_id" });
+  Properties.belongsTo(Users, { as: "user", foreignKey: "userId" });
+  Users.hasMany(Properties, { as: "property", foreignKey: "userId" });
 
-  Favorites.belongsTo(Users, { as: "user", foreignKey: "user_id" });
-  Users.hasMany(Favorites, { as: "favorite", foreignKey: "user_id" });
+  Favorites.belongsTo(Users, { as: "user", foreignKey: "userId" });
+  Users.hasMany(Favorites, { as: "favorite", foreignKey: "userId" });
 
-  Favorites.belongsTo(Properties, { as: "property", foreignKey: "property_id" });
-  Properties.hasMany(Favorites, { as: "favorite", foreignKey: "property_id" });
+  Favorites.belongsTo(Properties, { as: "property", foreignKey: "propertyId" });
+  Properties.hasMany(Favorites, { as: "favorite", foreignKey: "propertyId" });
+
+  Pictures.belongsTo(Properties, { as: "property", foreignKey: "propertyId" });
+  Properties.hasMany(Pictures, { as: "picture", foreignKey: "propertyId" });
 }
 
 module.exports = initModels;

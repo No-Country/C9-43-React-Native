@@ -5,11 +5,10 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Form,
 } from "react-native";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
-
-// TODO: Ver logo y bordes inputs
 
 export const LoginScreen = ({ navigation }) => {
   const [secured, setSecured] = useState(true);
