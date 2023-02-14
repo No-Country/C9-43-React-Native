@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native"
-import { PostInputs, PostTopBar } from "../../components"
+import { GreenPostButton, PostInputs, PostTopBar } from "../../components"
 
 export const EnvironmentsScreen = () => {
   return (
@@ -19,6 +19,8 @@ export const EnvironmentsScreen = () => {
             }
           ]}
         />
+
+        <GreenPostButton />
 
     </View>
   )

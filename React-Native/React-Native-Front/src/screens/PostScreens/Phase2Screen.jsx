@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { PostTopBar, TextedCheckbox } from "../../components";
+import { GreenPostButton, PostTopBar, TextedCheckbox } from "../../components";
 
 export const Phase2Screen = () => {
   return (
@@ -37,11 +37,7 @@ export const Phase2Screen = () => {
 
         </View>
 
-        <TouchableOpacity style={ styles.nextButton }>
-            <Text style={ styles.nextButtonText }>
-                Siguiente
-            </Text>
-        </TouchableOpacity>
+        <GreenPostButton />
 
     </View>
   )
@@ -71,27 +67,5 @@ const styles = StyleSheet.create({
         marginTop: 32,
         marginLeft: 32,
         marginRight: 88
-    },
-    nextButton: {
-        backgroundColor: '#414141',
-        width: 76,
-        height: 37,
-        position: 'absolute',
-        bottom: 51,
-        justifyContent: 'center',
-        alignSelf: 'center',
-        alignItems: 'center',
-        borderRadius: 4,
-        shadowColor: "black",
-        shadowOpacity: 0.26,
-        shadowOffset: { width: 0, height: 2 },
-        shadowRadius: 8,
-        elevation: 5
-    },
-    nextButtonText: {
-        fontSize: 11,
-        fontWeight: '500',
-        letterSpacing: 1.25,
-        color: '#FFFFFF'
     }
 })
