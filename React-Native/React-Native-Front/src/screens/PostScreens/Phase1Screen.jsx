@@ -31,7 +31,7 @@ export const Phase1Screen = () => {
             <Text
                 style={ styles.textTitle }
             >
-                Las ventajas de publicar en HomeQuest
+                ¡Las ventajas de publicar en HomeQuest!
             </Text>
 
             <View
@@ -40,11 +40,11 @@ export const Phase1Screen = () => {
                 <Text
                     style={ styles.textSubtitle }
                 >
-                    Subtitle
+                    Simple
                 </Text>
 
                 <Text>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet quidem dolores ratione!
+                    Publicá tu anuncio en pocos y simples pasos.
                 </Text>
             </View>
 
@@ -54,11 +54,11 @@ export const Phase1Screen = () => {
                 <Text
                     style={ styles.textSubtitle }
                 >
-                    Subtitle
+                    Gratuito
                 </Text>
 
                 <Text>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet quidem dolores ratione!
+                    Ofrecemos la posibilidad de publicar un anuncio de manera gratuita.
                 </Text>
             </View>
 
@@ -68,13 +68,13 @@ export const Phase1Screen = () => {
                 <Text
                     style={ styles.textSubtitle }
                 >
-                    Subtitle
+                    Usuarios verificados
                 </Text>
 
                 <Text
                     styles={ styles.textSubtitleDescription }
                 >
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet quidem dolores ratione!
+                    Nuestros usuarios son confirmados por redes sociales e información personal.
                 </Text>
             </View>
         </View>
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
         width: 160,
         height: 49,
         borderRadius: 4,
-        backgroundColor: '#000000',
+        backgroundColor: '#018349',
         marginTop: 25,
         justifyContent: 'center',
         alignItems: 'center'
@@ -121,8 +121,10 @@ const styles = StyleSheet.create({
     textContainer: {
         marginTop: 47,
         marginLeft: 16
-    },
+    }, 
     textTitle: {
+        textAlign: 'center',
+        alignSelf: 'center',
         marginBottom: 16,
         fontWeight: '600',
         fontSize: 16,
@@ -131,6 +133,7 @@ const styles = StyleSheet.create({
         width: 180
     },
     textSubtitleContainer: {
+        marginTop: 16,
         marginBottom: 11,
         width: 291
     },

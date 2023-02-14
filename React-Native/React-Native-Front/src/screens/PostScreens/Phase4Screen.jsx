@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons"
-import { StyleSheet, Text, View } from "react-native"
+import { ScrollView, StyleSheet, Text, View } from "react-native"
 import { PostTopBar, PressableStages } from "../../components"
 
 export const Phase4Screen = () => {

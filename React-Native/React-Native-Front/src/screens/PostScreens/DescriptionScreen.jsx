@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native"
-import { PostInputs, PostTopBar } from "../../components"
+import { GreenPostButton, PostInputs, PostTopBar } from "../../components"
 
 export const DescriptionScreen = () => {
   return (
@@ -23,6 +23,8 @@ export const DescriptionScreen = () => {
             }
           ]}
         />
+
+        <GreenPostButton />
 
     </View>
   )
