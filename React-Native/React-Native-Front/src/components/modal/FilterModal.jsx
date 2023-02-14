@@ -7,8 +7,8 @@ import { TextedCheckbox } from "../TextedCheckbox";
 export const FilterModal = ({ isVisible, handleModalVisibility }) => {
 
   return (
-    <Modal visible={isVisible} transparent={true} animationType="fade" onRequestClose={handleModalVisibility}>
-      <View style={styles.mainContainer}>
+    <Modal visible={isVisible} transparent={false} animationType="fade" onRequestClose={handleModalVisibility}>
+      
       <View style={styles.container}>
         <Text style={styles.textTitle}>Tipo de ambientes</Text>
         <View style={styles.optionsContainer}>
@@ -37,36 +37,31 @@ export const FilterModal = ({ isVisible, handleModalVisibility }) => {
           </Pressable>
         </View>
 
-      </View>
+      
       </View>
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    backgroundColor: '#808080aa',
-    flex:1,
-    justifyContent:'center'
-  },
-  container: {
-    height: '70%',
-    width: '70%',
-    borderRadius: 50,
-    backgroundColor: '#EBEBEB',
-    alignSelf: 'center',
+  container: {    
+    flex: 1,
+    backgroundColor: '#FFFFFF',
   },
   textTitle: {
     fontWeight: '400',
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 18,
     lineHeight: 32,
     color: '#1C1B1F',
-    padding: 24
+    paddingHorizontal: 24,
+    paddingTop: 24,
+    paddingBottom: 40
   },
   optionsContainer: {
-    paddingHorizontal: 16,
-    flex: 3
+    paddingLeft: 16,
+    paddingRight: 24,
+    flex: 10
   },
   buttonsContainer: {
     flexDirection: 'row',
@@ -75,7 +70,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   buttonText: {
-    color: '#979797',
+    color: '#018349',
     fontWeight: '500',
     fontSize: 14
   }
