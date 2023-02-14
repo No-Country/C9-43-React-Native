@@ -1,14 +1,11 @@
 import React from "react";
 import { View, StyleSheet, Text, Image, Pressable } from "react-native";
-
-//TODO make the shadow of the header
+import { SimpleHeader } from "../components/layout";
 
 export const MenuScreen = () => {
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.headerText}>Menú</Text>
-      </View>
+      <SimpleHeader title={'Menú'} />
       <View style={styles.container}>
         <View style={styles.profileContainer}>
           <Image
@@ -65,17 +62,6 @@ const styles = StyleSheet.create({
     flex: 1,
     // paddingHorizontal: 30,
     backgroundColor: "#ffffff",
-  },
-  headerContainer: {
-    height: "10%",
-    justifyContent: "center",
-    alignItems: "center",
-    borderBottomColor: "red",
-    borderBottomWidth: 1,
-  },
-  headerText: {
-    fontWeight: "400",
-    fontSize: 16,
   },
   container: {
     paddingHorizontal: 30
