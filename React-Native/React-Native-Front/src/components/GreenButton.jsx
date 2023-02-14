@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 4,
     backgroundColor: "#018349",
+    elevation: 8
   },
   buttonText: {
     fontWeight: "500",
