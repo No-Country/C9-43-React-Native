@@ -8,3 +8,4 @@ export * from './EnvironmentsScreen';
 export * from './CharacteristicsScreen';
 export * from './PriceScreen';
 export * from './PriceScreen';
+export * from './ContactScreen';
