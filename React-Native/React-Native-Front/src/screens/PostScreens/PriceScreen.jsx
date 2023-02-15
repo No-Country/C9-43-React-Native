@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native"
-import { GreenButton, GreenPostButton, PostInputs, PostTopBar } from "../../components"
+import { GreenPostButton, PostInputs, PostTopBar } from "../../components"
 
 export const PriceScreen = () => {
   return (
