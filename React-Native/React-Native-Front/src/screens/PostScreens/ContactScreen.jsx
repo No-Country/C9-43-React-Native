@@ -1,26 +1,27 @@
 import { StyleSheet, Text, View } from "react-native"
 import { GreenPostButton, PostInputs, PostTopBar } from "../../components"
 
-export const PriceScreen = () => {
+export const ContactScreen = () => {
   return (
     <View style={ styles.container }>
 
         <PostTopBar />
 
         <Text style={ styles.title }>
-            Precio
+            Contacto
         </Text>
 
         <PostInputs 
-          titleAndPlaceholder={
-            [ 
-                { 
-                    title: 'Indicá a qué precio querés publicarlo', 
-                    placeholder: 'Ej: 50.000'
-                }
-            ]
-          }
-          type={ 'price' }
+          titleAndPlaceholder={[ 
+            { 
+              title: 'Correo electrónico', 
+              placeholder: 'Ej: guadalupegomez@gmail.com'
+            },
+            {
+              title: 'Teléfono',
+              placeholder: 'Ej: +54 11 3045-2149'
+            }
+          ]}
         />
 
         <GreenPostButton />
