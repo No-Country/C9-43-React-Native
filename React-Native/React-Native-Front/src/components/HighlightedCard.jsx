@@ -82,7 +82,12 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 15,
   },
-
+  // imageContainer: {
+  //   width: '100%'
+  // },
+  // backgroundImage: {
+  //   resizeMode: "stretch"
+  // },
   image: {
     marginRight: 5,
     marginLeft: 20,

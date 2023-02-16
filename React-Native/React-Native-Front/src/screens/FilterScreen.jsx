@@ -8,32 +8,18 @@ import {
 } from "react-native";
 import { GreenButton } from "../components/index";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { FilterModal } from "../components/modal/FilterModal";
-import { useModal, useFilters } from '../hooks/index'
-import { useState } from "react";
+import { FilterAreaModal, FilterEnvironmentModal, FilterPriceModal } from "../components/modal/";
+import { useModal, useFilters, UseAreaModal, UsePriceModal, UseEnvironmentModal } from '../hooks/index'
 import { FilterHeader } from "../components/layout/";
 
 //TODO esperar a que esten los modales
 
 export const FilterScreen = ({ navigation }) => {
-  const { modalVisible, handleModalVisibility } = useModal()
-  const { operationBg, typeOfPropertyBg, handleOperationBg, handleTypeOfPropertyBg, handleCleanSelections } = useFilters()
+  const { isAreaModalOpen, handleToggleAreaModal } = UseAreaModal()
+  const { isPriceModalOpen, handleTogglePriceModal } = UsePriceModal()
+  const { isEnvironmentModalOpen, handleToggleEnvironmentModal } = UseEnvironmentModal()
+  const { operationBg, typeOfPropertyBg, lastFilters, handleOperationBg, handleTypeOfPropertyBg, handleCleanSelections } = useFilters()
   
-  // const [operationBg, setOperationBg] = useState('')
-  // const [typeOfPropertyBg, setTypeOfPropertyBg] = useState('')
-
-  // const handleOperationBg = (string) => {
-  //   setOperationBg(string)
-  // }
-  // const handleTypeOfPropertyBg = (string) => {
-  //   setTypeOfPropertyBg(string)
-  // }
-
-  // const handleCleanSelections = () => {
-  //   setOperationBg('')
-  //   setTypeOfPropertyBg('')
-  // }
-
   return (
     <View style={styles.containerScreen} >
       <FilterHeader onPress={handleCleanSelections} navigation={navigation}/>
@@ -102,17 +88,17 @@ export const FilterScreen = ({ navigation }) => {
           </View>
         </View>
         <View style={[styles.separator, styles.separatorProperty]} />
-        <Pressable style={styles.attributesContainer}>
+        <Pressable style={styles.attributesContainer} onPress={handleTogglePriceModal}>
           <Text style={styles.primaryText}>Precio</Text>
           <Text style={styles.secondText}>Indistinto</Text>
         </Pressable>
         <View style={[styles.separator, styles.separatorMargin]} />
-        <Pressable style={styles.attributesContainer}>
+        <Pressable style={styles.attributesContainer} onPress={handleToggleAreaModal}>
           <Text style={styles.primaryText}>Superficie</Text>
           <Text style={styles.secondText}>Indistinto</Text>
         </Pressable>
         <View style={[styles.separator, styles.separatorMargin]} />
-        <Pressable  style={styles.attributesContainer} onPress={handleModalVisibility}>
+        <Pressable  style={styles.attributesContainer} onPress={handleToggleEnvironmentModal}>
           <Text style={styles.primaryText}>Ambientes</Text>
           <Text style={styles.secondText}>Indistinto</Text>
         </Pressable>
@@ -122,7 +108,9 @@ export const FilterScreen = ({ navigation }) => {
         </Pressable>
       </View>
       {/* MODAL */}
-      <FilterModal isVisible={modalVisible} handleModalVisibility={handleModalVisibility} />
+      <FilterEnvironmentModal isVisible={isEnvironmentModalOpen} handleModalVisibility={handleToggleEnvironmentModal} />
+      <FilterAreaModal isVisible={isAreaModalOpen} handleModalVisibility={handleToggleAreaModal} />
+      <FilterPriceModal isVisible={isPriceModalOpen} handleModalVisibility={handleTogglePriceModal} />
     </View>
   );
 };

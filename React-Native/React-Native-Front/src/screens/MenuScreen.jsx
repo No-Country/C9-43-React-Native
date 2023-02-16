@@ -44,8 +44,8 @@ export const MenuScreen = () => {
         </Pressable>
 
         <Pressable style={styles.optionsSubContainer}>
-          <Image source={require("../../assets/icons/termsAndCond-icon.png")} />
-          <Text style={styles.optionsText}>Términos y condiciones</Text>
+          <Image style={styles.homeQuest} source={require("../../assets/icons/logo-black-icon.png")} />
+          <Text style={[styles.optionsText, {paddingStart: 35}]}>Quienes somos</Text>
         </Pressable>
 
         <Pressable style={styles.optionsSubContainer}>

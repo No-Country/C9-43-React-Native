@@ -1,6 +1,6 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { HomeScreen, FilteredResultScreen } from "../src/screens/index";
+import { HomeScreen, FilteredResultScreen, FilterScreen } from "../src/screens/index";
 
 const Stack = createNativeStackNavigator();
 
@@ -12,7 +12,12 @@ export const SearchNavigation = () => {
         component={HomeScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Ubicacion" component={FilteredResultScreen} />
+      <Stack.Screen 
+      name="Ubicacion" 
+      component={FilteredResultScreen} 
+      options={{headerShown: false}}
+      />
+      
     </Stack.Navigator>
   );
 };

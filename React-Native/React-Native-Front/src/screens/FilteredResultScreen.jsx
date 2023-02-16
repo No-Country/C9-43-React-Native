@@ -1,8 +1,15 @@
 import React from "react";
-import { View, StyleSheet, FlatList, Image, Text } from "react-native";
+import { View, StyleSheet, FlatList, Image, Text, Pressable } from "react-native";
 import HighlightedCard from "../components/HighlightedCard";
+import { IconHeader } from '../components/layout'
+import { FilterPriceModal } from "../components/modal";
+import { FilterOrderByModal } from "../components/modal/FilterOrderByModal";
+import { UsePriceModal, useOrderByModal } from "../hooks";
 
-export const FilteredResultScreen = () => {
+export const FilteredResultScreen = ({ navigation }) => {
+  const { isPriceModalOpen, handleTogglePriceModal } = UsePriceModal()
+  const { isOrderByModalOpen, handleToggleOrderByModal } = useOrderByModal()
+
   const HighlightedCards = [
     { key: 1, component: <HighlightedCard /> },
     { key: 2, component: <HighlightedCard /> },
@@ -10,19 +17,24 @@ export const FilteredResultScreen = () => {
     { key: 4, component: <HighlightedCard /> },
   ];
   return (
-    <View style={styles.contenedor}>
-      <View style={styles.contenedorFilter}>
+    <View style={styles.container}>
+      <IconHeader icon={'arrow-back'} title={'Ubicación'} navigation={navigation}/>
+      <View style={styles.filterContainer}>
         <Image
           style={styles.imagen}
           source={require("../../assets/icons/tune-icons.png")}
         />
-        <View>
-          <Text style={styles.button}>Filtros</Text>
+        <View style={styles.internalFilterContainer}>
+          <Pressable style={styles.filtersButtons} onPress={() => navigation.navigate('Filtros avanzados')}>
+            <Text style={styles.filtersButtonsText}>Filtros</Text>
+          </Pressable>
+          <Pressable style={styles.filtersButtons} onPress={handleTogglePriceModal}>
+            <Text style={styles.filtersButtonsText}>Precio</Text>
+          </Pressable>
+          <Pressable style={styles.filtersButtons} onPress={handleToggleOrderByModal}>
+            <Text style={styles.filtersButtonsText}>Ordenar</Text>
+          </Pressable>
         </View>
-
-        <Text style={styles.button}>Precio</Text>
-
-        <Text style={styles.button}>Ordenar</Text>
       </View>
 
       <FlatList
@@ -35,44 +47,48 @@ export const FilteredResultScreen = () => {
         renderItem={({ item }) => <View>{item.component}</View>}
         keyExtractor={(item) => item.key}
       />
+
+      {/* Modal */}
+      <FilterPriceModal isVisible={isPriceModalOpen} handleModalVisibility={handleTogglePriceModal} />
+      <FilterOrderByModal isVisible={isOrderByModalOpen} handleModalVisibility={handleToggleOrderByModal} />
     </View>
+    
   );
 };
 
 const styles = StyleSheet.create({
-  contenedor: {
+  container: {
     flex: 1,
-    marginVertical: 20,
-    width: "100%",
+    backgroundColor: '#fff'
   },
-  contenedorFilter: {
+  filterContainer: {
     flexDirection: "row",
-    width: "100%",
-    top: 2,
-    marginBottom: 20,
-    alignItems:"center"
-   
+    marginTop: 8,
+    alignItems:"center",
+    justifyContent: 'space-evenly',
+    marginRight: 31,
+    marginBottom: 10
   },
-  button: {
-    fontSize: 13,
+  internalFilterContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '68%'
+  },
+  filtersButtons: {
     paddingHorizontal: 14,
-    
-    fontWeight: "500",
-    color: "#1E1E1E",
-    borderLeftColor: 1,
-    borderRadius: 50,
+    paddingVertical: 8,
+    borderRadius: 100,
     borderColor: "#D9D9D9",
     borderWidth: 1,
-    paddingVertical: 10,
-    marginLeft:40
   },
-
-  imagen: {
-    top: 0,
-    height: 25,
-    left: 30,
+  filtersButtonsText: {
+    fontSize: 12,
+    fontWeight: "500",
+    color: "#1E1E1E",
+    textAlign: 'center'
   },
   scroll: {
-    paddingTop: 5,
-  },
+    marginTop: 7,
+  }
+  
 });
