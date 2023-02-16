@@ -1,14 +1,14 @@
 const db = require("../utils/db");
 const { DataTypes } = require("sequelize");
 
-const Favorites = db.define("favorites", {
+const Pictures = db.define("pictures", {
   id: {
     primaryKey: true,
     type: DataTypes.INTEGER,
     autoIncrement: true
   },
-  userId: {
-    type: DataTypes.INTEGER,
+  pictureUrl: {
+    type: DataTypes.STRING,
     allowNull: false
   },
   propertyId: {
@@ -17,4 +17,4 @@ const Favorites = db.define("favorites", {
   }
 });
 
-module.exports = Favorites;
+module.exports = Pictures;

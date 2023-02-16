@@ -29,14 +29,14 @@ export default HomeDirectOwners;
 
 const styles = StyleSheet.create({
   ownersContainer: {
-    marginBottom: 30,
+    marginBottom: 0,
+    margin: 2,
   },
   description: {
     fontSize: 14,
     fontWeight: "500",
     color: "#fff",
     paddingTop: 40,
-    paddingBottom: 40,
   },
   image: {
     width: 326,
