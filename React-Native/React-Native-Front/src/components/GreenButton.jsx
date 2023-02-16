@@ -4,16 +4,22 @@ import { StyleSheet, Text, View } from "react-native";
 
 export const GreenButton = ({ text }) => {
   return (
-    <View style={styles.button}>
-      <Text style={styles.buttonText}>
-        {text}
-      </Text>
+    <View style={styles.fakeContainer}>
+      <View style={styles.button}>
+        <Text style={styles.buttonText}>
+          {text}
+        </Text>
+      </View>
     </View>
-    
   );
 };
 
 const styles = StyleSheet.create({
+  fakeContainer: {
+    overflow: 'hidden',
+    paddingBottom: 5,
+    borderRadius: 4
+  },
   button: {
     width: '100%',
     height: 49,

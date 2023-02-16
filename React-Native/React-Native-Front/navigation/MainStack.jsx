@@ -32,18 +32,17 @@ const MainStack = () => {
           component={RegisterScreen}
           options={{ headerShown: false }}
         />
-
-        <Stack.Screen
-          name="Filtros avanzados"
-          component={FilterScreen}
-          options={{ headerShown: false}}
-          />
         
         <Stack.Screen 
           name="ContactAgency"
           component={ContactAgencyScreen}
           options={{headerShown: false}}
           />
+          <Stack.Screen
+          name="Filtros avanzados"
+          component={FilterScreen}
+          options={{ headerShown: false}}
+      />
       </Stack.Navigator>
     </NavigationContainer>
   );

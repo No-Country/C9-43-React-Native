@@ -1,15 +1,14 @@
 import {
   Image,
+  Pressable,
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
 } from "react-native";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
-
-// TODO: Ver logo y bordes inputs
+import { GreenButton } from "../components";
 
 export const LoginScreen = ({ navigation }) => {
   const [secured, setSecured] = useState(true);
@@ -21,12 +20,12 @@ export const LoginScreen = ({ navigation }) => {
         size={24}
         color="black"
         style={styles.arrow}
-        onPress={() => navigation.navigate("MainScreen")}
+        onPress={() => navigation.goBack()}
       />
 
       <Image style={styles.logo} source={require("../../assets/logo.png")} />
 
-      <Text style={styles.title}>Bienvenido a House Quest!</Text>
+      <Text style={styles.title}>Bienvenido a Home Quest!</Text>
 
       <Text style={styles.subtitle}>Ingresar con mi E-Mail</Text>
 
@@ -37,6 +36,7 @@ export const LoginScreen = ({ navigation }) => {
           placeholder="Ingresa tu E-mail"
           placeholderTextColor={"#979797"}
           inputContainerStyle={{ backgroundColor: "#E4E4E4" }}
+          keyboardType='email-address'
         />
 
         <View style={styles.passwordInputView}>
@@ -58,11 +58,9 @@ export const LoginScreen = ({ navigation }) => {
           />
         </View>
 
-        <TouchableOpacity>
-          <View style={styles.joinButton}>
-            <Text style={styles.joinButtonText}>Ingresar</Text>
-          </View>
-        </TouchableOpacity>
+        <Pressable style={styles.button}>
+          <GreenButton text='Aceptar' />
+        </Pressable>
       </View>
     </View>
   );
@@ -76,8 +74,8 @@ const styles = StyleSheet.create({
   },
   arrow: {
     alignSelf: "flex-start",
-    marginTop: 46,
-    left: 27,
+    marginTop: 38,
+    marginLeft: 23
   },
   logo: {
     marginTop: 40,
@@ -98,7 +96,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 45,
-    width: 328,
+    width: 100,
     paddingHorizontal: 16,
   },
   textInputs: {
@@ -157,4 +155,8 @@ const styles = StyleSheet.create({
     letterSpacing: 1.25,
     fontSize: 14,
   },
+  button: {
+    width: 328,
+    marginTop: 44
+  }
 });

@@ -1,6 +1,8 @@
 import React from "react";
 import { View, Image, StyleSheet, Text, ImageBackground } from "react-native";
 
+//Quit margin top in cadContainer
+
 const highlightedData = [
   {
     id: 1,
@@ -14,11 +16,10 @@ const highlightedData = [
 
 const HighlightedCard = () => {
   return (
-    <View style={[styles.cardContainer, { marginTop: 30 }]}>
-      <View styles={styles.cardContainer}>
-        <View>
+    <View style={[styles.cardContainer, ]}>
+        <View style={styles.imageContainer}>
           <Image
-            styles={styles.image}
+            styles={[styles.image, styles.backgroundImage]}
             source={require("../../assets/HighlightedData/sala-estar-lujo-loft-representacion-3d-estanteria.png")}
           />
           <View style={styles.heartContainer}></View>
@@ -45,7 +46,6 @@ const HighlightedCard = () => {
           />
           <Text>{highlightedData[0].ambientes} Baños </Text>
         </View>
-      </View>
     </View>
   );
 };
@@ -66,7 +66,12 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 15,
   },
-
+  // imageContainer: {
+  //   width: '100%'
+  // },
+  // backgroundImage: {
+  //   resizeMode: "stretch"
+  // },
   image: {
     marginRight: 5,
     marginLeft: 20,
