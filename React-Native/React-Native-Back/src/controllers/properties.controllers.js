@@ -1,20 +1,20 @@
 const PropertiesServices = require("../services/properties.services");
 
-const createProperty = async (req, res) => {
+const createProperty = async (req, res, next) => {
   try {
     const newProperty = req.body;
     const result = await PropertiesServices.create(newProperty);
     if (result) {
       res.status(201).json({ message: "Propiedad creada exitosamente" });
     } else {
-      res.status(400).json({ message: "Algo salió mal" });
+      next({ message: "Algo salió mal" });
     }
   } catch (error) {
-    res.status(400).json(error.message);
+    next(error);
   }
 };
 
-const updateProperty = async (req, res) => {
+const updateProperty = async (req, res, next) => {
   try {
     const { id } = req.params;
     const field = req.body;
@@ -22,27 +22,25 @@ const updateProperty = async (req, res) => {
     if (result) {
       res.json({ message: "Propiedad actualizada exitosamente" });
     } else {
-      res.status(400).json({ message: "Algo salió mal" });
+      next({ message: "Algo salió mal" });
     }
   } catch (error) {
-    res.status(400).json(error.message);
+    next(error);
   }
 };
 
-const deleteProperty = async (req, res) => {
+const deleteProperty = async (req, res, next) => {
   try {
     const { id } = req.params;
     const result = await PropertiesServices.delete(id);
     if (result) {
       res.json({ message: "Propiedad eliminada exitosamente" });
     } else {
-      res.status(400).json({ message: "Algo salió mal" });
+      next({ message: "Algo salió mal" });
     }
   } catch (error) {
-    res.status(400).json(error.message);
+    next(error);
   }
 };
-
-
 
 module.exports = { createProperty, updateProperty, deleteProperty };

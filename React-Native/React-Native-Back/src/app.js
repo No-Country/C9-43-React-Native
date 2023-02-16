@@ -1,26 +1,19 @@
 const express = require("express");
 const cors = require("cors");
 const initModels = require("./models/init.models");
-const db = require("./utils/db");
-const authRouter = require("./routes/auth.routes");
-const propertiesRouter = require("./routes/properties.routes");
-const favoritesRouter = require("./routes/favorites.routes");
-const usersRouter = require("./routes/users.routes");
+const routerApi = require("./routes");
+const error = require("./middlewares/error.middleware");
+// const db = require("./utils/db");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
-
+routerApi(app);
 initModels();
+app.use(error);
 
-app.use("/register", authRouter);
-app.use("/users", usersRouter);
-app.use("/properties", propertiesRouter);
-app.use("/favorites", favoritesRouter);
-
-
-db.sync({ force: true })
-  .then(() => console.log("Base de datos sincronizada"))
-  .catch((error) => console.log(error));
+// db.sync({ force: false })
+//   .then(() => console.log("Base de datos sincronizada"))
+//   .catch((error) => console.log(error));
 
 module.exports = app;

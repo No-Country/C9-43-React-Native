@@ -22,10 +22,6 @@ const Properties = db.define("properties", {
     type: DataTypes.FLOAT,
     allowNull: false
   },
-  pictures: {
-    type: DataTypes.ARRAY(DataTypes.STRING),
-    allowNull: false
-  },
   location: {
     type: DataTypes.STRING,
   },
