@@ -23,7 +23,7 @@ const FavouriteCard = () => {
     setIsBasketActive(!isBasketActive);
   };
   return (
-    <View style={[styles.cardContainer, { marginTop: 30 }]}>
+    <View style={[styles.cardContainer, { marginTop: 15 }]}>
       <View styles={styles.cardContainer}>
         <View>
           <Image

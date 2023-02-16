@@ -1,6 +1,7 @@
 import React from "react";
-import { FlatList, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import FavouriteCard from "../components/FavoriteCard";
+import { SimpleHeader } from "../components/layout";
 
 const HighlightedCards = [
   { key: 1, component: <FavouriteCard /> },
@@ -9,15 +10,10 @@ const HighlightedCards = [
   { key: 4, component: <FavouriteCard /> },
 ];
 
-const FavouritesScreen = () => {
+export const FavouritesScreen = () => {
   return (
-    <View
-      style={{
-        overflow: "hidden",
-        marginLeft: 15,
-        marginRight: 15,
-      }}
-    >
+    <View style={styles.container}>
+      <SimpleHeader title={'Favoritos'} />
       <FlatList
         showsVerticalScrollIndicator={false}
         snapToInterval={365}
@@ -31,4 +27,9 @@ const FavouritesScreen = () => {
   );
 };
 
-export default FavouritesScreen;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff'
+  }
+})

@@ -1,7 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { tabIconOptions } from "../src/helpers";
-import { HomeScreen, MenuScreen, Phase1Screen } from "../src/screens";
-import FavouritesScreen from "../src/screens/FavoritesScreen";
+import { HomeScreen, MenuScreen, Phase1Screen, FavouritesScreen } from "../src/screens";
 import { SearchNavigation } from "./SearchNavigation";
 
 const BottomTab = createBottomTabNavigator();
@@ -17,8 +16,8 @@ export const TabNavigator = () => {
         tabBarHideOnKeyboard: true,
         tabBarActiveTintColor: "#018349",
         tabBarInactiveTintColor: "#414141",
-        tabBarActiveBackgroundColor: "#979797",
-        tabBarInactiveBackgroundColor: "#979797",
+        tabBarActiveBackgroundColor: "#fff",
+        tabBarInactiveBackgroundColor: "#fff",
         tabBarStyle: {
           height: 56,
         },
@@ -36,7 +35,7 @@ export const TabNavigator = () => {
       <BottomTab.Screen
         name="Favoritos"
         component={FavouritesScreen}
-        options={{ headerShown: true }}
+        options={{ headerShown: false }}
       />
 
       <BottomTab.Screen
