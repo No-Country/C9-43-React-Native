@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Image, StyleSheet, Text, ImageBackground } from "react-native";
+import { useState } from "react";
+import { View, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 const highlightedData = [
   {
@@ -13,38 +14,53 @@ const highlightedData = [
 ];
 
 const HighlightedCard = () => {
+  const [isActive, setIsActive] = useState(false);
+  const favorite = () => {
+    setIsActive(!isActive);
+  };
   return (
     <View style={[styles.cardContainer, { marginTop: 30 }]}>
-      <View styles={styles.cardContainer}>
-        <View>
-          <Image
-            styles={styles.image}
-            source={require("../../assets/HighlightedData/sala-estar-lujo-loft-representacion-3d-estanteria.png")}
-          />
-          <View style={styles.heartContainer}></View>
+      <View>
+        <Image
+          source={require("../../assets/HighlightedData/sala-estar-lujo-loft-representacion-3d-estanteria.png")}
+        />
+        <View style={styles.heartContainer}>
+          <TouchableOpacity onPress={favorite}>
+            <Image
+              source={
+                isActive
+                  ? require("../../assets/Home/favorite.png")
+                  : require("../../assets/Home/heartActive.png")
+              }
+            />
+          </TouchableOpacity>
         </View>
-        <View style={{ flexDirection: "row", marginTop: 5 }}>
-          <Image
-            style={styles.iconType}
-            source={require("../../assets/HighlightedData/domain.png")}
-          />
+      </View>
+      <View style={{ flexDirection: "row", marginTop: 5 }}>
+        <Image
+          style={styles.iconType}
+          source={require("../../assets/HighlightedData/domain.png")}
+        />
 
-          <Text style={styles.cardTitle}> {highlightedData[0].type} </Text>
-        </View>
-        <Text style={styles.value}>{highlightedData[0].value} USD </Text>
-        <Text style={styles.location}>{highlightedData[0].location} </Text>
-        <View style={[styles.rooms, { flexDirection: "row" }]}>
-          <Image
-            style={styles.image}
-            source={require("../../assets/HighlightedData/rooms.png")}
-          />
-          <Text>{highlightedData[0].ambientes} Ambientes </Text>
-          <Image
-            style={styles.image}
-            source={require("../../assets/HighlightedData/bath.png")}
-          />
-          <Text>{highlightedData[0].ambientes} Baños </Text>
-        </View>
+        <Text style={styles.cardTitle}> {highlightedData[0].type} </Text>
+      </View>
+      <Text style={styles.value}>{highlightedData[0].value} USD </Text>
+      <Text style={styles.location}>{highlightedData[0].location} </Text>
+      <View style={[styles.rooms, { flexDirection: "row" }]}>
+        <Image
+          style={styles.image}
+          source={require("../../assets/HighlightedData/rooms.png")}
+        />
+        <Text>{highlightedData[0].ambientes} Ambientes </Text>
+        <Image
+          style={styles.image}
+          source={require("../../assets/HighlightedData/bath.png")}
+        />
+        <Text>{highlightedData[0].ambientes} Baños </Text>
+        <Image
+          source={require("../../assets/Home/avatar.png")}
+          style={styles.avatar}
+        />
       </View>
     </View>
   );
@@ -102,14 +118,20 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "400",
     color: "#49454F",
+    alignItems: "center",
   },
   heartContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
     height: 50,
-    backgroundColor: "#D9D9D9",
+    backgroundColor: "rgba(30, 30, 30, 0.4)",
     width: 50,
     position: "absolute",
     right: 0,
     borderRadius: 10,
-    opacity: 0.4,
+  },
+  avatar: {
+    marginLeft: 40,
   },
 });
