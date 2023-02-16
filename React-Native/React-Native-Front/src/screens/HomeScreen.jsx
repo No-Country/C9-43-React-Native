@@ -18,7 +18,10 @@ export const HomeScreen = ({ navigation }) => {
         <HomeScreenHeader navigation={navigation} />
         <View style={styles.publishView}>
           <Text style={styles.bodyTitle}>Publica tu anuncio. Es gratis!</Text>
-          <TouchableOpacity style={styles.publishButton} >
+          <TouchableOpacity
+            style={styles.publishButton}
+            onPress={() => navigation.navigate("Phase1Screen")}
+          >
             <ImageBackground
               source={require("../../assets/Home/publish-button.png")}
               style={[styles.publishButton]}
@@ -57,7 +60,6 @@ export const HomeScreen = ({ navigation }) => {
     </ScrollView>
   );
 };
-
 
 const styles = StyleSheet.create({
   buttonText: {
