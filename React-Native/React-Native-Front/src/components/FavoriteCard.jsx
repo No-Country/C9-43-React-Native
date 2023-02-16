@@ -27,7 +27,7 @@ const FavouriteCard = () => {
       <View styles={styles.cardContainer}>
         <View>
           <Image
-            styles={styles.image}
+            styles={styles.imageBackground}
             source={require("../../assets/HighlightedData/sala-estar-lujo-loft-representacion-3d-estanteria.png")}
           />
           <View style={styles.basketContainer}>
@@ -88,6 +88,7 @@ export default FavouriteCard;
 
 const styles = StyleSheet.create({
   cardContainer: {
+    width: 327,
     borderRadius: 20,
     marginBottom: 40,
     shadowColor: "black",
@@ -98,7 +99,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     paddingBottom: 30,
     marginLeft: 20,
-    marginRight: 15,
+    marginRight: 20,
+  },
+  imageBackground: {
+    width: 327,
   },
 
   image: {
