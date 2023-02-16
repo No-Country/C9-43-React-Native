@@ -5,3 +5,5 @@ export * from './Phase4Screen';
 export * from './DescriptionScreen';
 export * from './LocationScreen';
 export * from './EnvironmentsScreen';
+export * from './CharacteristicsScreen';
+export * from './PriceScreen';

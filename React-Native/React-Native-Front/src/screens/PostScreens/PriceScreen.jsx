@@ -1,27 +1,26 @@
 import { StyleSheet, Text, View } from "react-native"
-import { GreenPostButton, PostInputs, PostTopBar } from "../../components"
+import { GreenButton, GreenPostButton, PostInputs, PostTopBar } from "../../components"
 
-export const LocationScreen = () => {
+export const PriceScreen = () => {
   return (
     <View style={ styles.container }>
 
         <PostTopBar />
 
         <Text style={ styles.title }>
-            Ubicación
+            Precio
         </Text>
 
         <PostInputs 
-          titleAndPlaceholder={[ 
-            { 
-              title: 'Indicá en que ciudad está ubicado', 
-              placeholder: 'Ej: Quilmes'
-            },
-            {
-              title: 'Indicá en que provincia está ubicado',
-              placeholder: 'Ej: Buenos Aires'
-            }
-          ]}
+          titleAndPlaceholder={
+            [ 
+                { 
+                    title: 'Indicá a qué precio querés publicarlo', 
+                    placeholder: 'Ej: 50.000'
+                }
+            ]
+          }
+          type={ 'price' }
         />
 
         <GreenPostButton />

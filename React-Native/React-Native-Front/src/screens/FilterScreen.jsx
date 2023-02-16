@@ -4,83 +4,101 @@ import {
   Text,
   TextInput,
   Image,
-  TouchableHighlight,
-  StatusBar,
   Pressable,
 } from "react-native";
 import { GreenButton } from "../components/index";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { FilterModal } from "../components/modal/FilterModal";
+import { useModal, useFilters } from '../hooks/index'
+import { useState } from "react";
+import { FilterHeader } from "../components/layout/";
 
-//TODO agregar box shadow al input y a las tarjetas de depto casa terreno
+//TODO esperar a que esten los modales
 
 export const FilterScreen = ({ navigation }) => {
-  return (
-    <View style={styles.containerScreen}>
-      <StatusBar />
-      <View style={styles.header}>
-        <View style={styles.headerInternalContainer}>
-          <TouchableHighlight onPress={() => navigation.navigate("MainScreen")}>
-            <MaterialIcons name="arrow-back" size={24} color="black" />
-          </TouchableHighlight>
-          <Text style={styles.headerText}>Filtros avanzados</Text>
-        </View>
-        <TouchableHighlight>
-          <Text style={styles.headerCleanText}>Limpiar</Text>
-        </TouchableHighlight>
-      </View>
+  const { modalVisible, handleModalVisibility } = useModal()
+  const { operationBg, typeOfPropertyBg, handleOperationBg, handleTypeOfPropertyBg, handleCleanSelections } = useFilters()
+  
+  // const [operationBg, setOperationBg] = useState('')
+  // const [typeOfPropertyBg, setTypeOfPropertyBg] = useState('')
 
+  // const handleOperationBg = (string) => {
+  //   setOperationBg(string)
+  // }
+  // const handleTypeOfPropertyBg = (string) => {
+  //   setTypeOfPropertyBg(string)
+  // }
+
+  // const handleCleanSelections = () => {
+  //   setOperationBg('')
+  //   setTypeOfPropertyBg('')
+  // }
+
+  return (
+    <View style={styles.containerScreen} >
+      <FilterHeader onPress={handleCleanSelections} navigation={navigation}/>
       <View style={styles.container}>
         <Text style={styles.searchText}>Ubicación</Text>
-        <View style={styles.searchInput}>
-          <MaterialIcons
-            style={styles.searchIcon}
-            name="search"
-            size={24}
-            color="#979797"
-          />
-          <TextInput
-            style={styles.searchTextInput}
-            placeholder="Barrio,localidad..."
-          />
-          <MaterialCommunityIcons
-            style={styles.searchCloseIcon}
-            name="close-circle-outline"
-            size={24}
-            color="black"
-          />
+        <View style={styles.fakeContainer}>
+          <View style={styles.searchInput}>
+            <MaterialIcons
+              style={styles.searchIcon}
+              name="search"
+              size={24}
+              color="#979797"
+            />
+            <TextInput
+              style={styles.searchTextInput}
+              placeholder="Inicia una nueva búsqueda"
+            />
+            <MaterialCommunityIcons
+              style={styles.searchCloseIcon}
+              name="close-circle-outline"
+              size={24}
+              color="black"
+            />
+          </View>
         </View>
         <Text style={styles.operatorText}>Tipo de operación</Text>
         <View style={styles.operatorContainer}>
-          <View style={[styles.typesContainer]}>
-            <Text style={styles.typesText}>Venta</Text>
-          </View>
-          <View style={styles.typesContainer}>
-            <Text style={styles.typesText}>Alquiler</Text>
-          </View>
+          <Pressable style={[styles.typesContainer, operationBg === 'venta' ? styles.backgroundSelected : null]} onPress={() => handleOperationBg('venta')}>
+            <Text style={[styles.typesText, operationBg === 'venta' ? styles.textSelected : null]}>Venta</Text>
+          </Pressable>
+          <Pressable style={[styles.typesContainer, operationBg === 'alquiler' ? styles.backgroundSelected : null]} onPress={() => handleOperationBg('alquiler')}>
+            <Text style={[styles.typesText, operationBg === 'alquiler' ? styles.textSelected : null]}>Alquiler</Text>
+          </Pressable>
         </View>
         <View style={[styles.separator, styles.separatorOperator]} />
         <Text style={styles.propertyText}>Tipo de inmueble</Text>
         <View style={styles.propertyContainer}>
-          <View style={styles.propertyCardContainer}>
-            <Image
-              style={styles.propertyIcon}
-              source={require("../../assets/domain.png")}
-            />
-            <Text style={styles.propertySecondaryText}>Depto.</Text>
+
+          <View style={styles.fakeIconContainer}>
+            <Pressable style={[styles.propertyCardContainer, typeOfPropertyBg === 'depto' ? styles.backgroundSelected : null]} onPress={() => handleTypeOfPropertyBg('depto')}>
+              <Image
+                style={styles.propertyIcon}
+                source={require("../../assets/domain.png")}
+              />
+              <Text style={[styles.propertySecondaryText, typeOfPropertyBg === 'depto' ? styles.textSelected : null]}>Depto.</Text>
+            </Pressable>
           </View>
-          <View style={styles.propertyCardContainer}>
-            <Image
-              style={styles.propertyIcon}
-              source={require("../../assets/cottage.png")}
-            />
-            <Text style={styles.propertySecondaryText}>Casa</Text>
+          
+          <View style={styles.fakeIconContainer}>
+            <Pressable style={[styles.propertyCardContainer, typeOfPropertyBg === 'casa' ? styles.backgroundSelected : null]} onPress={() => handleTypeOfPropertyBg('casa')} >
+              <Image
+                style={styles.propertyIcon}
+                source={require("../../assets/cottage.png")}
+              />
+              <Text style={[styles.propertySecondaryText, typeOfPropertyBg === 'casa' ? styles.textSelected : null]}>Casa</Text>
+            </Pressable>
           </View>
-          <View style={styles.propertyCardContainer}>
-            <Image
-              style={styles.propertyIcon}
-              source={require("../../assets/Vector.png")}
-            />
-            <Text style={styles.propertySecondaryText}>Terreno</Text>
+          <View style={styles.fakeIconContainer}>
+            <Pressable style={[styles.propertyCardContainer, typeOfPropertyBg === 'terreno' ? styles.backgroundSelected : null]} onPress={() => handleTypeOfPropertyBg('terreno')}>
+              <Image
+                style={styles.propertyIcon}
+                source={require("../../assets/Vector.png")}
+              />
+              <Text style={[styles.propertySecondaryText, typeOfPropertyBg === 'terreno' ? styles.textSelected : null]}>Terreno</Text>
+            </Pressable>
           </View>
         </View>
         <View style={[styles.separator, styles.separatorProperty]} />
@@ -94,8 +112,8 @@ export const FilterScreen = ({ navigation }) => {
           <Text style={styles.secondText}>Indistinto</Text>
         </Pressable>
         <View style={[styles.separator, styles.separatorMargin]} />
-        <Pressable style={styles.attributesContainer}>
-          <Text style={styles.primaryText}>Tipo de ambientes</Text>
+        <Pressable  style={styles.attributesContainer} onPress={handleModalVisibility}>
+          <Text style={styles.primaryText}>Ambientes</Text>
           <Text style={styles.secondText}>Indistinto</Text>
         </Pressable>
         <View style={[styles.separator, styles.separatorMargin]} />
@@ -103,6 +121,8 @@ export const FilterScreen = ({ navigation }) => {
           <GreenButton text="Aceptar" />
         </Pressable>
       </View>
+      {/* MODAL */}
+      <FilterModal isVisible={modalVisible} handleModalVisibility={handleModalVisibility} />
     </View>
   );
 };
@@ -112,39 +132,20 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
   },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    height: "10%",
-    paddingHorizontal: 20,
-    paddingTop: 20,
-  },
-  headerText: {
-    fontWeight: "400",
-    fontSize: 16,
-    marginLeft: 20,
-    color: "#1C1B1F",
-  },
-  headerCleanText: {
-    fontWeight: "500",
-    fontSize: 15,
-    color: "#018349",
-  },
-  headerInternalContainer: {
-    width: 251,
-    flexDirection: "row",
-    alignItems: "center",
-  },
   container: {
     paddingHorizontal: 16,
   },
   searchText: {
-    marginTop: 10,
+    marginTop: 7,
     fontWeight: "500",
     fontSize: 16,
     lineHeight: 24,
     color: "#1E1E1E",
+  },
+  fakeContainer: {
+    overflow: 'hidden',
+    paddingBottom: 6,
+    marginTop: 12, 
   },
   searchInput: {
     flexDirection: "row",
@@ -152,12 +153,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     height: 56,
-    marginTop: 10,
-    borderWidth: 1,
-    borderColor: "#FFFFFF",
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: "red",
+    backgroundColor: '#fff',
+    borderWidth: 1.5,
+    borderColor: "#AAAAAA",
+    borderRadius: 6,
+    shadowColor: '#000',
+    shadowOffset: { width: 1, height: 4 },
+    shadowOpacity:  0.8,
+    shadowRadius: 4,
+    elevation: 10,
   },
   searchTextInput: {
     flex: 1,
@@ -174,7 +178,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   operatorText: {
-    marginTop: 18,
+    marginTop: 12,
     fontWeight: "500",
     fontSize: 16,
     letterSpacing: 0.15,
@@ -208,7 +212,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   separatorOperator: {
-    marginTop: 22,
+    marginTop: 20,
     borderBottomColor: "#CAC4D0",
     borderBottomWidth: 1,
   },
@@ -227,16 +231,28 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
   },
-  propertyCardContainer: {
-    height: 60,
-    borderWidth: 1,
-    borderColor: "#AAAAAA",
+  fakeIconContainer: {
+    overflow: 'hidden',
+    height: 65,
+    width: 70,
+    paddingBottom: 10,
+    paddingLeft: 2.5,
     borderRadius: 8,
-    width: 65,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 1, height: 4 },
+    shadowOpacity:  0.8,
+    shadowRadius: 4,
+  },
+  propertyCardContainer: {
+    backgroundColor: '#fff',
     alignItems: "center",
     justifyContent: "space-between",
+    height: 60,
+    width: 65,
+    borderRadius: 8,
+    paddingHorizontal: 6,
+    paddingVertical: 7,
+    elevation: 15
   },
   propertyIcon: {
     tintColor: "#018349",
@@ -248,7 +264,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.15,
   },
   separatorProperty: {
-    marginTop: 38,
+    marginTop: 28,
     borderBottomColor: "#CAC4D0",
     borderBottomWidth: 1,
   },
@@ -277,9 +293,17 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "100%",
-    marginTop: 35,
+    marginTop: 25,
     borderRadius: 4,
     alignSelf: "center",
     justifyContent: "center",
   },
+  backgroundSelected: {
+    borderWidth: 1,
+    backgroundColor: '#D4F9E8',
+    borderColor: '#018349'
+  },
+  textSelected: {
+    color: '#018349'
+  }
 });

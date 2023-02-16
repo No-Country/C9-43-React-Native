@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native"
-import { PostInputs, PostTopBar } from "../../components"
+import { GreenPostButton, PostInputs, PostTopBar } from "../../components"
 
-export const DescriptionScreen = ({}) => {
+export const DescriptionScreen = () => {
   return (
     <View style={ styles.container }>
 
@@ -24,11 +24,11 @@ export const DescriptionScreen = ({}) => {
           ]}
         />
 
+        <GreenPostButton />
+
     </View>
   )
 }
-
-// TODO: crear componente que reciba arrays y retone todas las pantallas y agregarle type para la foto y el simbolito de $ y usd
 
 const styles = StyleSheet.create({
     container: {

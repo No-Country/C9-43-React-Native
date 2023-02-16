@@ -1,25 +1,29 @@
 import { StyleSheet, Text, View } from "react-native"
 import { GreenPostButton, PostInputs, PostTopBar } from "../../components"
 
-export const LocationScreen = () => {
+export const CharacteristicsScreen = () => {
   return (
     <View style={ styles.container }>
 
         <PostTopBar />
 
         <Text style={ styles.title }>
-            Ubicación
+            Características
         </Text>
 
         <PostInputs 
           titleAndPlaceholder={[ 
             { 
-              title: 'Indicá en que ciudad está ubicado', 
-              placeholder: 'Ej: Quilmes'
+              title:'Indicá la cantidad de m²',
+              placeholder: 'Ej: 45 m²'
             },
             {
-              title: 'Indicá en que provincia está ubicado',
-              placeholder: 'Ej: Buenos Aires'
+              title: '¿Cuántos dormitorios tiene?',
+              placeholder: 'Ej: 2'
+            },
+            {
+                title: '¿Cuántos baños tiene?',
+                placeholder: 'Ej: 1'
             }
           ]}
         />
