@@ -1,8 +1,13 @@
 import React from "react";
 import { View, StyleSheet, Text, Image, Pressable } from "react-native";
 import { SimpleHeader } from "../components/layout";
+import { LogOutModal } from "../components/modal/LogOutModal";
+import { useLogOutModal } from "../hooks";
 
 export const MenuScreen = () => {
+  const { isLogOutModalOpen, handleToggleLogOutModal } = useLogOutModal()
+
+
   return (
     <View style={styles.mainContainer}>
       <SimpleHeader title={'Menú'} />
@@ -48,11 +53,14 @@ export const MenuScreen = () => {
           <Text style={[styles.optionsText, {paddingStart: 35}]}>Quienes somos</Text>
         </Pressable>
 
-        <Pressable style={styles.optionsSubContainer}>
+        <Pressable style={[styles.optionsSubContainer, {borderBottomWidth: 0}]} onPress={handleToggleLogOutModal}>
           <Image source={require("../../assets/icons/logout-icon.png")} />
           <Text style={styles.logoutText}>Log out</Text>
         </Pressable>
       </View>
+
+      {/* MODAL */}
+      <LogOutModal isVisible={isLogOutModalOpen} handleModalVisibility={handleToggleLogOutModal}/>
     </View>
   );
 };
