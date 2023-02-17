@@ -3,5 +3,6 @@ export * from './FilterAreaModal';
 export * from './FilterEnvironmentModal';
 export * from './FilterOrderByModal';
 export * from './FilterPriceModal';
+export * from './LanguageModal';
 export * from './LogOutModal';
 export * from './PostModal';
