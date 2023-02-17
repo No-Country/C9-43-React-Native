@@ -1,4 +1,5 @@
 export * from './ContactAgencyScreen';
+export * from './FavouritesScreen';
 export * from './FilterScreen';
 export * from './FilteredResultScreen';
 export * from './HomeScreen';

@@ -1,8 +1,13 @@
 import React from "react";
 import { View, StyleSheet, Text, Image, Pressable } from "react-native";
 import { SimpleHeader } from "../components/layout";
+import { LogOutModal, LanguageModal } from "../components/modal";
+import { useLanguageModal, useLogOutModal } from "../hooks";
 
 export const MenuScreen = () => {
+  const { isLogOutModalOpen, handleToggleLogOutModal } = useLogOutModal()
+  const { isLanguageModalOpen, handleToggleLanguageModal} = useLanguageModal()
+
   return (
     <View style={styles.mainContainer}>
       <SimpleHeader title={'Menú'} />
@@ -32,7 +37,7 @@ export const MenuScreen = () => {
           <Image source={require("../../assets/icons/favorite-icon.png")} />
           <Text style={styles.optionsText}>Favoritos</Text>
         </Pressable>
-        <Pressable style={styles.optionsSubContainer}>
+        <Pressable style={styles.optionsSubContainer} onPress={handleToggleLanguageModal}>
           <Image source={require("../../assets/icons/language-icon.png")} />
           <Text style={styles.optionsText}>Idioma</Text>
         </Pressable>
@@ -48,11 +53,15 @@ export const MenuScreen = () => {
           <Text style={[styles.optionsText, {paddingStart: 35}]}>Quienes somos</Text>
         </Pressable>
 
-        <Pressable style={styles.optionsSubContainer}>
+        <Pressable style={[styles.optionsSubContainer, {borderBottomWidth: 0}]} onPress={handleToggleLogOutModal}>
           <Image source={require("../../assets/icons/logout-icon.png")} />
           <Text style={styles.logoutText}>Log out</Text>
         </Pressable>
       </View>
+
+      {/* MODAL */}
+      <LogOutModal isVisible={isLogOutModalOpen} handleModalVisibility={handleToggleLogOutModal}/>
+      <LanguageModal isVisible={isLanguageModalOpen} handleModalVisibility={handleToggleLanguageModal} />
     </View>
   );
 };
