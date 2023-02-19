@@ -8,4 +8,7 @@ export * from './MainScreen';
 export * from './MenuScreen';
 export * from './PostScreen';
 export * from './PostScreens';
+export * from './ProfileAndSettings';
+export * from './ProfileScreen';
 export * from './RegisterScreen';
+export * from './SettingsScreen';

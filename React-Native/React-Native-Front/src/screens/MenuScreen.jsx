@@ -4,7 +4,7 @@ import { SimpleHeader } from "../components/layout";
 import { LogOutModal, LanguageModal } from "../components/modal";
 import { useLanguageModal, useLogOutModal } from "../hooks";
 
-export const MenuScreen = () => {
+export const MenuScreen = ({ navigation }) => {
   const { isLogOutModalOpen, handleToggleLogOutModal } = useLogOutModal()
   const { isLanguageModalOpen, handleToggleLanguageModal} = useLanguageModal()
 
@@ -19,12 +19,14 @@ export const MenuScreen = () => {
           />
           <View style={styles.nameContainer}>
             <Text style={styles.nameText}>Guadalupe Gomez</Text>
-            <Text style={styles.editText}>Editar perfil</Text>
+            <Pressable onPress={() => navigation.navigate('Profile')}>
+              <Text style={styles.editText}>Editar perfil</Text>
+            </Pressable>
           </View>
         </View>
 
-        <Pressable style={styles.optionsSubContainer}>
-          <Image source={require("../../assets/icons/dollarHouse-icon.png")} />
+        <Pressable style={styles.optionsSubContainer} onPress={() => navigation.navigate('Publicar')}>
+          <Image source={require("../../assets/icons/dollarHouse-icon.png")} style={styles.dollarHouseIcon}/>
           <Text style={styles.optionsText}>Publicar</Text>
         </Pressable>
 
@@ -33,7 +35,7 @@ export const MenuScreen = () => {
           <Text style={styles.optionsText}>Mensajes</Text>
         </Pressable>
 
-        <Pressable style={styles.optionsSubContainer}>
+        <Pressable style={styles.optionsSubContainer} onPress={() => navigation.navigate('Favoritos')}>
           <Image source={require("../../assets/icons/favorite-icon.png")} />
           <Text style={styles.optionsText}>Favoritos</Text>
         </Pressable>
@@ -127,4 +129,8 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     color: "#DB504A",
   },
+  dollarHouseIcon: {
+    width: 24,
+    height: 24
+  }
 });
