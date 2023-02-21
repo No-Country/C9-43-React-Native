@@ -1,7 +1,8 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { tabIconOptions } from "../src/helpers";
-import { HomeScreen, MenuScreen, Phase1Screen, FavouritesScreen } from "../src/screens";
+import { HomeScreen, Phase1Screen, FavouritesScreen } from "../src/screens";
 import { ProfileNavigation } from "./ProfileNavigation";
+import { PublishNavigation } from "./PublishNavigation";
 import { SearchNavigation } from "./SearchNavigation";
 
 const BottomTab = createBottomTabNavigator();
@@ -41,7 +42,7 @@ export const TabNavigator = () => {
 
       <BottomTab.Screen
         name="Publicar"
-        component={Phase1Screen}
+        component={PublishNavigation}
         options={{ headerShown: false }}
       />
 

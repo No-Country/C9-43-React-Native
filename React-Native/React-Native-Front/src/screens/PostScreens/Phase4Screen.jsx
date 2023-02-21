@@ -1,70 +1,70 @@
-import { Ionicons } from "@expo/vector-icons"
-import { ScrollView, StyleSheet, Text, View } from "react-native"
-import { PostTopBar, PressableStages } from "../../components"
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native"
+import {  PressableStages } from "../../components"
+import {  IconHeader } from "../../components/layout"
 
-export const Phase4Screen = () => {
+export const Phase4Screen = ({ navigation }) => {
   return (
     <View style={ styles.container }>
-        
-        <PostTopBar />
-
+        <IconHeader icon={'close'} title={'Publicar anuncio'} navigation={navigation}/>
         <View style={ styles.header }>
-
-            <Ionicons
-                style={ styles.headerIcon } 
-                name='home-outline' 
-                color={ '#000000' } 
-                size={40} 
-            />
-
+            <Image style={styles.headerIcon} source={require('../../../assets/icons/dollarHouse-icon.png')} />
             <Text style={ styles.headerText }>
                 <Text style={ styles.headerTextSpan }>16%</Text> completado
             </Text>
         </View>
 
-        <View style={ styles.multipleInputsContainer }>
+        <ScrollView style={ styles.multipleInputsContainer }>
             
             <PressableStages 
                 title={'Tipo de inmueble'} 
-                description={'¿Qué tipo de inmueble querés alquilar?'}            
+                description={'¿Qué tipo de inmueble querés alquilar?'} 
+                path={'Phase2Screen'}           
             />
 
             <PressableStages 
                 title={'Descripción'} 
-                description={'Agregá con un título y descripción de tu inmueble'}            
+                description={'Agregá con un título y descripción de tu inmueble'}  
+                path={'DescriptionScreen'}          
             />
 
             <PressableStages 
                 title={'Ubicación'} 
-                description={'Indica dónde está ubicado'}            
+                description={'Indica dónde está ubicado'}
+                path={'LocationScreen'}            
             />
 
             <PressableStages 
                 title={'Ambientes'} 
-                description={'Indica la cantidad de ambientes'}            
+                description={'Indica la cantidad de ambientes'}
+                path={'EnvironmentsScreen'}            
             />
 
             <PressableStages 
                 title={'Características'} 
-                description={'Indica cuántos dormitorios y baños tiene'}            
+                description={'Indica cuántos dormitorios y baños tiene'}
+                path={'CharacteristicsScreen'}            
             />
 
             <PressableStages 
                 title={'Precio'} 
-                description={'Indica a que precio querés publicarlo'}            
+                description={'Indica a que precio querés publicarlo'}
+                path={'PriceScreen'}            
             />
 
             <PressableStages 
                 title={'Fotos'} 
-                description={'Agregá fotos y planos del inmueble'}            
+                description={'Agregá fotos y planos del inmueble'}
+                path={'PhotosScreen'}            
             />
 
             <PressableStages 
                 title={'Contacto'} 
-                description={'Agregá por donde querés que te contacten'}            
+                description={'Agregá por donde querés que te contacten'}
+                style={{borderBottomWidth: 0, paddingVertical: 9}}
+                path={'ContactScreen'}          
             />
 
-        </View>
+        </ScrollView>
 
     </View>
   )
@@ -73,20 +73,16 @@ export const Phase4Screen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFFFFF'
+        backgroundColor: '#FFF'
     },
     header: {
         flexDirection: 'row',
-        width: '100%',
-        height: 64,
-        marginTop: 44,
-        marginLeft: 24
+        marginTop: 10,
+        marginLeft: 24,
     },
     headerIcon: {
-        width: 64,
-        height: 64,
-        textAlign: 'center',
-        textAlignVertical: 'center'
+        width: 39,
+        height: 31,
     },
     headerText: {
         fontSize: 18,
@@ -102,6 +98,5 @@ const styles = StyleSheet.create({
     },
     multipleInputsContainer: {
         marginHorizontal: 16,
-        marginTop: 10
     }
 })

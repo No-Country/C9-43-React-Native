@@ -1,12 +1,13 @@
-import { StyleSheet, Text, View } from "react-native"
-import { GreenPostButton, PostInputs, PostTopBar } from "../../components"
+import { Pressable, StyleSheet, Text, View } from "react-native"
+import { GreenButton, GreenPostButton, PostInputs, PostTopBar } from "../../components"
+import { IconHeader } from "../../components/layout"
 
-export const CharacteristicsScreen = () => {
+export const CharacteristicsScreen = ({ navigation }) => {
   return (
     <View style={ styles.container }>
 
-        <PostTopBar />
-
+        <IconHeader icon={'close'} navigation={navigation} title={'Publicar anuncio'}/>
+      <View style={styles.descriptionInputsContainer}>
         <Text style={ styles.title }>
             Características
         </Text>
@@ -27,9 +28,10 @@ export const CharacteristicsScreen = () => {
             }
           ]}
         />
-
-        <GreenPostButton />
-
+      </View>
+      <Pressable style={styles.buttonContainer} onPress={() => navigation.goBack()}>
+        <GreenButton text={'Aceptar'} />
+      </Pressable>
     </View>
   )
 }
@@ -43,6 +45,13 @@ const styles = StyleSheet.create({
       fontSize: 26,
       lineHeight: 32,
       marginLeft: 19,
-      marginTop: 52
+      marginTop: 22
+    },
+    descriptionInputsContainer: {
+      flex: 7
+    },
+    buttonContainer: {
+      flex: 1,
+      marginHorizontal: 16
     }
 })

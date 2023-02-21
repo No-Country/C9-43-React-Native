@@ -1,33 +1,31 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { GreenPostButton, PostTopBar, TextedCheckbox } from "../../components";
+import { Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { GreenButton, GreenPostButton, PostTopBar, TextedCheckbox } from "../../components";
+import { IconHeader, FilterTextedCheckbox } from "../../components/layout";
 
 export const Phase2Screen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <PostTopBar />
+      <IconHeader icon={'close'} navigation={navigation} title={'Publicar anuncio'} />
 
       <View style={styles.titlesContainer}>
         <View>
           <Text style={styles.title}>Nuevo anuncio</Text>
         </View>
-
-        <View style={styles.subtitleContainer}>
           <Text style={styles.subtitle}>
             ¿Qué tipo de inmueble querés publicar?
           </Text>
-        </View>
       </View>
 
       <View style={styles.optionsContainer}>
-        <TextedCheckbox text={"Departamento"} />
+        <FilterTextedCheckbox text={"Departamento"} />
 
-        <TextedCheckbox text={"Casa"} />
+        <FilterTextedCheckbox text={"Casa"} />
 
-        <TextedCheckbox text={"Terreno"} />
+        <FilterTextedCheckbox text={"Terreno"} />
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate("Phase3Screen")}>
-        <GreenPostButton />
-      </TouchableOpacity>
+      <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("Phase3Screen")}>
+        <GreenButton text={'Aceptar'} />
+      </Pressable>
     </View>
   );
 };
@@ -38,24 +36,26 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   titlesContainer: {
-    height: 68,
+    marginTop: 22,
     marginLeft: 19,
-    marginTop: 52,
   },
   title: {
+    color: '#1E1E1E',
     fontSize: 24,
     lineHeight: 32,
   },
-  subtitleContainer: {
-    marginTop: 10,
-  },
   subtitle: {
+    color: '#1E1E1E',
     lineHeight: 32,
   },
   optionsContainer: {
+    flex: 5,
     marginTop: 32,
     marginLeft: 32,
     marginRight: 88,
-    marginBottom: 250,
   },
+  buttonContainer: {
+    flex: 1,
+    marginHorizontal: 16
+  }
 });

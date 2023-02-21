@@ -21,7 +21,7 @@ export const HomeScreen = ({ navigation }) => {
             <Text style={styles.bodyTitle}>Publica tu anuncio. Es gratis!</Text>
             <TouchableOpacity
               style={styles.publishButton}
-              onPress={() => navigation.navigate("Phase1Screen")}
+              onPress={() => navigation.navigate("Publicar")}
             >
               <ImageBackground
                 source={require("../../assets/Home/publish-button.png")}

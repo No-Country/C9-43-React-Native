@@ -56,26 +56,6 @@ const MainStack = () => {
           component={ContactAgencyScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
-          name="Phase1Screen"
-          component={Phase1Screen}
-          options={{ headerShown: true }}
-        />
-        <Stack.Screen
-          name="Phase2Screen"
-          component={Phase2Screen}
-          options={{ headerShown: true }}
-        />
-        <Stack.Screen
-          name="Phase3Screen"
-          component={Phase3Screen}
-          options={{ headerShown: true }}
-        />
-        <Stack.Screen
-          name="Phase4Screen"
-          component={Phase4Screen}
-          options={{ headerShown: true }}
-        />
       </Stack.Navigator>
     </NavigationContainer>
   );
