@@ -1,12 +1,13 @@
 import React from "react";
 import { View, StyleSheet, Text, Image, Pressable } from "react-native";
 import { SimpleHeader } from "../components/layout";
-import { LogOutModal, LanguageModal } from "../components/modal";
-import { useLanguageModal, useLogOutModal } from "../hooks";
+import { LogOutModal, LanguageModal, AboutUsModal } from "../components/modal";
+import { useAboutUsModal, useLanguageModal, useLogOutModal } from "../hooks";
 
 export const MenuScreen = ({ navigation }) => {
   const { isLogOutModalOpen, handleToggleLogOutModal } = useLogOutModal()
   const { isLanguageModalOpen, handleToggleLanguageModal} = useLanguageModal()
+  const { isAboutUsModalOpen, handleToggleAboutUsModal} = useAboutUsModal()
 
   return (
     <View style={styles.mainContainer}>
@@ -43,14 +44,14 @@ export const MenuScreen = ({ navigation }) => {
           <Image source={require("../../assets/icons/language-icon.png")} />
           <Text style={styles.optionsText}>Idioma</Text>
         </Pressable>
-        <Pressable style={styles.optionsSubContainer}>
+        <Pressable style={styles.optionsSubContainer} onPress={() => navigation.navigate('FAQ')}>
           <Image
             source={require("../../assets/icons/circleQuestion-icon.png")}
           />
           <Text style={styles.optionsText}>Faq</Text>
         </Pressable>
 
-        <Pressable style={styles.optionsSubContainer}>
+        <Pressable style={styles.optionsSubContainer} onPress={handleToggleAboutUsModal}>
           <Image style={styles.homeQuest} source={require("../../assets/icons/logo-black-icon.png")} />
           <Text style={[styles.optionsText, {paddingStart: 35}]}>Quienes somos</Text>
         </Pressable>
@@ -64,6 +65,7 @@ export const MenuScreen = ({ navigation }) => {
       {/* MODAL */}
       <LogOutModal isVisible={isLogOutModalOpen} handleModalVisibility={handleToggleLogOutModal}/>
       <LanguageModal isVisible={isLanguageModalOpen} handleModalVisibility={handleToggleLanguageModal} />
+      <AboutUsModal isVisible={isAboutUsModalOpen} handleModalVisibility={handleToggleAboutUsModal}/>
     </View>
   );
 };
