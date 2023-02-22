@@ -1,18 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import {
-  ContactAgencyScreen,
-  FilterScreen,
-  LoginScreen,
-  MainScreen,
-  RegisterScreen,
-} from "../src/screens";
-import {
-  Phase1Screen,
-  Phase2Screen,
-  Phase3Screen,
-  Phase4Screen,
-} from "../src/screens";
+import { FilterScreen, LoginScreen, MainScreen, RegisterScreen, } from "../src/screens";
 import { TabNavigator } from "./TabNavigator";
 
 const Stack = createNativeStackNavigator();
@@ -48,34 +36,11 @@ const MainStack = () => {
         <Stack.Screen
           name="Filtros avanzados"
           component={FilterScreen}
-          options={{ headerShown: false }}
-        />
-
-        <Stack.Screen
-          name="ContactAgency"
-          component={ContactAgencyScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Phase1Screen"
-          component={Phase1Screen}
-          options={{ headerShown: true }}
-        />
-        <Stack.Screen
-          name="Phase2Screen"
-          component={Phase2Screen}
-          options={{ headerShown: true }}
-        />
-        <Stack.Screen
-          name="Phase3Screen"
-          component={Phase3Screen}
-          options={{ headerShown: true }}
-        />
-        <Stack.Screen
-          name="Phase4Screen"
-          component={Phase4Screen}
-          options={{ headerShown: true }}
-        />
+          options={{ headerShown: false, headerStyle: {backgroundColor: '#D9D9D9', height: 106 }, headerTitleStyle: {
+            fontWeight: '400', fontSize: 16, 
+          }}}
+          
+          />
       </Stack.Navigator>
     </NavigationContainer>
   );

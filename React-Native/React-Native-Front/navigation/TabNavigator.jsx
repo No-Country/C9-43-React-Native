@@ -1,7 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { tabIconOptions } from "../src/helpers";
 import { HomeScreen, MenuScreen, PostScreen } from "../src/screens";
+import { FavoriteScreen } from "../src/screens/FavoriteScreen";
 import { SearchNavigation } from "./SearchNavigation";
+import {MessageScreen} from "../src/screens/MessageScreen"
 
 const BottomTab = createBottomTabNavigator();
 
@@ -38,7 +40,7 @@ export const TabNavigator = () => {
 
         <BottomTab.Screen 
           name="Favoritos" 
-          component={ HomeScreen } 
+          component={ FavoriteScreen } 
         />
 
         <BottomTab.Screen 
@@ -49,7 +51,7 @@ export const TabNavigator = () => {
 
         <BottomTab.Screen 
           name="Mensajes" 
-          component={ HomeScreen } 
+          component={ MessageScreen } 
         />
 
         <BottomTab.Screen 
@@ -57,9 +59,7 @@ export const TabNavigator = () => {
           component={ MenuScreen } 
         />
 
-        {/* <Tab.Screen name="Favorites" component={ FavoritesScreen } /> */}
         {/* <Tab.Screen name="Post" component={ PostScreen } /> */}
-        {/* <Tab.Screen name="Messages" component={ MessagesScreen } /> */}
     </BottomTab.Navigator>
   )
 }
