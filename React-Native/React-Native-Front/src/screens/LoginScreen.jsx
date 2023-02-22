@@ -5,8 +5,10 @@ import {
   Text,
   TextInput,
   View,
-  Form,
+  Platform,
+  ScrollView,
 } from "react-native";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import { GreenButton } from "../components";
@@ -15,6 +17,7 @@ export const LoginScreen = ({ navigation }) => {
   const [secured, setSecured] = useState(true);
 
   return (
+    <KeyboardAwareScrollView style={{flex: 1, backgroundColor: '#fff'}}>
     <View style={styles.container}>
       <AntDesign
         name="arrowleft"
@@ -64,6 +67,7 @@ export const LoginScreen = ({ navigation }) => {
         </Pressable>
       </View>
     </View>
+    </KeyboardAwareScrollView>
   );
 };
 

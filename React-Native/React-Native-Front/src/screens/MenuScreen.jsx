@@ -133,6 +133,6 @@ const styles = StyleSheet.create({
   },
   dollarHouseIcon: {
     width: 24,
-    height: 24
+    height: 19
   }
 });

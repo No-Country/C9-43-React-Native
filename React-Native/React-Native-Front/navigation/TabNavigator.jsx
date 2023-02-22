@@ -1,19 +1,16 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { tabIconOptions } from "../src/helpers";
-import { HomeScreen, Phase1Screen, FavouritesScreen } from "../src/screens";
+import { HomeScreen, FavouritesScreen } from "../src/screens";
 import { ProfileNavigation } from "./ProfileNavigation";
 import { PublishNavigation } from "./PublishNavigation";
 import { SearchNavigation } from "./SearchNavigation";
+import { Image } from 'react-native'
 
 const BottomTab = createBottomTabNavigator();
-
-// TODO: Add favorites tabscreen & post publication & messages & menu
 
 export const TabNavigator = () => {
   return (
     <BottomTab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ color }) => tabIconOptions(route, color),
         headerShown: false,
         tabBarHideOnKeyboard: true,
         tabBarActiveTintColor: "#018349",
@@ -32,27 +29,56 @@ export const TabNavigator = () => {
         },
       })}
     >
-      <BottomTab.Screen name="Buscar" component={SearchNavigation} />
+      <BottomTab.Screen
+       name="Buscar" 
+       component={SearchNavigation} 
+       options={{
+        tabBarIcon: ({focused}) => (
+          focused ? <Image style={{width: 17.49, height: 17.49}} source={require('../assets/icons/searchGreen-icon.png')} /> : <Image style={{width: 17.49, height: 17.49}} source={require('../assets/icons/search-icon.png')} />
+        )
+       }}
+      />
 
       <BottomTab.Screen
         name="Favoritos"
         component={FavouritesScreen}
-        options={{ headerShown: false }}
+        options={{
+          tabBarIcon: ({focused}) => (
+            focused ? <Image style={{width: 20, height: 18.35}} source={require('../assets/icons/favoriteGreen-icon.png')} /> : <Image style={{width: 20, height: 18.35}} source={require('../assets/icons/favorite-icon.png')} />
+          )
+         }}
       />
 
       <BottomTab.Screen
         name="Publicar"
         component={PublishNavigation}
-        options={{ headerShown: false }}
+        options={{
+          tabBarIcon: ({focused}) => (
+            focused ? <Image style={{width: 24, height: 19}} source={require('../assets/icons/dollarHouseSelected-icon.png')} /> : <Image style={{width: 24, height: 19}} source={require('../assets/icons/dollarHouse-icon.png')} />
+          )
+         }}
       />
 
-      <BottomTab.Screen name="Mensajes" component={HomeScreen} />
+      <BottomTab.Screen 
+        name="Mensajes" 
+        component={HomeScreen} 
+        options={{
+          tabBarIcon: ({focused}) => (
+            focused ? <Image source={require('../assets/icons/messageGreen-icon.png')} /> : <Image  source={require('../assets/icons/message-icon.png')} />
+          )
+         }}
+      />
 
-      <BottomTab.Screen name="Menú" component={ProfileNavigation} />
+      <BottomTab.Screen 
+        name="Menú" 
+        component={ProfileNavigation} 
+        options={{
+          tabBarIcon: ({focused}) => (
+            focused ? <Image  source={require('../assets/icons/menuGreen-icon.png')} /> : <Image  source={require('../assets/icons/menu-icon.png')} />
+          )
+         }}
+      />
 
-      {/* <Tab.Screen name="Favorites" component={ FavoritesScreen } /> */}
-      {/* <Tab.Screen name="Post" component={ PostScreen } /> */}
-      {/* <Tab.Screen name="Messages" component={ MessagesScreen } /> */}
     </BottomTab.Navigator>
   );
 };

@@ -23,7 +23,7 @@ const HomeScreenHeader = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate("Ubicacion")}>
           <View style={styles.search}>
             <Image
-              source={require("../../assets/magnifyingGlass.png")}
+              source={require("../../assets/icons/search-icon.png")}
               style={styles.searchIcon}
             />
             <Text style={styles.newSearchText}>Inicia una nueva búsqueda</Text>
