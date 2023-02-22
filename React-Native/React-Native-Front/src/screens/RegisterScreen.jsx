@@ -1,29 +1,28 @@
 import {
   Image,
+  Pressable,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
-  ScrollView,
 } from "react-native";
 import { useState } from "react";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { GreenButton } from "../components";
 
 export const RegisterScreen = ({ navigation }) => {
   const [secured, setSecured] = useState(true);
   const [securedConfirm, setSecuredConfirm] = useState(true);
 
   return (
-    <>
-      <ScrollView>
         <View style={styles.container}>
           <AntDesign
             name="arrowleft"
             size={24}
             color="black"
             style={styles.arrow}
-            onPress={() => navigation.navigate("MainScreen")}
+            onPress={() => navigation.goBack()}
           />
           <Image
             style={styles.logo}
@@ -37,6 +36,7 @@ export const RegisterScreen = ({ navigation }) => {
               style={[styles.emailInput, styles.textInputs]}
               placeholder="Ingresa tu E-mail"
               placeholderTextColor="#979797"
+              keyboardType="email-address"
             />
 
             <View style={[styles.passwordInput, styles.textInputs]}>
@@ -69,15 +69,12 @@ export const RegisterScreen = ({ navigation }) => {
               />
             </View>
 
-            <TouchableOpacity>
-              <View style={styles.registerButton}>
-                <Text style={styles.registerButtonText}>Registrarme</Text>
-              </View>
-            </TouchableOpacity>
+            <Pressable style={styles.button}>
+              <GreenButton text={'Registrarme'} />
+            </Pressable>
           </View>
         </View>
-      </ScrollView>
-    </>
+
   );
 };
 
@@ -85,16 +82,15 @@ const styles = StyleSheet.create({
   passwordInputIcon: {
     paddingTop: 15,
   },
-
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "#fff",
+    
   },
   arrow: {
     alignSelf: "flex-start",
-    marginTop: 31,
-    left: 27,
+    marginTop: 38,
+    marginLeft: 23
   },
   logo: {
     marginTop: 38,
@@ -125,51 +121,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#D9D9D9",
     paddingLeft: 19,
     borderRadius: 5,
-
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-
-    elevation: 3,
   },
   passwordInput: {
     marginTop: 30,
     backgroundColor: "#D9D9D9",
     paddingLeft: 19,
     borderRadius: 5,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-
-    elevation: 0,
   },
-  registerButton: {
-    backgroundColor: "#018349",
-    marginTop: 30,
-    width: 328,
-    height: 49,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 4,
+  button: {
     marginTop: 50,
-    shadowColor: "black",
-    shadowOpacity: 0.26,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
-    elevation: 5,
-  },
-  registerButtonText: {
-    fontWeight: "500",
-    fontSize: 14,
-    letterSpacing: 1.25,
-    color: "#fff",
-  },
+    width: 326
+  }
 });

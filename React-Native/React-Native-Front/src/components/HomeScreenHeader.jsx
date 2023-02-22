@@ -1,11 +1,9 @@
 import {
   Image,
   Text,
-  TextInput,
   View,
   ImageBackground,
   StyleSheet,
-  Pressable,
   TouchableOpacity,
 } from "react-native";
 
@@ -75,7 +73,7 @@ const styles = StyleSheet.create({
     height: 56,
     backgroundColor: "#FFFFFF",
     marginTop: 36,
-    marginBottom: 30,
+    marginBottom: 53,
     borderWidth: 1,
     borderColor: "#979797",
     textAlign: "center",

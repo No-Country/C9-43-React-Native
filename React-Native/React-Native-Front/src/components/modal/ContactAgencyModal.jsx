@@ -3,11 +3,11 @@ import {View, StyleSheet, Modal, Pressable, Text} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 
-export const ContactAgencyModal = ({ onPress }) => {
+export const ContactAgencyModal = ({ isOpen, onPress }) => {
   
 
   return (
-    <Modal transparent={true} animationType={'fade'}>
+    <Modal visible={isOpen} transparent={true} animationType={'fade'}>
       <Pressable onPress={onPress} style={styles.opacityBackground}>
         <View style={styles.container}>
           <MaterialIcons name="check-circle-outline" size={24} color="#018349" />

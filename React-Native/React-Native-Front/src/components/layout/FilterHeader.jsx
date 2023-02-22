@@ -6,7 +6,7 @@ export const FilterHeader = ({ navigation, onPress }) => {
     <View style={styles.fakeHeader}>
         <View style={styles.header}>
           <View style={styles.headerInternalContainer}>
-            <Pressable onPress={() => navigation.navigate("MainScreen")}>
+            <Pressable onPress={() => navigation.goBack()}>
               <MaterialIcons name="arrow-back" size={24} color="black" />
             </Pressable>
             <Text style={styles.headerText}>Filtros avanzados</Text>
@@ -55,4 +55,3 @@ const styles = StyleSheet.create({
     alignItems: "center",
   }
 })
-

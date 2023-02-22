@@ -7,7 +7,7 @@ export const IconHeader = ({ navigation, title, icon}) => {
     <View style={styles.fakeHeader}>
         <View style={styles.header}>
           <View style={styles.headerInternalContainer}>
-            <Pressable onPress={() => navigation.navigate("MainScreen")}>
+            <Pressable onPress={() => navigation.goBack()}>
               <MaterialIcons name={icon} size={24} color="black" />
             </Pressable>
             <Text style={styles.headerText}>{title}</Text>
