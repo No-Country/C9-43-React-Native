@@ -4,7 +4,7 @@ import BouncyCheckbox from "react-native-bouncy-checkbox"
 
 export const FilterTextedCheckbox = ({ text }) => {
   const [isChecked, setIsChecked] = useState(false)
-  console.log(isChecked)
+
   return (
     <View style={ styles.option }>
 

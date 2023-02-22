@@ -10,12 +10,14 @@ import {
 import { useState } from "react";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { GreenButton } from "../components";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export const RegisterScreen = ({ navigation }) => {
   const [secured, setSecured] = useState(true);
   const [securedConfirm, setSecuredConfirm] = useState(true);
 
   return (
+    <KeyboardAwareScrollView style={{flex: 1, backgroundColor: '#fff'}}>
         <View style={styles.container}>
           <AntDesign
             name="arrowleft"
@@ -74,7 +76,7 @@ export const RegisterScreen = ({ navigation }) => {
             </Pressable>
           </View>
         </View>
-
+        </KeyboardAwareScrollView>
   );
 };
 
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    
+    backgroundColor: '#fff'
   },
   arrow: {
     alignSelf: "flex-start",

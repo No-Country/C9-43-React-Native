@@ -1,16 +1,19 @@
-import { StyleSheet, Text, View } from "react-native"
-import { GreenPostButton, PostInputs, PostTopBar } from "../../components"
+import { Pressable, StyleSheet, Text, View } from "react-native"
+import { GreenButton, GreenPostButton, PostInputs, PostTopBar } from "../../components"
+import { IconHeader } from "../../components/layout"
 
-export const ContactScreen = () => {
+export const ContactScreen = ({ navigation }) => {
   return (
     <View style={ styles.container }>
 
-        <PostTopBar />
-
+        <IconHeader icon={'close'} navigation={navigation} title={'Publicar anuncio'}/>
+        <View style={styles.descriptionInputContainer}>
         <Text style={ styles.title }>
             Contacto
         </Text>
-
+        <Text style={styles.subtitle}>
+        Indicá por donde querés que te contacten 
+        </Text>
         <PostInputs 
           titleAndPlaceholder={[ 
             { 
@@ -23,9 +26,10 @@ export const ContactScreen = () => {
             }
           ]}
         />
-
-        <GreenPostButton />
-
+      </View>
+      <Pressable style={styles.buttonContainer} onPress={() => navigation.goBack()}>
+        <GreenButton text={'Aceptar'}/>
+      </Pressable>
     </View>
   )
 }
@@ -35,10 +39,22 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FFFFFF'
     },
+    descriptionInputContainer: {
+      flex: 7,
+      marginTop: 22,
+    },  
     title: {
       fontSize: 26,
       lineHeight: 32,
       marginLeft: 19,
-      marginTop: 52
+    },
+    subtitle: {
+      marginLeft: 19,
+      marginTop: 10,
+      marginBottom: 30
+    },
+    buttonContainer: {
+      flex: 1,
+      marginHorizontal: 16
     }
 })

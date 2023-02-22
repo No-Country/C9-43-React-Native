@@ -1,4 +1,5 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { GreenButton } from "../../components";
 
 export const Phase1Screen = ({ navigation }) => {
   return (
@@ -11,12 +12,12 @@ export const Phase1Screen = ({ navigation }) => {
           style={styles.mainImage}
           source={require("../../../assets/images/Speech_Bubble.png")}
         />
-        <TouchableOpacity
+        <Pressable
           style={styles.mainImageButton}
           onPress={() => navigation.navigate("Phase2Screen")}
         >
-          <Text style={styles.mainImageButtonText}>Publicar anuncio</Text>
-        </TouchableOpacity>
+          <GreenButton text={'Publicar'} />
+        </Pressable>
       </View>
 
       <View style={styles.textContainer}>
@@ -54,33 +55,30 @@ export const Phase1Screen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff'
   },
   mainImageContainer: {
-    top: 38,
-    height: 360,
-    width: "100%",
+    marginTop: 32,
     backgroundColor: "#D9D9D9",
     alignItems: "center",
   },
   mainImageText: {
+    marginTop: 30,
     width: 271,
     textAlign: "center",
     fontSize: 16,
     lineHeight: 24,
-    marginTop: 30,
     letterSpacing: 0.15,
   },
   mainImage: {
     marginTop: 24,
   },
   mainImageButton: {
-    width: 160,
-    height: 49,
+    width: 248,
     borderRadius: 4,
-    backgroundColor: "#018349",
     marginTop: 25,
-    justifyContent: "center",
-    alignItems: "center",
+    marginBottom: 16
+    
   },
   mainImageButtonText: {
     fontWeight: "500",
@@ -88,7 +86,7 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
   },
   textContainer: {
-    marginTop: 47,
+    marginTop: 16,
     marginLeft: 16,
   },
   textTitle: {
@@ -102,7 +100,6 @@ const styles = StyleSheet.create({
     width: 180,
   },
   textSubtitleContainer: {
-    marginTop: 16,
     marginBottom: 11,
     width: 291,
   },

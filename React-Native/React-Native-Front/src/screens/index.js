@@ -1,4 +1,5 @@
 export * from './ContactAgencyScreen';
+export * from './FAQScreen';
 export * from './FavouritesScreen';
 export * from './FilterScreen';
 export * from './FilteredResultScreen';
@@ -8,4 +9,7 @@ export * from './MainScreen';
 export * from './MenuScreen';
 export * from './PostScreen';
 export * from './PostScreens';
+export * from './ProfileAndSettings';
+export * from './ProfileScreen';
 export * from './RegisterScreen';
+export * from './SettingsScreen';

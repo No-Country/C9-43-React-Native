@@ -1,3 +1,4 @@
+export * from './AboutUsModal';
 export * from './ContactAgencyModal';
 export * from './FilterAreaModal';
 export * from './FilterEnvironmentModal';

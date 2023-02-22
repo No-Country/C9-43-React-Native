@@ -1,5 +1,7 @@
+export * from './useAboutUsModal';
 export * from './useAreaModal';
 export * from './useEnvironmentModal';
+export * from './useFaqOptions';
 export * from './useFilters';
 export * from './useLanguageModal';
 export * from './useLogOutModal';

@@ -1,13 +1,14 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Feather } from '@expo/vector-icons';
-import { PostTopBar } from "../../components";
+import { GreenButton, PostTopBar } from "../../components";
+import { IconHeader } from "../../components/layout";
 
-export const PhotosScreen = () => {
+export const PhotosScreen = ({ navigation }) => {
   return (
     
     <View style={ styles.container }>
 
-        <PostTopBar />
+        <IconHeader icon={'close'} navigation={navigation} title={'Publicar anuncio'}/>
 
         <View style={ styles.contentContainer }>
             <Text style={ styles.title }>
@@ -26,7 +27,7 @@ export const PhotosScreen = () => {
                 Agregadas: 0/10
             </Text>
 
-            <TouchableOpacity style={ styles.photoContainer }>
+            <Pressable style={ styles.photoContainer }>
 
                 <Feather
                     style={{ textAlign: 'center' }} 
@@ -35,8 +36,11 @@ export const PhotosScreen = () => {
                     color="black" 
                 />
 
-            </TouchableOpacity>
+            </Pressable>
         </View>
+        <Pressable style={styles.buttonContainer} onPress={() => navigation.goBack()}>
+            <GreenButton text={'Aceptar'} />
+        </Pressable>
 
     </View>
 
@@ -51,8 +55,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF'
     },
     contentContainer: {
+        flex: 7,
         marginLeft: 19,
-        marginTop: 52
+        marginTop: 22,
     },
     title: {
         fontSize: 26,
@@ -75,5 +80,9 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         backgroundColor: '#D9D9D9',
         justifyContent: 'center',
+    },
+    buttonContainer: {
+        flex: 1,
+        marginHorizontal: 16
     }
 })
