@@ -22,8 +22,13 @@ const Properties = db.define("properties", {
     type: DataTypes.FLOAT,
     allowNull: false
   },
-  location: {
+  city: {
     type: DataTypes.STRING,
+    allowNull: false
+  },
+  region: {
+    type: DataTypes.STRING,
+    allowNull: false
   },
   sqMeters: {
     type: DataTypes.FLOAT,
@@ -41,7 +46,7 @@ const Properties = db.define("properties", {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-  yearBuilt: {
+  antiquity: {
     type: DataTypes.INTEGER,
     allowNull: false
   },
@@ -50,7 +55,11 @@ const Properties = db.define("properties", {
     defaultValue: true
   },
   propertyType: {
-    type: DataTypes.ENUM("casa", "departmento", "penthouse", "terreno", "oficina", "otros"),
+    type: DataTypes.ENUM("casa", "departmento", "terreno"),
+    allowNull: false
+  },
+  businessType: {
+    type: DataTypes.ENUM("venta", "alquiler"),
     allowNull: false
   },
   parking: {

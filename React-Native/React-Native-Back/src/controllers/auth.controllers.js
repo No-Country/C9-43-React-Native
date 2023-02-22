@@ -1,11 +1,20 @@
 const AuthServices = require("../services/auth.services");
-const error = require("../middlewares/error.middleware");
+const UsersServices = require("../services/users.services");
+const transporter = require("../utils/mailer");
+require("dotenv").config()
 
 const register = async (req, res, next) => {
   try {
     const newUser = req.body;
     const result = await AuthServices.register(newUser);
     if (result) {
+      const url = `localhost:8000/api/v1/auth/confirmation/${result.id}/${result.token}`;
+      await transporter.sendMail({
+        from: process.env.G_EMAIL,
+        to: result.email,
+        subject: "Confirmar Email || Home Quest",
+        html: `<h1>Confirma tu email</h1> <p></p><p>Solo haz click en el siguiente <a href=${url}>${url}</a>`
+      })
       res.status(201).json({ message: "Usuario creado exitosamente" });
     } else {
       next({ message: "Usuario ya existe en la base de datos" });
@@ -18,25 +27,39 @@ const register = async (req, res, next) => {
 const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    if (!email) {
-      next({ error: "Información faltante", message: "No se proporció un email" });
-    };
-    if (!password) {
-      next({ error: "Información faltante", message: "No se proporció una contraseña" });
-    };
-    const result = await AuthServices.login({ email, password });
-    if (result.isValid) {
-      const { username, id, email } = result.user;
-      const userData = { username, id, email }
-      const token = await AuthServices.genToken(userData);
-      userData.token = token;
-      res.json(userData);
+    const userConfirmed = await UsersServices.getByEmail(email);
+    if (userConfirmed.confirmed) {
+      const result = await AuthServices.login({ email, password });
+      if (result.isValid) {
+        const { username, id, email } = result.user;
+        const userData = { username, id, email }
+        const token = await AuthServices.genToken(userData);
+        userData.token = token;
+        res.json(userData);
+      } else {
+        next({ message: "Credendiales erroneas" });
+      }
     } else {
-      next({ message: "Credendiales erroneas" });
+      next({ error: "Confirmación imcompleta", message: "No has confirmado tu correo electrónico" });
     }
   } catch (error) {
     next(error);
   }
 };
 
-module.exports = { register, login }
+const confirmation = async (req, res, next) => {
+  try {
+    const { id, token } = req.params;
+    const result = await AuthServices.confirmation(id, token);
+    if (result) {
+      await UsersServices.update(id, { confirmed: true, token: null });
+      res.json({ message: "Usuario confirmó su correo exitosamente" });
+    } else {
+      next({ message: "Error en la confirmación de correo" });
+    }
+  } catch (error) {
+    next(error)
+  }
+};
+
+module.exports = { register, login, confirmation }

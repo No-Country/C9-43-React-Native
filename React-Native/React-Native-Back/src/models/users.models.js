@@ -8,6 +8,10 @@ const Users = db.define("users", {
     type: DataTypes.INTEGER,
     autoIncrement: true
   },
+  confirmed: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false
+  },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -35,11 +39,11 @@ const Users = db.define("users", {
   lastName: {
     type: DataTypes.STRING
   },
-  location: {
-    type: DataTypes.STRING
-  },
   documentId: {
     type: DataTypes.INTEGER
+  },
+  token: {
+    type: DataTypes.STRING(450)
   }
 }, {
   hooks: {

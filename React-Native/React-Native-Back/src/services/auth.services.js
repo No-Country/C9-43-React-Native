@@ -5,7 +5,11 @@ const jwt = require("jsonwebtoken");
 class AuthServices {
   static async register(newUser) {
     try {
-      const result = await users.create(newUser);
+      const token = jwt.sign(newUser, process.env.JWT_SECRET, {
+        algorithm: "HS512"
+      });
+      const tokenUser = { ...newUser, token }
+      const result = await users.create(tokenUser);
       return result;
     } catch (error) {
       throw error;
@@ -14,13 +18,27 @@ class AuthServices {
   static async login(credentials) {
     try {
       const { email, password } = credentials;
-      const user = await users.findOne({ where: { email } });
-      // include: ["email", "username", "id", "profilePicture", "firstName"]
+      const user = await users.findOne({
+        where: { email },
+        include: ["email", "username", "id", "profilePicture", "confirmed"]
+      });
       if (user) {
         const isValid = bcrypt.compareSync(password, user.password);
         return isValid ? { isValid, user } : { isValid };
       }
       return { isValid: false };
+    } catch (error) {
+      throw error;
+    }
+  }
+  static async confirmation(id, token) {
+    try {
+      const result = await users.findOne({ where: { id } });
+      if (result) {
+        const isValid = result.token === token;
+        return isValid
+      }
+      return { isValid: false }
     } catch (error) {
       throw error;
     }
