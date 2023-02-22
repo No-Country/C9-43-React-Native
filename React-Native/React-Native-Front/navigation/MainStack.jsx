@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { FilterScreen, LoginScreen, MainScreen, RegisterScreen , FavoriteScreen} from "../src/screens";
+import { FilterScreen, LoginScreen, MainScreen, RegisterScreen, } from "../src/screens";
 import { TabNavigator } from "./TabNavigator";
 
 const Stack = createNativeStackNavigator();
@@ -41,11 +41,6 @@ const MainStack = () => {
           }}}
         />
 
-        <Stack.Screen
-          name="FavoriteScreen"
-          component={FavoriteScreen}
-          options={{ headerShown: false }}
-        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,112 +1,69 @@
-import {
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-    ImageBackground,
-  } from "react-native";
-  import HighlightedCarousel from "../components/HighlightedCarousel";
-  import HomeScreenHeader from "../components/HomeScreenHeader";
-  import HomeDirectOwners from "../components/HomeDirectOwners";
-  
-  export const HomeScreen = () => {
-    return (
-      <ScrollView>
-        <View style={styles.container}>
-          <HomeScreenHeader />
-          <View style={styles.publishView}>
-            <Text style={styles.bodyTitle}>Publica tu anuncio. Es gratis!</Text>
-            <TouchableOpacity style={styles.publishButton}>
-              <ImageBackground
-                source={require("../../assets/Home/publish-button.png")}
-                style={[styles.publishButton]}
-              >
-                <View
-                  style={{
-                    width: 240,
-                    height: 45,
-                    backgroundColor: "#018349",
-                    position: "absolute",
-                    bottom: 0,
-                  }}
-                >
-                  <Text
-                    style={[
-                      styles.buttonText,
-                      { textAlign: "center", marginTop: 9 },
-                    ]}
-                  >
-                    Publicar
-                  </Text>
-                </View>
-              </ImageBackground>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.featuredView}>
-            <Text style={styles.featuredTitle}>Destacados</Text>
-          </View>
-          <View style={styles.carousel}>
-            <HighlightedCarousel />
-          </View>
-        </View>
-        <View style={styles.ownersContainer}>
-          <HomeDirectOwners />
-        </View>
-      </ScrollView>
-    );
-  };
-  
-  const styles = StyleSheet.create({
-    buttonText: {
-      fontSize: 16,
-      fontWeight: "500",
-      color: "#fff",
-    },
-    container: {
-      flex: 1,
-      alignItems: "center",
-    },
-    ownersContainer: {
-      flex: 1,
-      alignItems: "center",
-      borderRadius: 20,
-    },
-  
-    publishView: {
-      marginTop: 24,
-    },
-    bodyTitle: {
-      fontSize: 19,
-      textAlign: "center",
-      fontWeight: "500",
-    },
-    publishButton: {
-      height: 198,
-      width: 246,
-      justifyContent: "center",
-      alignItems: "center",
-      marginTop: 24,
-      marginLeft: 50,
-      marginRight: 50,
-    },
-    publishText: {
-      color: "#FFFFFF",
-      fontWeight: "500",
-      fontSize: 16,
-    },
-    featuredView: {
-      width: "100%",
-      marginTop: 38,
-    },
-    featuredTitle: {
-      fontSize: 16,
-      marginLeft: 17,
-      fontWeight: "500",
-    },
-    carousel: {
-      marginLeft: 0,
-      marginRight: 0,
-    },
-  });
-  
+import React from "react";
+import { View, StyleSheet, FlatList, Image, Text } from "react-native";
+import HighlightedCard from "../components/HighlightedCard";
+
+export const FavoriteScreen = () => {
+  const HighlightedCards = [
+    { key: 1, component: <HighlightedCard /> },
+    { key: 2, component: <HighlightedCard /> },
+    { key: 3, component: <HighlightedCard /> },
+    { key: 4, component: <HighlightedCard /> },
+  ];
+  return (
+    <View style={styles.contenedor}>
+      <View style={styles.contenedorFilter}>
+      <Text style={{fontSize:30,}}>Favoritos</Text>
+
+      </View>
+
+      <FlatList
+        style={styles.scroll}
+        showsHorizontalScrollIndicator={false}
+        snapToInterval={365}
+        horizontal={false}
+        infinite={true}
+        data={HighlightedCards}
+        renderItem={({ item }) => <View>{item.component}</View>}
+        keyExtractor={(item) => item.key}
+      />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  contenedor: {
+    flex: 1,
+    marginVertical: 20,
+    width: "100%",
+  },
+  contenedorFilter: {
+    flexDirection: "row",
+    width: "100%",
+    top: 2,
+    marginBottom: 20,
+    alignItems:"center"
+   
+  },
+  button: {
+    fontSize: 13,
+    paddingHorizontal: 14,
+    
+    fontWeight: "500",
+    color: "#1E1E1E",
+    borderLeftColor: 1,
+    borderRadius: 50,
+    borderColor: "#D9D9D9",
+    borderWidth: 1,
+    paddingVertical: 10,
+    marginLeft:40
+  },
+
+  imagen: {
+    top: 0,
+    height: 25,
+    left: 30,
+  },
+  scroll: {
+    paddingTop: 5,
+  },
+});
