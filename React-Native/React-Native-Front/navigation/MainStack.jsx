@@ -1,18 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import {
-  ContactAgencyScreen,
-  FilterScreen,
-  LoginScreen,
-  MainScreen,
-  RegisterScreen,
-} from "../src/screens";
-import {
-  Phase1Screen,
-  Phase2Screen,
-  Phase3Screen,
-  Phase4Screen,
-} from "../src/screens";
+import { FilterScreen, LoginScreen, MainScreen, RegisterScreen, } from "../src/screens";
 import { TabNavigator } from "./TabNavigator";
 
 const Stack = createNativeStackNavigator();
@@ -56,6 +44,7 @@ const MainStack = () => {
           component={ContactAgencyScreen}
           options={{ headerShown: false }}
         />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

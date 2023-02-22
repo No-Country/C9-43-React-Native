@@ -1,16 +1,14 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 export const UseAreaModal = () => {
-  const [isAreaModalOpen, setIsAreaModalOpen] = useState(false)
+  const [isAreaModalOpen, setIsAreaModalOpen] = useState(false);
 
   const handleToggleAreaModal = () => {
-    setIsAreaModalOpen( prev => !prev )
-  }
+    setIsAreaModalOpen((prev) => !prev);
+  };
 
   return {
     isAreaModalOpen,
-    handleToggleAreaModal
-  }
-}
-
-
+    handleToggleAreaModal,
+  };
+};
