@@ -1,6 +1,7 @@
 const users = require("../models/users.models");
 
 class UsersServices {
+
   static async getByEmail(email) {
     try {
       const result = await users.findOne({ where: { email } });

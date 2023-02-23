@@ -20,8 +20,9 @@ class AuthServices {
       const { email, password } = credentials;
       const user = await users.findOne({
         where: { email },
-//        include: ["email", "username", "id", "profilePicture", "confirmed"]
+        attributes: ["email", "id", "password"]
       });
+      console.log(user)
       if (user) {
         const isValid = bcrypt.compareSync(password, user.password);
         return isValid ? { isValid, user } : { isValid };
