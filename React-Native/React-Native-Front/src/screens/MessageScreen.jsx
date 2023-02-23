@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity,FlatList } from "react-native";
 import { useState } from "react";
+import { SimpleHeader } from "../components/layout";
 
 export const MessageScreen = () => {
     const [isRead, setIsRead] = useState(false);
@@ -38,10 +39,8 @@ export const MessageScreen = () => {
     );
   
     return (
-      <View style={[styles.contenedor,isRead && styles.messageRead]}>
-         <View style={styles.headerContainer}>
-         <Text style={styles.headerText}>Mensajes</Text>
-       </View>
+      <View style={[styles.container,isRead && styles.messageRead]}>
+         <SimpleHeader title={'Mensajes'} />
         <FlatList
           data={messages}
           renderItem={renderMessage}
@@ -56,23 +55,6 @@ export const MessageScreen = () => {
 
 
 const styles = StyleSheet.create({
-  contenedor: {
-    flex: 1,
-    marginVertical: 20,
-    width: "100%",
-    backgroundColor: '#fff',
-  },
-  headerContainer: {
-    height: "10%",
-    justifyContent: "center",
-    alignItems: "center",
-    borderBottomColor: "red",
-    borderBottomWidth: 1,
-  },
-  headerText: {
-    fontWeight: "400",
-    fontSize: 16,
-  },
   listContent: {
     padding: 16,
   },
