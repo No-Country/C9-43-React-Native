@@ -15,11 +15,11 @@ export const PostModal = ({ isModalOpen, handleToggleModal }) => {
                 <MaterialIcons name="check-circle-outline" size={24} color="#018349" />
 
                 <Text style={ styles.title }>
-                    Inmueble Publicado!
+                ¡Inmueble publicado!
                 </Text>
 
                 <Text style={ styles.text }>
-                    Felicidades por haber publicado tu primer inmueble! Te enviaremos vía E-mail el aviso de contacto de quien te quiera hacer alguna consulta. Estaremos informándote a la brevedad.
+                ¡Felicidades por haber publicado tu primer inmueble! Te enviaremos via  E-mail el aviso de contacto de quien te quiera hacer alguna consulta. Estaremos informándote a la brevedad
                 </Text>
 
                 <Pressable 
