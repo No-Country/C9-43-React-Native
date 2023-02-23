@@ -17,11 +17,11 @@ export const RegisterScreen = ({ navigation }) => {
   const [secured, setSecured] = useState(true);
   const [securedConfirm, setSecuredConfirm] = useState(true);
 
-
-
   const [input, setInput] = useState({
     email: "",
     password: "",
+    firstName: "",
+    lastName: "",
   });
   const handleEmail = (value) => {
     setInput({ ...input, email: value });
@@ -29,7 +29,13 @@ export const RegisterScreen = ({ navigation }) => {
   const handlePassword = (value) => {
     setInput({ ...input, password: value });
   };
-  
+  const handleFirs = (value) => {
+    setInput({ ...input, firstName: value.nativeEvent.text });
+  };
+  const handleLasName = (value) => {
+    setInput({ ...input, lastName: value.nativeEvent.text });
+  };
+ 
 
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
@@ -51,79 +57,46 @@ export const RegisterScreen = ({ navigation }) => {
             placeholder="Ingresa tu E-mail"
             placeholderTextColor="#979797"
             keyboardType="email-address"
+            onEndEditing={(e) => handleEmail(e.nativeEvent.text)}
           />
 
-          {/* <View style={[styles.passwordInput, styles.textInputs]}> */}
-            {/* <TextInput
+          <View style={[styles.passwordInput, styles.textInputs]}>
+            <TextInput
               placeholder="Ingresa tu contraseña"
               placeholderTextColor="#979797"
+              secureTextEntry={secured}
+            />
 
-              keyboardType="email-address"
-             
-            /> */}
-
-            <View style={[styles.passwordInput, styles.textInputs]}>
-              <TextInput
-                placeholder="Ingresa tu contraseña"
-                placeholderTextColor="#979797"
-                secureTextEntry={secured}
-              />
-
-              <Ionicons
-                style={styles.passwordInputIcon}
-                name={secured ? "eye-outline" : "eye-off-outline"}
-                size={24}
-                color="black"
-                onPress={() => setSecured((prev) => !prev)}
-              />
-            </View>
-
-            <View style={[styles.passwordInput, styles.textInputs]}>
-              <TextInput
-                placeholder="Volvé a ingresar tu contraseña"
-                placeholderTextColor="#979797"
-                secureTextEntry={securedConfirm}
-              />
-              <Ionicons
-                style={styles.passwordInputIcon}
-                name={securedConfirm ? "eye-outline" : "eye-off-outline"}
-                size={24}
-                color="black"
-                onPress={() => setSecuredConfirm((prev) => !prev)}
-              />
-            </View>
-            {/* <View style={[styles.passwordInput, styles.textInputs]}>
-              <TextInput
-                placeholder="Volvé a ingresar tu contraseña"
-                placeholderTextColor="#979797"
-                secureTextEntry={securedConfirm}
-              />
-              <Ionicons
-                style={styles.passwordInputIcon}
-                name={securedConfirm ? "eye-outline" : "eye-off-outline"}
-                size={24}
-                color="black"
-                onPress={() => setSecuredConfirm((prev) => !prev)}
-              />
-            </View> */}
-
-            {/* <Pressable style={styles.button} onPress={() => navigation.navigate('Register2Screen')}>
-              <GreenButton text={'Siguiente'} />
-            </Pressable> */}
-
-
-            {/* <Ionicons
+            <Ionicons
               style={styles.passwordInputIcon}
               name={secured ? "eye-outline" : "eye-off-outline"}
               size={24}
               color="black"
               onPress={() => setSecured((prev) => !prev)}
-            /> */}
-          {/* </View> */}
-          
+              onEndEditing={(e) => handlePassword(e.nativeEvent.text)}
+            />
+          </View>
 
-          <Pressable style={styles.button} onPress={() => navigation.navigate('Register2Screen')}>
-            <GreenButton text={"Registrarme"} />
+          <View style={[styles.passwordInput, styles.textInputs]}>
+            <TextInput
+              placeholder="Volvé a ingresar tu contraseña"
+              placeholderTextColor="#979797"
+              secureTextEntry={securedConfirm}
+            />
+            <Ionicons
+              style={styles.passwordInputIcon}
+              name={securedConfirm ? "eye-outline" : "eye-off-outline"}
+              size={24}
+              color="black"
+              onPress={() => setSecuredConfirm((prev) => !prev)}
+            />
+          </View>
+
+          <Pressable
+            style={styles.button}
+            onPress={() => navigation.navigate("Register2Screen")}
+          >
+            <GreenButton text={"Siguiente"} />
           </Pressable>
         </View>
       </View>
