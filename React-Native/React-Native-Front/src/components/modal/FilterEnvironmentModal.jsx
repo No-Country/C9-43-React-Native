@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Modal, Text, Pressable } from "react-native";
-import { useFilters } from "../../hooks";
+import { useEnvironmentFilter, useFilters } from "../../hooks";
 import { FilterTextedCheckbox } from "../layout";
 import { TextedCheckbox } from "../TextedCheckbox";
 
 //TODO preguntar bien como se va a ver el modal, sobretodo la opacidad del fondo
 
 export const FilterEnvironmentModal = ({ isVisible, handleModalVisibility }) => {
+  const { isOneSelected, isTwoSelected, isThreeSelected, isFourSelected, isFiveMoreSelected, handleIsOneSelected, handleIsTwoSelected, handleIsThreeSelected, handleIsFourSelected, handleIsFiveMoreSelected} = useEnvironmentFilter()
 
   return (
     <Modal visible={isVisible} transparent={true} animationType={"fade"} >
@@ -15,19 +16,19 @@ export const FilterEnvironmentModal = ({ isVisible, handleModalVisibility }) => 
           <Text style={styles.textTitle}>Ambientes</Text>
           <View style={styles.optionsContainer}>
             <Pressable style={styles.optionContainer}>
-              <FilterTextedCheckbox text={'1 ambiente'} />
+              <FilterTextedCheckbox text={'1 ambiente'} isChecked={isOneSelected} setIsChecked={handleIsOneSelected}/>
             </Pressable>
             <Pressable style={styles.optionContainer}>
-              <FilterTextedCheckbox text={'2 ambientes'} />
+              <FilterTextedCheckbox text={'2 ambientes'} isChecked={isTwoSelected} setIsChecked={handleIsTwoSelected}/>
             </Pressable>
             <Pressable style={styles.optionContainer}>
-              <FilterTextedCheckbox text={'3 ambientes'} />
+              <FilterTextedCheckbox text={'3 ambientes'} isChecked={isThreeSelected} setIsChecked={handleIsThreeSelected}/>
             </Pressable>
             <Pressable style={styles.optionContainer}>
-              <FilterTextedCheckbox text={'4 ambientes'} />
+              <FilterTextedCheckbox text={'4 ambientes'} isChecked={isFourSelected} setIsChecked={handleIsFourSelected}/>
             </Pressable>
             <Pressable style={styles.optionContainer} >
-              <FilterTextedCheckbox text={'+ 5 ambientes'} />
+              <FilterTextedCheckbox text={'+ 5 ambientes'} isChecked={isFiveMoreSelected} setIsChecked={handleIsFiveMoreSelected}/>
             </Pressable>
           </View>
           <View style={styles.buttonsContainer}>

@@ -7,3 +7,4 @@ export * from './FilterPriceModal';
 export * from './LanguageModal';
 export * from './LogOutModal';
 export * from './PostModal';
+export * from './RegisterCompleteModal';

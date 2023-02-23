@@ -13,8 +13,7 @@ import HomeDirectOwners from "../components/HomeDirectOwners";
 
 export const HomeScreen = ({ navigation }) => {
   return (
-    <ScrollView>
-      <View>
+    <ScrollView style={{backgroundColor: '#fff'}}>
         <View style={[styles.container]}>
           <HomeScreenHeader navigation={navigation} />
           <View style={styles.publishView}>
@@ -63,7 +62,6 @@ export const HomeScreen = ({ navigation }) => {
         <View style={styles.ownersContainer}>
           <HomeDirectOwners />
         </View>
-      </View>
     </ScrollView>
   );
 };

@@ -1,8 +1,10 @@
 import { Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { GreenButton, GreenPostButton, PostTopBar, TextedCheckbox } from "../../components";
 import { FilterTextedCheckbox, IconHeader } from "../../components/layout";
+import { useSellRent } from "../../hooks";
 
 export const Phase3Screen = ({ navigation }) => {
+  const {isSellSelected, isRentSelected, handleRentSelected, handleSellSelected} = useSellRent()
   return (
     <View style={styles.container}>
       <IconHeader icon={'close'} navigation={navigation} title={'Publicar anuncio'} />
@@ -17,8 +19,8 @@ export const Phase3Screen = ({ navigation }) => {
       </View>
 
       <View style={styles.optionsContainer}>
-        <FilterTextedCheckbox text="Venta" />
-        <FilterTextedCheckbox text="Alquiler" />
+        <FilterTextedCheckbox text="Venta" isChecked={isSellSelected} setIsChecked={handleSellSelected}/>
+        <FilterTextedCheckbox text="Alquiler" isChecked={isRentSelected} setIsChecked={handleRentSelected}/>
       </View>
       <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("Phase4Screen")}>
         <GreenButton text={'Aceptar'}/>

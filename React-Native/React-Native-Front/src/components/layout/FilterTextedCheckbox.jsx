@@ -1,25 +1,23 @@
 import { useState } from "react"
 import { StyleSheet, Text, View } from "react-native"
 import BouncyCheckbox from "react-native-bouncy-checkbox"
+import { CheckBox } from '@rneui/themed'
 
-export const FilterTextedCheckbox = ({ text }) => {
-  const [isChecked, setIsChecked] = useState(false)
-
+export const FilterTextedCheckbox = ({ text, isChecked, setIsChecked }) => {
+  
   return (
     <View style={ styles.option }>
 
         <Text style={ styles.optionText }>
             { text }
         </Text>
-
-        <BouncyCheckbox 
-            innerIconStyle={[{borderRadius: 4}, isChecked ? styles.borderColorChecked : styles.borderColorUnChecked]}
-            iconStyle={ {borderRadius: 4} } 
-            fillColor={ '#018349'}
-            unfillColor={ '#FFFFFF' }
-            bounceEffectIn={ 1 }
-            bounceEffectOut={ 1 }
-            onPress={() => setIsChecked(!isChecked)}
+        <CheckBox
+          iconType="material-community"
+          checkedIcon='checkbox-marked'
+          uncheckedIcon='checkbox-blank-outline'
+          checkedColor="#018349"
+          checked={isChecked}
+          onPress={setIsChecked}
         />
 
     </View>
@@ -29,10 +27,12 @@ export const FilterTextedCheckbox = ({ text }) => {
 const styles = StyleSheet.create({
     option: {
         flexDirection: 'row',
-        marginBottom: 32
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        // marginBottom: 
     },
     optionText: {
-        flex: 1,
+        // flex: 1,
         fontSize: 16,
         letterSpacing: 0.5,
     },

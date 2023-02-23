@@ -11,5 +11,6 @@ export * from './PostScreen';
 export * from './PostScreens';
 export * from './ProfileAndSettings';
 export * from './ProfileScreen';
+export * from './Register2Screen';
 export * from './RegisterScreen';
 export * from './SettingsScreen';

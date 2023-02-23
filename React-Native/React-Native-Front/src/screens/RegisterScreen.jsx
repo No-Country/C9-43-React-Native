@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { GreenButton } from "../components";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -16,6 +16,9 @@ import axios from "axios";
 export const RegisterScreen = ({ navigation }) => {
   const [secured, setSecured] = useState(true);
   const [securedConfirm, setSecuredConfirm] = useState(true);
+
+
+
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -27,6 +30,7 @@ export const RegisterScreen = ({ navigation }) => {
     setInput({ ...input, password: value });
   };
   
+
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={styles.container}>
@@ -53,6 +57,45 @@ export const RegisterScreen = ({ navigation }) => {
             <TextInput
               placeholder="Ingresa tu contraseña"
               placeholderTextColor="#979797"
+
+              keyboardType="email-address"
+             
+            />
+
+            <View style={[styles.passwordInput, styles.textInputs]}>
+              <TextInput
+                placeholder="Ingresa tu contraseña"
+                placeholderTextColor="#979797"
+                secureTextEntry={secured}
+              />
+
+              <Ionicons
+                style={styles.passwordInputIcon}
+                name={secured ? "eye-outline" : "eye-off-outline"}
+                size={24}
+                color="black"
+                onPress={() => setSecured((prev) => !prev)}
+              />
+            </View>
+            <View style={[styles.passwordInput, styles.textInputs]}>
+              <TextInput
+                placeholder="Volvé a ingresar tu contraseña"
+                placeholderTextColor="#979797"
+                secureTextEntry={securedConfirm}
+              />
+              <Ionicons
+                style={styles.passwordInputIcon}
+                name={securedConfirm ? "eye-outline" : "eye-off-outline"}
+                size={24}
+                color="black"
+                onPress={() => setSecuredConfirm((prev) => !prev)}
+              />
+            </View>
+
+            <Pressable style={styles.button} onPress={() => navigation.navigate('Register2Screen')}>
+              <GreenButton text={'Siguiente'} />
+            </Pressable>
+=======
               secureTextEntry={secured}
             />
 
