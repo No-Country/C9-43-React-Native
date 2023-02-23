@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { GreenButton } from "../components";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -15,6 +15,19 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 export const RegisterScreen = ({ navigation }) => {
   const [secured, setSecured] = useState(true);
   const [securedConfirm, setSecuredConfirm] = useState(true);
+
+  // const fetchRegister = () => {
+  //   fetch('https://home-quest.onrender.com/api/v1/auth/register', {
+  //     method: 'POST',
+  //     body: JSON.stringify({email: 'richardjavierojeda2021@gmail.com', password: '123456', username: 'fede', phone: '152388094'}),
+  //     headers: {"Content-type": "application/json; charset=UTF-8"}
+  //   }).then(res => res.json()).then(res => console.log(res))
+    
+  // }
+
+  // useEffect(() => {
+  //   fetchRegister()
+  // }, [])
 
   return (
     <KeyboardAwareScrollView style={{flex: 1, backgroundColor: '#fff'}}>
@@ -39,6 +52,7 @@ export const RegisterScreen = ({ navigation }) => {
               placeholder="Ingresa tu E-mail"
               placeholderTextColor="#979797"
               keyboardType="email-address"
+              onEndEditing={e => console.log(e.nativeEvent.text)}
             />
 
             <View style={[styles.passwordInput, styles.textInputs]}>
@@ -71,8 +85,8 @@ export const RegisterScreen = ({ navigation }) => {
               />
             </View>
 
-            <Pressable style={styles.button}>
-              <GreenButton text={'Registrarme'} />
+            <Pressable style={styles.button} onPress={() => navigation.navigate('Register2Screen')}>
+              <GreenButton text={'Siguiente'} />
             </Pressable>
           </View>
         </View>

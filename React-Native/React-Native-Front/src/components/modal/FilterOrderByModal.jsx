@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Modal, Text, Pressable } from "react-native";
+import { useOrderBy } from "../../hooks/useOrderBy";
 import { FilterTextedCheckbox } from "../layout";
+import RoundedCheckboxGroup, {
+  ICheckboxButton,
+} from "react-native-rounded-checkbox-group";
 
 //TODO preguntar por la opacidad del fondo
 
 export const FilterOrderByModal = ({ isVisible, handleModalVisibility }) => {
+  const{ isRelevant, handleIsRelevant, isCheap, handleIsCheap, isExpensive, handleIsExpensive, isNew, handleIsNew } = useOrderBy()
 
   return (
     <Modal visible={isVisible} transparent={true} animationType={"fade"} >
@@ -13,16 +18,16 @@ export const FilterOrderByModal = ({ isVisible, handleModalVisibility }) => {
           <Text style={styles.textTitle}>Ordenar</Text>
           <View style={styles.optionsContainer}>
             <Pressable style={styles.optionContainer}>
-              <FilterTextedCheckbox text={'Relevancia'} />
+              <FilterTextedCheckbox text={'Relevancia'} isChecked={isRelevant} setIsChecked={handleIsRelevant} />
             </Pressable>
             <Pressable style={styles.optionContainer}>
-              <FilterTextedCheckbox text={'Más caro'} />
+              <FilterTextedCheckbox text={'Más caro'} isChecked={isExpensive} setIsChecked={handleIsExpensive}/>
             </Pressable>
             <Pressable style={styles.optionContainer}>
-              <FilterTextedCheckbox text={'Más barato'} />
+              <FilterTextedCheckbox text={'Más barato'} isChecked={isCheap} setIsChecked={handleIsCheap}/>
             </Pressable>
             <Pressable style={styles.optionContainer}>
-              <FilterTextedCheckbox text={'Más nuevo'} />
+              <FilterTextedCheckbox text={'Más nuevo'} isChecked={isNew} setIsChecked={handleIsNew}/>
             </Pressable>
           </View>
           <View style={styles.buttonsContainer}>

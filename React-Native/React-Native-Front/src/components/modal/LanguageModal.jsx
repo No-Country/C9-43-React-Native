@@ -1,8 +1,12 @@
 import React from 'react';
 import {View, StyleSheet, Modal, Pressable, Text} from 'react-native';
+import { useLanguageSelection } from '../../hooks/index';
 import { FilterTextedCheckbox } from '../layout';
 
 export const LanguageModal = ({ isVisible, handleModalVisibility}) => {
+  const { isSpanishSelected, isEnglishSelected, handleIsSpanishSelected, handleIsEnglishSelected } = useLanguageSelection()
+  
+
   return (
     <Modal visible={isVisible} transparent={true} animationType={"fade"} >
       <Pressable style={styles.opacityBackground} onPress={handleModalVisibility}>
@@ -10,10 +14,10 @@ export const LanguageModal = ({ isVisible, handleModalVisibility}) => {
           <Text style={styles.textTitle}>Idioma</Text>
           <View style={styles.optionsContainer}>
             <Pressable style={styles.optionContainer}>
-              <FilterTextedCheckbox text={'Español'} />
+              <FilterTextedCheckbox text={'Español'} isChecked={isSpanishSelected} setIsChecked={handleIsSpanishSelected}/>
             </Pressable>
             <Pressable style={styles.optionContainer}>
-              <FilterTextedCheckbox text={'Inglés'} />
+              <FilterTextedCheckbox text={'Inglés'} isChecked={isEnglishSelected} setIsChecked={handleIsEnglishSelected}/>
             </Pressable>
           </View>
           <View style={styles.buttonsContainer}>

@@ -1,8 +1,11 @@
 import { Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { GreenButton, GreenPostButton, PostTopBar, TextedCheckbox } from "../../components";
 import { IconHeader, FilterTextedCheckbox } from "../../components/layout";
+import { usePropertyType } from "../../hooks";
 
 export const Phase2Screen = ({ navigation }) => {
+  const {isApartmentSelected, isHouseSelected, isLandSelected, handleIsApartmentSelected, handleIsHouseSelected, handleIsLandSelected} = usePropertyType()
+
   return (
     <View style={styles.container}>
       <IconHeader icon={'close'} navigation={navigation} title={'Publicar anuncio'} />
@@ -17,11 +20,11 @@ export const Phase2Screen = ({ navigation }) => {
       </View>
 
       <View style={styles.optionsContainer}>
-        <FilterTextedCheckbox text={"Departamento"} />
+        <FilterTextedCheckbox text={"Departamento"} isChecked={isApartmentSelected} setIsChecked={handleIsApartmentSelected}/>
 
-        <FilterTextedCheckbox text={"Casa"} />
+        <FilterTextedCheckbox text={"Casa"} isChecked={isHouseSelected} setIsChecked={handleIsHouseSelected}/>
 
-        <FilterTextedCheckbox text={"Terreno"} />
+        <FilterTextedCheckbox text={"Terreno"} isChecked={isLandSelected} setIsChecked={handleIsLandSelected}/>
       </View>
       <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("Phase3Screen")}>
         <GreenButton text={'Aceptar'} />

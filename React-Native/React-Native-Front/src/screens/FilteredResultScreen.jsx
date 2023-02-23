@@ -9,6 +9,7 @@ import { UsePriceModal, useOrderByModal } from "../hooks";
 export const FilteredResultScreen = ({ navigation }) => {
   const { isPriceModalOpen, handleTogglePriceModal } = UsePriceModal()
   const { isOrderByModalOpen, handleToggleOrderByModal } = useOrderByModal()
+  
 
   const HighlightedCards = [
     { key: 1, component: <HighlightedCard /> },

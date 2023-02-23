@@ -5,6 +5,7 @@ import {
   FilterScreen,
   LoginScreen,
   MainScreen,
+  Register2Screen,
   RegisterScreen,
 } from "../src/screens";
 import {
@@ -42,6 +43,12 @@ const MainStack = () => {
         <Stack.Screen
           name="RegisterScreen"
           component={RegisterScreen}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="Register2Screen"
+          component={Register2Screen}
           options={{ headerShown: false }}
         />
 
