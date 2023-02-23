@@ -9,8 +9,12 @@ import {
 import { AntDesign } from "@expo/vector-icons";
 import { GreenButton } from "../components";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { RegisterCompleteModal } from "../components/modal";
+import { useModal } from "../hooks";
 
+// METI EL MODAL, PERO DESPUES TERMINALO DE CONFIGURAR BIEN
 export const Register2Screen = ({ navigation }) => {
+  const { isModalOpen, handleToggleModal } = useModal()
 
   return (
     <KeyboardAwareScrollView style={{flex: 1, backgroundColor: '#fff'}}>
@@ -49,11 +53,13 @@ export const Register2Screen = ({ navigation }) => {
             <Text style={styles.confirmationText}>Estaremos enviando un</Text>
             <Text style={styles.confirmationGreenText}>E-mail de confirmación</Text>
 
-            <Pressable style={styles.button}>
+            <Pressable style={styles.button} onPress={handleToggleModal}>
               <GreenButton text={'Registrarme'} />
             </Pressable>
           </View>
         </View>
+        {/* MODAL */}
+        <RegisterCompleteModal isOpen={isModalOpen} onPress={handleToggleModal} />
         </KeyboardAwareScrollView>
   );
 };
