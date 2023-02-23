@@ -31,8 +31,8 @@ const login = async (req, res, next) => {
     if (userConfirmed.confirmed) {
       const result = await AuthServices.login({ email, password });
       if (result.isValid) {
-        const { username, id, email } = result.user;
-        const userData = { username, id, email }
+        const { id, email } = result.user;
+        const userData = { id, email };
         const token = await AuthServices.genToken(userData);
         userData.token = token;
         res.json(userData);

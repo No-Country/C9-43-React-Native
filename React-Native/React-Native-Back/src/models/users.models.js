@@ -21,11 +21,6 @@ const Users = db.define("users", {
     type: DataTypes.STRING,
     allowNull: false
   },
-  username: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true
-  },
   phone: {
     type: DataTypes.STRING,
     allowNull: false
