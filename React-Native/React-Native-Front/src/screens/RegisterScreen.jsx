@@ -12,30 +12,31 @@ import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { GreenButton } from "../components";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import axios from "axios";
+import { useForms } from "../hooks/useForms";
 
 export const RegisterScreen = ({ navigation }) => {
   const [secured, setSecured] = useState(true);
   const [securedConfirm, setSecuredConfirm] = useState(true);
+  const { forms, changed } = useForms({});
 
-  const [input, setInput] = useState({
-    email: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-  });
-  const handleEmail = (value) => {
-    setInput({ ...input, email: value });
-  };
-  const handlePassword = (value) => {
-    setInput({ ...input, password: value });
-  };
-  const handleFirs = (value) => {
-    setInput({ ...input, firstName: value.nativeEvent.text });
-  };
-  const handleLasName = (value) => {
-    setInput({ ...input, lastName: value.nativeEvent.text });
-  };
- 
+  // const [input, setInput] = useState({
+  //   email: "",
+  //   password: "",
+  //   firstName: "",
+  //   lastName: "",
+  // });
+  // const handleEmail = (value) => {
+  //   setInput({ ...input, email: value });
+  // };
+  // const handlePassword = (value) => {
+  //   setInput({ ...input, password: value });
+  // };
+  // const handleFirs = (value) => {
+  //   setInput({ ...input, firstName: value.nativeEvent.text });
+  // };
+  // const handleLasName = (value) => {
+  //   setInput({ ...input, lastName: value.nativeEvent.text });
+  // };
 
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
@@ -57,7 +58,7 @@ export const RegisterScreen = ({ navigation }) => {
             placeholder="Ingresa tu E-mail"
             placeholderTextColor="#979797"
             keyboardType="email-address"
-            onEndEditing={(e) => handleEmail(e.nativeEvent.text)}
+            onEndEditing={ changed}
           />
 
           <View style={[styles.passwordInput, styles.textInputs]}>
@@ -73,7 +74,7 @@ export const RegisterScreen = ({ navigation }) => {
               size={24}
               color="black"
               onPress={() => setSecured((prev) => !prev)}
-              onEndEditing={(e) => handlePassword(e.nativeEvent.text)}
+              onEndEditing={changed}
             />
           </View>
 
