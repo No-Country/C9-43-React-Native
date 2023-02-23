@@ -57,12 +57,12 @@ const MainStack = () => {
           component={FilterScreen}
           options={{ headerShown: false }}
         />
-
+{/* 
         <Stack.Screen
           name="ContactAgency"
           component={ContactAgencyScreen}
           options={{ headerShown: false }}
-        />
+        /> */}
         
       </Stack.Navigator>
     </NavigationContainer>
