@@ -22,7 +22,7 @@ export const Phase1Screen = ({ navigation }) => {
 
       <View style={styles.textContainer}>
         <Text style={styles.textTitle}>
-          ¡Las ventajas de publicar en HomeQuest!
+          ¡Las ventajas de{'\n'} publicar en HomeQuest!
         </Text>
 
         <View style={styles.textSubtitleContainer}>
@@ -91,13 +91,11 @@ const styles = StyleSheet.create({
   },
   textTitle: {
     textAlign: "center",
-    alignSelf: "center",
     marginBottom: 16,
     fontWeight: "600",
     fontSize: 16,
     lineHeight: 24,
     letterSpacing: 0.15,
-    width: 180,
   },
   textSubtitleContainer: {
     marginBottom: 11,

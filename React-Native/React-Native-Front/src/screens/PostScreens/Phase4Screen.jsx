@@ -1,8 +1,13 @@
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native"
-import {  PressableStages } from "../../components"
+import { Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native"
+import {  GreenButton, PressableStages } from "../../components"
 import {  IconHeader } from "../../components/layout"
+import { PostModal } from "../../components/modal/PostModal"
+import { useModal } from '../../hooks'
 
 export const Phase4Screen = ({ navigation }) => {
+    const {isModalOpen, handleToggleModal } = useModal()
+
+
   return (
     <View style={ styles.container }>
         <IconHeader icon={'close'} title={'Publicar anuncio'} navigation={navigation}/>
@@ -60,11 +65,16 @@ export const Phase4Screen = ({ navigation }) => {
             <PressableStages 
                 title={'Contacto'} 
                 description={'Agregá por donde querés que te contacten'}
-                style={{borderBottomWidth: 0, paddingVertical: 9}}
                 path={'ContactScreen'}          
             />
 
+            <Pressable style={styles.buttonContainer} onPress={handleToggleModal}>
+                <GreenButton text={'Publicar'} />
+            </Pressable>
         </ScrollView>
+
+        {/* MODAL */}
+        <PostModal isModalOpen={isModalOpen} handleToggleModal={handleToggleModal}/>
 
     </View>
   )
@@ -97,6 +107,10 @@ const styles = StyleSheet.create({
         fontSize: 16
     },
     multipleInputsContainer: {
+        marginTop: 10,
         marginHorizontal: 16,
+    },
+    buttonContainer: {
+        marginTop: 5
     }
 })
