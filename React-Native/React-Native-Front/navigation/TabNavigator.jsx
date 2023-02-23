@@ -4,6 +4,8 @@ import { ProfileNavigation } from "./ProfileNavigation";
 import { PublishNavigation } from "./PublishNavigation";
 import { SearchNavigation } from "./SearchNavigation";
 import { Image } from 'react-native'
+import {MessageScreen} from "../src/screens/MessageScreen"
+
 
 const BottomTab = createBottomTabNavigator();
 
@@ -39,6 +41,7 @@ export const TabNavigator = () => {
        }}
       />
 
+
       <BottomTab.Screen
         name="Favoritos"
         component={FavouritesScreen}
@@ -48,6 +51,7 @@ export const TabNavigator = () => {
           )
          }}
       />
+
 
       <BottomTab.Screen
         name="Publicar"
@@ -59,6 +63,7 @@ export const TabNavigator = () => {
          }}
       />
 
+
       <BottomTab.Screen 
         name="Mensajes" 
         component={HomeScreen} 
@@ -68,6 +73,7 @@ export const TabNavigator = () => {
           )
          }}
       />
+
 
       <BottomTab.Screen 
         name="Menú" 
