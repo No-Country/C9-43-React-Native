@@ -66,7 +66,7 @@ export const TabNavigator = () => {
 
       <BottomTab.Screen 
         name="Mensajes" 
-        component={HomeScreen} 
+        component={MessageScreen} 
         options={{
           tabBarIcon: ({focused}) => (
             focused ? <Image source={require('../assets/icons/messageGreen-icon.png')} /> : <Image  source={require('../assets/icons/message-icon.png')} />
