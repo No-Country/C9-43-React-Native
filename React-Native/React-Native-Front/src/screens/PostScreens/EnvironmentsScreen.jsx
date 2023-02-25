@@ -42,6 +42,7 @@ export const EnvironmentsScreen = ({ navigation }) => {
             },
           ]}
           handleInputs={handleInputs}
+          publishPost={publishPost}
         />
       </View>
       <Pressable style={styles.buttonContainer} onPress={handleAccept}>

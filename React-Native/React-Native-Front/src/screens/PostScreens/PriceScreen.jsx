@@ -43,6 +43,7 @@ export const PriceScreen = ({ navigation }) => {
           }
           type={ 'price' }
           handleInputs={handleInputs}
+          publishPost={publishPost}
         />
       </View>
       <Pressable style={styles.buttonContainer} onPress={handleAccept}>

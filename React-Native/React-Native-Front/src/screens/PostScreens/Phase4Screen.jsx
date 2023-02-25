@@ -19,12 +19,21 @@ export const Phase4Screen = ({ navigation }) => {
   const { publishPost } = useContext(PublishPostContext);
   const { publishProgress } = useContext(PublishProgressContext);
   const { isModalOpen, handleToggleModal } = useModal();
+
   const progress = Object.values(publishProgress).reduce(
     (prev, curr) => prev + curr,
     0
   );
+  
+  console.log(publishProgress)
 
-  console.log(progress);
+
+  const handlePublish = () => {
+    if (progress === 100) {
+      handleToggleModal()
+    }
+  }
+ 
   return (
     <View style={styles.container}>
       <IconHeader
@@ -90,8 +99,7 @@ export const Phase4Screen = ({ navigation }) => {
             publishPost.sqMeters &&
             publishPost.bedrooms &&
             publishPost.bathrooms &&
-            publishPost.antiquity &&
-            publishPost.parking
+            publishPost.antiquity 
           }
         />
 
@@ -116,7 +124,7 @@ export const Phase4Screen = ({ navigation }) => {
           isChecked
         />
 
-        <Pressable style={styles.buttonContainer} onPress={handleToggleModal}>
+        <Pressable style={styles.buttonContainer} onPress={handlePublish}>
           <GreenButton text={"Publicar"} />
         </Pressable>
       </ScrollView>

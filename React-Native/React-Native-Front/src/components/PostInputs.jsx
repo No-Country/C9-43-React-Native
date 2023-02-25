@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { PublishPostContext } from "../context/publish-post-context/PublishPostContext";
 
 // Recibe un arreglo de objetos. Cada arreglo de segundo nivel debe contener un título en la posicion 0 y un placeholder en la posición 1. Ejemplo: [ { title: 'Agrega un título', placeholder: 'Ej: Departamento de 2 ambientes y 1 baño'}, { title: 'Describí tu inmueble', placeholder: 'Ej: Departamento amplio a 3 cuadras del centro, amplio, ubicado en un tercer piso} ].
 
@@ -9,12 +10,13 @@ export const PostInputs = ({
   ],
   type = "",
   handleInputs,
+  publishPost
 }) => {
-  const [currency, setCurrency] = useState('pesos')
+  const [currency, setCurrency] = useState("pesos");
 
   const handleCurrency = (str) => {
-    setCurrency(str)
-  }
+    setCurrency(str);
+  };
 
   return (
     <View style={styles.container}>
@@ -36,16 +38,51 @@ export const PostInputs = ({
                   placeholderTextColor={"#979797"}
                   autoComplete="off"
                   keyboardType="numeric"
-                  onEndEditing={(e) => handleInputs(name, e.nativeEvent.text)}
+                  onChangeText={(text) => handleInputs(name, text)}
+                  value={publishPost[name]}
                 />
 
                 <View style={styles.buttonsContainer}>
-                  <Pressable style={[styles.buttonPesos, currency === 'pesos' ? {backgroundColor: '#018349'} : {backgroundColor: '#fff'}]} onPress={() => handleCurrency('pesos')}>
-                    <Text style={[styles.buttonText, currency === 'pesos' ? {color: '#fff'} : {color: '#018349'}]}>$</Text>
+                  <Pressable
+                    style={[
+                      styles.buttonPesos,
+                      currency === "pesos"
+                        ? { backgroundColor: "#018349" }
+                        : { backgroundColor: "#fff" },
+                    ]}
+                    onPress={() => handleCurrency("pesos")}
+                  >
+                    <Text
+                      style={[
+                        styles.buttonText,
+                        currency === "pesos"
+                          ? { color: "#fff" }
+                          : { color: "#018349" },
+                      ]}
+                    >
+                      $
+                    </Text>
                   </Pressable>
 
-                  <Pressable style={[styles.buttonDolares, currency === 'dollar' ? {backgroundColor: '#018349'} : {backgroundColor: '#fff'}]} onPress={() => handleCurrency('dollar')}>
-                    <Text style={[styles.buttonText, currency === 'dollar' ? {color: '#fff'} : {color: '#018349'}]}>USD</Text>
+                  <Pressable
+                    style={[
+                      styles.buttonDolares,
+                      currency === "dollar"
+                        ? { backgroundColor: "#018349" }
+                        : { backgroundColor: "#fff" },
+                    ]}
+                    onPress={() => handleCurrency("dollar")}
+                  >
+                    <Text
+                      style={[
+                        styles.buttonText,
+                        currency === "dollar"
+                          ? { color: "#fff" }
+                          : { color: "#018349" },
+                      ]}
+                    >
+                      USD
+                    </Text>
                   </Pressable>
                 </View>
               </View>
@@ -66,8 +103,9 @@ export const PostInputs = ({
                 placeholder={placeholder}
                 placeholderTextColor={"#979797"}
                 autoComplete="off"
-                onEndEditing={(e) => handleInputs(name, e.nativeEvent.text)}
+                onChangeText={(text) => handleInputs(name, text)}
                 keyboardType={keyboard ? keyboard : "default"}
+                value={publishPost[name]}
               />
             </View>
           </View>

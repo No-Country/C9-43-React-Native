@@ -70,6 +70,7 @@ export const CharacteristicsScreen = ({ navigation }) => {
               }
             ]}
             handleInputs={handleInputs}
+            publishPost={publishPost}
           />
           <View style={styles.garageContainer}>
             <Text style={styles.garageText}>¿La propiedad, posee garage?</Text>

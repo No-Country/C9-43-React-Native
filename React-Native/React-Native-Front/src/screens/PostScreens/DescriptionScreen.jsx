@@ -36,7 +36,7 @@ export const DescriptionScreen = ({ navigation }) => {
             { 
               title: 'Agregá un título', 
               placeholder: 'Ej: Departamento de 2 ambientes y 1 baño',
-              name: 'title'
+              name: 'title',
             },
             {
               title: 'Describí tu inmueble',
@@ -45,6 +45,7 @@ export const DescriptionScreen = ({ navigation }) => {
             }
           ]}
           handleInputs={handleInputs}
+          publishPost={publishPost}
         />
       </View>
         <Pressable style={styles.buttonContainer} onPress={handleAccept}>

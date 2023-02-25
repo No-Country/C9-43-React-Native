@@ -6,9 +6,11 @@ import { pickImageAsync } from "../../helpers";
 import { useContext, useState } from "react";
 import { uploadPostsImages } from "../../firebase/firebase";
 import { PublishPostContext } from "../../context/publish-post-context/PublishPostContext";
+import { PublishProgressContext } from "../../context/publish-progress-context/PublishProgressContext";
 
 export const PhotosScreen = ({ navigation }) => {
   const { handlePublishPost } = useContext(PublishPostContext);
+  const { handlePublishProgress } = useContext(PublishProgressContext)
   const [pictures, setPictures] = useState([]);
 
   const handlePictures = async () => {
@@ -22,6 +24,7 @@ export const PhotosScreen = ({ navigation }) => {
       alert("Por favor ingrese fotos");
       return;
     }
+    handlePublishProgress('pictures', 20)
     const URLArray = await uploadPostsImages(pictures);
     await handlePublishPost("pictures", URLArray);
     navigation.goBack();
