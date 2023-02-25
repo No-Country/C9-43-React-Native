@@ -52,7 +52,7 @@ export const TabNavigator = () => {
          }}
       />
 
-
+         
       <BottomTab.Screen
         name="Publicar"
         component={PublishNavigation}

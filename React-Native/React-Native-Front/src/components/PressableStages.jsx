@@ -1,47 +1,52 @@
-import { useNavigation } from "@react-navigation/native"
-import { Pressable, StyleSheet, Text, View} from "react-native"
-import BouncyCheckbox from "react-native-bouncy-checkbox"
+import { useNavigation } from "@react-navigation/native";
+import { CheckBox } from "@rneui/base";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
-export const PressableStages = ({ title, description, path }) => {
-    const navigation = useNavigation()
+export const PressableStages = ({ title, description, path, isChecked }) => {
+  const navigation = useNavigation();
+
   return (
-    <Pressable style={styles.pressableContainer} onPress={() => navigation.navigate(path)}>
-        <View style={styles.container}>
-            <Text style={ styles.pressableTitle }>
-                { title }
-            </Text>
-            <BouncyCheckbox 
-                size={24}
-                fillColor={'#018349'}
-            />
-        </View>
-        <Text style={ styles.pressableSubtitle }>
-            { description }
-        </Text>
+    <Pressable
+      style={styles.pressableContainer}
+      onPress={() => navigation.navigate(path)}
+    >
+      <View style={styles.container}>
+        <Text style={styles.pressableTitle}>{title}</Text>
+        <CheckBox
+          checked={isChecked}
+          iconType="material-community"
+          checkedIcon='check-circle'
+          uncheckedIcon={false}
+          checkedColor="#018349"
+        />
+      </View>
+      <Text style={styles.pressableSubtitle}>{description}</Text>
     </Pressable>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
-    pressableContainer: {
-        borderBottomWidth: 1,
-        borderBottomColor: '#CAC4D0',
-        paddingVertical: 10
-    },
-    container: {
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },  
-    pressableTitle: {
-        fontWeight: '500',
-        lineHeight: 24,
-        letterSpacing: 0.1,
-        fontSize: 14,
-        color: '#1E1E1E'
-    },
-    pressableSubtitle: {
-        fontSize: 12,
-        lineHeight: 24,
-        color: '#979797'
-    }
-})
+  pressableContainer: {
+    borderBottomWidth: 1,
+    borderBottomColor: "#CAC4D0",
+    paddingVertical: 8,
+  },
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: 'center'
+  },
+  pressableTitle: {
+    fontWeight: "500",
+    lineHeight: 24,
+    letterSpacing: 0.1,
+    fontSize: 14,
+    color: "#1E1E1E",
+  },
+  pressableSubtitle: {
+    fontSize: 12,
+    lineHeight: 24,
+    color: "#979797",
+    marginTop: -15
+  },
+});

@@ -1,11 +1,37 @@
 import { CheckBox } from "@rneui/base"
+import { useContext } from "react"
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native"
-import { GreenButton, GreenPostButton, PostInputs, PostTopBar } from "../../components"
-import { IconHeader, FilterTextedCheckbox } from "../../components/layout"
+import { GreenButton, PostInputs } from "../../components"
+import { IconHeader } from "../../components/layout"
+import { PublishPostContext } from "../../context/publish-post-context/PublishPostContext"
+import { PublishProgressContext } from "../../context/publish-progress-context/PublishProgressContext"
 import { useGarageSelected } from "../../hooks"
 
 export const CharacteristicsScreen = ({ navigation }) => {
+  const { publishPost, handlePublishPost } = useContext(PublishPostContext)
+  const { handlePublishProgress } = useContext(PublishProgressContext)
   const { isGarageSelected, isGarageNotSelected, handleGarageSelected, handleGarageNotSelected} = useGarageSelected()
+
+  const handleInputs = (name, input) => {
+    handlePublishPost(name, input)
+  }
+
+  const handleAccept = () => {
+    if (publishPost.antiquity === 0 || publishPost.antiquity === null || publishPost.bathrooms === 0 || publishPost.bathrooms === null || publishPost.bedrooms === 0 || publishPost.bedrooms === null || publishPost.sqMeters === 0 || publishPost.sqMeters === null) {
+      alert('No dejes campos sin completar')
+      return
+    }
+    if (isGarageSelected) {
+      handlePublishPost('parking', true)
+    } else if (isGarageNotSelected) {
+      handlePublishPost('parking', false)
+    } else {
+      alert('Seleccione si posee garage')
+      return
+    }
+    handlePublishProgress('characteristics', 10)
+    navigation.goBack()
+  }
 
   return (
     <View style={ styles.container }>
@@ -20,21 +46,30 @@ export const CharacteristicsScreen = ({ navigation }) => {
             titleAndPlaceholder={[ 
               { 
                 title:'Indicá la cantidad de m²',
-                placeholder: 'Ej: 45 m²'
+                placeholder: 'Ej: 45 m²',
+                name: 'sqMeters',
+                keyboard: 'numeric'
               },
               {
                 title: '¿Cuántos dormitorios tiene?',
-                placeholder: 'Ej: 2'
+                placeholder: 'Ej: 2',
+                name: 'bedrooms',
+                keyboard: 'numeric'
               },
               {
                   title: '¿Cuántos baños tiene?',
-                  placeholder: 'Ej: 1'
+                  placeholder: 'Ej: 1',
+                  name: 'bathrooms',
+                  keyboard: 'numeric'
               },
               {
                 title: '¿En que año fue construida la propiedad?',
-                placeholder: 'Ej: 2018'
+                placeholder: 'Ej: 2018',
+                name: 'antiquity',
+                keyboard: 'numeric'
               }
             ]}
+            handleInputs={handleInputs}
           />
           <View style={styles.garageContainer}>
             <Text style={styles.garageText}>¿La propiedad, posee garage?</Text>
@@ -67,7 +102,7 @@ export const CharacteristicsScreen = ({ navigation }) => {
           </View>
         </View>
       </ScrollView>
-      <Pressable style={styles.buttonContainer} onPress={() => navigation.goBack()}>
+      <Pressable style={styles.buttonContainer} onPress={handleAccept}>
         <GreenButton text={'Aceptar'} />
       </Pressable>
     </View>
