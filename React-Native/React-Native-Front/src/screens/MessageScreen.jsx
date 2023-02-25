@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { useState } from "react";
 import { SimpleHeader } from "../components/layout";
+import { color } from "@rneui/base";
 
 export const MessageScreen = () => {
   const [isRead, setIsRead] = useState(false);
@@ -19,7 +20,7 @@ export const MessageScreen = () => {
       subject: "Dueño de departamento en venta",
       body: "Hola buenas tardes, estoy vendiendo el departamento y estaria bueno",
       read: true,
-      avatar: require("../../assets/profile-picture.png"),
+      avatar: require("../../assets/Home/avatar_2.png"),
     },
     {
       id: "2",
@@ -27,7 +28,7 @@ export const MessageScreen = () => {
       subject: "Re: Reserva de departamento",
       body: "Hola, me interesa el departamento que estas vendiendo, podemos coordinar una visita?",
       read: false,
-      avatar: require("../../assets/profile-picture.png"),
+      avatar: require("../../assets/Home/avatar_2.png"),
     },
   ]);
 
@@ -44,7 +45,7 @@ export const MessageScreen = () => {
       <View
         style={[
           styles.readIndicator,
-          { backgroundColor: item.read ? "green" : "red" },
+          { backgroundColor: item.read ? "green" : "#CB2D2DCC" },
         ]}
       />
       {isRead && (
@@ -109,16 +110,27 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   messageSender: {
-    fontSize: 18,
-    marginBottom: 5,
-    fontWeight: "bold",
+    fontStyle: "normal",
+    fontWeight: "700",
+    fontSize: 16,
+    lineHeight: 20,
+    letterSpacing: 0.25,
+    color: "#1E1E1E",
   },
   messageSubject: {
-    fontSize: 16,
+    fontSize: 12,
+    fontStyle: "normal",
+    fontWeight: "500",
+    color: "#979797",
+    lineHeight: 24,
   },
   messageBody: {
-    marginTop: 4,
-    color: "#999",
+    fontStyle: "normal",
+    fontWeight: "300",
+    fontSize: 12,
+    lineHeight: 20,
+    color: "#979797",
+    letterSpacing: 0.25,
   },
   emptyText: {
     textAlign: "center",
@@ -126,7 +138,7 @@ const styles = StyleSheet.create({
     color: "#999",
   },
   messageRead: {
-    backgroundColor: "#f0f0f0",
+    backgroundColor: "red",
   },
   readIndicator: {
     backgroundColor: "red",
@@ -134,19 +146,19 @@ const styles = StyleSheet.create({
   },
   readIndicator: {
     position: "absolute",
-    width: 20,
-    height: 20,
-    borderRadius: 20 / 2,
+    width: 23,
+    height: 23,
+    borderRadius: 23 / 2,
     marginLeft: 10,
     right: 10,
-    top: 10,
+    top: 12,
   },
-  readCircle: {
-    position: "absolute",
-    top: 15,
-    right: -5,
-    width: 10,
-    height: 10,
-    borderRadius: 10 / 2,
-  },
+  // readCircle: {
+  //   position: "absolute",
+  //   top: 15,
+  //   right: -5,
+  //   width: 10,
+  //   height: 10,
+  //   borderRadius: 10 / 2,
+  // },
 });
