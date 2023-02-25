@@ -31,7 +31,7 @@ export const MenuScreen = ({ navigation }) => {
           <Text style={styles.optionsText}>Publicar</Text>
         </Pressable>
 
-        <Pressable style={styles.optionsSubContainer}>
+        <Pressable style={styles.optionsSubContainer} onPress={() => navigation.navigate('Mensajes')}>
           <Image source={require("../../assets/icons/message-icon.png")} />
           <Text style={styles.optionsText}>Mensajes</Text>
         </Pressable>
