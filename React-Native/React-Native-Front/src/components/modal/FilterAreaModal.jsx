@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {View, StyleSheet, Pressable, Text, TextInput, Modal} from 'react-native';
+import { FiltersContext } from '../../context/filters-context/FiltersContext';
 
 export const FilterAreaModal = ({isVisible, handleModalVisibility}) => {
+  const { filters, handleFilters } = useContext(FiltersContext)
+
   return (
     <Modal visible={isVisible} transparent={true} animationType={"fade"} >
       <Pressable style={styles.opacityBackground} onPress={handleModalVisibility}>
@@ -10,12 +13,12 @@ export const FilterAreaModal = ({isVisible, handleModalVisibility}) => {
           <View style={styles.optionsContainer}>
             <View style={styles.optionContainer}>
               <Text style={styles.optionsContainerText}>Desde:</Text>
-              <TextInput placeholder='--' keyboardType='numeric'/>
+              <TextInput placeholder='--' keyboardType='numeric' value={filters.areaFrom} onChangeText={(text) => handleFilters('areaFrom', text)}/>
               <Text style={styles.optionsContainerText}>m²</Text>
             </View>
             <View style={styles.optionContainer}>
               <Text style={styles.optionsContainerText}>Desde:</Text>
-              <TextInput placeholder='--' keyboardType='numeric'/>
+              <TextInput placeholder='--' keyboardType='numeric' value={filters.areaTo} onChangeText={(text) => handleFilters('areaTo', text)}/>
               <Text style={styles.optionsContainerText}>m²</Text>
             </View>
           </View>

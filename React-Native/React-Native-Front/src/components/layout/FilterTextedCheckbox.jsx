@@ -1,6 +1,4 @@
-import { useState } from "react"
 import { StyleSheet, Text, View } from "react-native"
-import BouncyCheckbox from "react-native-bouncy-checkbox"
 import { CheckBox } from '@rneui/themed'
 
 export const FilterTextedCheckbox = ({ text, isChecked, setIsChecked }) => {
@@ -18,6 +16,7 @@ export const FilterTextedCheckbox = ({ text, isChecked, setIsChecked }) => {
           checkedColor="#018349"
           checked={isChecked}
           onPress={setIsChecked}
+          
         />
 
     </View>

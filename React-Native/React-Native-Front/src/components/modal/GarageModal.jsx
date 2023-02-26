@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {View, StyleSheet, Modal, Pressable, Text} from 'react-native';
+import { FiltersContext } from '../../context/filters-context/FiltersContext';
 import { useGarageSelected } from '../../hooks/index';
 import { FilterTextedCheckbox } from '../layout';
 
 export const GarageModal = ({ isVisible, handleModalVisibility}) => {
   const { isGarageSelected, isGarageNotSelected, handleGarageSelected, handleGarageNotSelected} = useGarageSelected()
+  const { handleFilters } = useContext(FiltersContext)
   
+  const handleGarage = () => {
+    handleFilters('garage', true)
+    handleGarageSelected()
+  }
+
+  const handleNoGarage = () => {
+    handleFilters('garage', false)
+    handleGarageNotSelected()
+  }
 
   return (
     <Modal visible={isVisible} transparent={true} animationType={"fade"} >
@@ -14,10 +25,10 @@ export const GarageModal = ({ isVisible, handleModalVisibility}) => {
           <Text style={styles.textTitle}>Garage</Text>
           <View style={styles.optionsContainer}>
             <Pressable style={styles.optionContainer}>
-              <FilterTextedCheckbox text={'Con garage'} isChecked={isGarageSelected} setIsChecked={handleGarageSelected}/>
+              <FilterTextedCheckbox text={'Con garage'} isChecked={isGarageSelected} setIsChecked={handleGarage} />
             </Pressable>
             <Pressable style={styles.optionContainer}>
-              <FilterTextedCheckbox text={'Sin garage'} isChecked={isGarageNotSelected} setIsChecked={handleGarageNotSelected}/>
+              <FilterTextedCheckbox text={'Sin garage'} isChecked={isGarageNotSelected} setIsChecked={handleNoGarage}/>
             </Pressable>
           </View>
           <View style={styles.buttonsContainer}>
