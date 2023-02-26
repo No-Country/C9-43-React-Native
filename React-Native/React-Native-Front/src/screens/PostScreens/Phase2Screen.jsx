@@ -1,10 +1,32 @@
-import { Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { GreenButton, GreenPostButton, PostTopBar, TextedCheckbox } from "../../components";
+import { useContext } from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { GreenButton} from "../../components";
 import { IconHeader, FilterTextedCheckbox } from "../../components/layout";
-import { usePropertyType } from "../../hooks";
+import { PublishPostContext } from "../../context/publish-post-context/PublishPostContext";
+import { PublishProgressContext } from "../../context/publish-progress-context/PublishProgressContext";
+import { usePropertyType, usePublishPost } from "../../hooks";
 
 export const Phase2Screen = ({ navigation }) => {
+  const { publishPost, handlePublishPost } = useContext( PublishPostContext )
+  const { handlePublishProgress } = useContext(PublishProgressContext)
   const {isApartmentSelected, isHouseSelected, isLandSelected, handleIsApartmentSelected, handleIsHouseSelected, handleIsLandSelected} = usePropertyType()
+
+
+  const handleAccept = () => {
+    const name = 'propertyType'
+    if (isApartmentSelected) {
+      handlePublishPost(name, 'departamento')
+    } else if (isHouseSelected) {
+      handlePublishPost(name, 'casa')
+    } else if (isLandSelected) {
+      handlePublishPost(name, 'terreno')
+    } else {
+      alert('Seleccione una opcion')
+      return
+    }
+    handlePublishProgress(name, 15)
+    navigation.navigate("Phase3Screen")
+  }
 
   return (
     <View style={styles.container}>
@@ -26,7 +48,7 @@ export const Phase2Screen = ({ navigation }) => {
 
         <FilterTextedCheckbox text={"Terreno"} isChecked={isLandSelected} setIsChecked={handleIsLandSelected}/>
       </View>
-      <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("Phase3Screen")}>
+      <Pressable style={styles.buttonContainer} onPress={handleAccept}>
         <GreenButton text={'Aceptar'} />
       </Pressable>
     </View>

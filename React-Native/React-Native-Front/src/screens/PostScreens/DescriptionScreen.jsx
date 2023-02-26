@@ -1,8 +1,27 @@
+import { useContext } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native"
-import { GreenButton, GreenPostButton, PostInputs, PostTopBar } from "../../components"
+import { GreenButton, PostInputs } from "../../components"
 import { IconHeader } from "../../components/layout"
+import { PublishPostContext } from "../../context/publish-post-context/PublishPostContext";
+import { PublishProgressContext } from "../../context/publish-progress-context/PublishProgressContext";
 
 export const DescriptionScreen = ({ navigation }) => {
+  const { publishPost, handlePublishPost } = useContext( PublishPostContext )
+  const { handlePublishProgress } = useContext(PublishProgressContext)
+  
+  const handleInputs = (name, input) => {
+    handlePublishPost(name, input)
+  }
+
+  const handleAccept = () => {
+    if (publishPost.title.length === 0 || publishPost.description.length === 0) {
+      alert('No dejes campos vacios')
+      return
+    }
+    handlePublishProgress('description', 10)
+    navigation.goBack()
+  }
+
   return (
     <View style={ styles.container }>
 
@@ -16,16 +35,20 @@ export const DescriptionScreen = ({ navigation }) => {
           titleAndPlaceholder={[ 
             { 
               title: 'Agregá un título', 
-              placeholder: 'Ej: Departamento de 2 ambientes y 1 baño'
+              placeholder: 'Ej: Departamento de 2 ambientes y 1 baño',
+              name: 'title',
             },
             {
               title: 'Describí tu inmueble',
-              placeholder: 'Ej: Departamento de 2 ambientes y 1 baño'
+              placeholder: 'Ej: Departamento de 2 ambientes y 1 baño',
+              name: 'description'
             }
           ]}
+          handleInputs={handleInputs}
+          publishPost={publishPost}
         />
       </View>
-        <Pressable style={styles.buttonContainer} onPress={() => navigation.goBack()}>
+        <Pressable style={styles.buttonContainer} onPress={handleAccept}>
           <GreenButton text={'Aceptar'} />
         </Pressable>
 

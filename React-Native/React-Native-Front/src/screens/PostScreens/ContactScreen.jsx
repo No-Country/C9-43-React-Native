@@ -1,8 +1,16 @@
+import { useContext, useState } from "react"
 import { Pressable, StyleSheet, Text, View } from "react-native"
-import { GreenButton, GreenPostButton, PostInputs, PostTopBar } from "../../components"
+import { GreenButton, PostInputs } from "../../components"
 import { IconHeader } from "../../components/layout"
+import { PublishPostContext } from "../../context/publish-post-context/PublishPostContext"
 
 export const ContactScreen = ({ navigation }) => {
+  const [contactInputs, setContactInputs] = useState({email: '', phone: ''})
+
+  const handleInputs = (name, input) => {
+    setContactInputs({...contactInputs, [name]: input})
+  }
+
   return (
     <View style={ styles.container }>
 
@@ -18,13 +26,18 @@ export const ContactScreen = ({ navigation }) => {
           titleAndPlaceholder={[ 
             { 
               title: 'Correo electrónico', 
-              placeholder: 'Ej: guadalupegomez@gmail.com'
+              placeholder: 'Ej: guadalupegomez@gmail.com',
+              name: 'email',
+              keyboard: 'email-address'
             },
             {
               title: 'Teléfono',
-              placeholder: 'Ej: +54 11 3045-2149'
+              placeholder: 'Ej: +54 11 3045-2149',
+              name: 'phone',
+              keyboard: 'numeric'
             }
           ]}
+          handleInputs={handleInputs}
         />
       </View>
       <Pressable style={styles.buttonContainer} onPress={() => navigation.goBack()}>

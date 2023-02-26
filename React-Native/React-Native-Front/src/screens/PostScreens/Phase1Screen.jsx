@@ -1,4 +1,4 @@
-import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { GreenButton } from "../../components";
 
 export const Phase1Screen = ({ navigation }) => {

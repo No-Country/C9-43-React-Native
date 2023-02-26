@@ -15,6 +15,11 @@ import { GreenButton } from "../components";
 
 export const LoginScreen = ({ navigation }) => {
   const [secured, setSecured] = useState(true);
+  const [inputs, setInputs] = useState({email: '', password: ''})
+  console.log(inputs)
+  const handleChange = (name, value) => {
+    setInputs({...inputs, [name]: value})
+  }
 
   return (
     <KeyboardAwareScrollView style={{flex: 1, backgroundColor: '#fff'}}>
@@ -41,6 +46,8 @@ export const LoginScreen = ({ navigation }) => {
           placeholderTextColor={"#979797"}
           inputContainerStyle={{ backgroundColor: "#E4E4E4" }}
           keyboardType='email-address'
+          value={inputs.email}
+          onChangeText={(value) => handleChange('email', value)}
         />
 
         <View style={styles.passwordInputView}>
@@ -52,6 +59,8 @@ export const LoginScreen = ({ navigation }) => {
             autoCorrect={false}
             placeholder="Ingresa tu contraseña"
             placeholderTextColor={"#979797"}
+            value={inputs.password}
+            onChangeText={(value) =>  handleChange('password', value)}
           />
           <Ionicons
             style={styles.passwordInputIcon}

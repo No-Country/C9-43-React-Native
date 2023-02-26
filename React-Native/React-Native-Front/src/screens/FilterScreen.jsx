@@ -5,24 +5,46 @@ import {
   TextInput,
   Image,
   Pressable,
+  ScrollView,
 } from "react-native";
 import { GreenButton } from "../components/index";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { FilterAreaModal, FilterEnvironmentModal, FilterPriceModal } from "../components/modal/";
-import { useModal, useFilters, UseAreaModal, UsePriceModal, UseEnvironmentModal } from '../hooks/index'
+import {
+  AntiquityModal,
+  FilterAreaModal,
+  FilterEnvironmentModal,
+  FilterPriceModal,
+  GarageModal,
+} from "../components/modal/";
+import {
+  useModal,
+  useFilters,
+  UseAreaModal,
+  UsePriceModal,
+  UseEnvironmentModal,
+  useGarageModal,
+  useAntiquityModal,
+} from "../hooks/index";
 import { FilterHeader } from "../components/layout/";
 
-//TODO esperar a que esten los modales
-
 export const FilterScreen = ({ navigation }) => {
-  const { isAreaModalOpen, handleToggleAreaModal } = UseAreaModal()
-  const { isPriceModalOpen, handleTogglePriceModal } = UsePriceModal()
-  const { isEnvironmentModalOpen, handleToggleEnvironmentModal } = UseEnvironmentModal()
-  const { operationBg, typeOfPropertyBg, lastFilters, handleOperationBg, handleTypeOfPropertyBg, handleCleanSelections } = useFilters()
-  
+  const { isAreaModalOpen, handleToggleAreaModal } = UseAreaModal();
+  const { isPriceModalOpen, handleTogglePriceModal } = UsePriceModal();
+  const { isGarageModalOpen, handleToggleGarageModal} = useGarageModal()
+  const { isAntiquityModalOpen, handleToggleAntiquityModal } = useAntiquityModal()
+  const { isEnvironmentModalOpen, handleToggleEnvironmentModal } =
+    UseEnvironmentModal();
+  const {
+    operationBg,
+    typeOfPropertyBg,
+    handleOperationBg,
+    handleTypeOfPropertyBg,
+    handleCleanSelections,
+  } = useFilters();
+
   return (
-    <View style={styles.containerScreen} >
-      <FilterHeader onPress={handleCleanSelections} navigation={navigation}/>
+    <View style={styles.containerScreen}>
+      <FilterHeader onPress={handleCleanSelections} navigation={navigation} />
       <View style={styles.container}>
         <Text style={styles.searchText}>Ubicación</Text>
         <View style={styles.fakeContainer}>
@@ -47,70 +69,180 @@ export const FilterScreen = ({ navigation }) => {
         </View>
         <Text style={styles.operatorText}>Tipo de operación</Text>
         <View style={styles.operatorContainer}>
-          <Pressable style={[styles.typesContainer, operationBg === 'venta' ? styles.backgroundSelected : null]} onPress={() => handleOperationBg('venta')}>
-            <Text style={[styles.typesText, operationBg === 'venta' ? styles.textSelected : null]}>Venta</Text>
+          <Pressable
+            style={[
+              styles.typesContainer,
+              operationBg === "venta" ? styles.backgroundSelected : null,
+            ]}
+            onPress={() => handleOperationBg("venta")}
+          >
+            <Text
+              style={[
+                styles.typesText,
+                operationBg === "venta" ? styles.textSelected : null,
+              ]}
+            >
+              Venta
+            </Text>
           </Pressable>
-          <Pressable style={[styles.typesContainer, operationBg === 'alquiler' ? styles.backgroundSelected : null]} onPress={() => handleOperationBg('alquiler')}>
-            <Text style={[styles.typesText, operationBg === 'alquiler' ? styles.textSelected : null]}>Alquiler</Text>
+          <Pressable
+            style={[
+              styles.typesContainer,
+              operationBg === "alquiler" ? styles.backgroundSelected : null,
+            ]}
+            onPress={() => handleOperationBg("alquiler")}
+          >
+            <Text
+              style={[
+                styles.typesText,
+                operationBg === "alquiler" ? styles.textSelected : null,
+              ]}
+            >
+              Alquiler
+            </Text>
           </Pressable>
         </View>
         <View style={[styles.separator, styles.separatorOperator]} />
         <Text style={styles.propertyText}>Tipo de inmueble</Text>
         <View style={styles.propertyContainer}>
-
           <View style={styles.fakeIconContainer}>
-            <Pressable style={[styles.propertyCardContainer, typeOfPropertyBg === 'depto' ? styles.backgroundSelected : null]} onPress={() => handleTypeOfPropertyBg('depto')}>
+            <Pressable
+              style={[
+                styles.propertyCardContainer,
+                typeOfPropertyBg === "depto" ? styles.backgroundSelected : null,
+              ]}
+              onPress={() => handleTypeOfPropertyBg("depto")}
+            >
               <Image
                 style={styles.propertyIcon}
                 source={require("../../assets/domain.png")}
               />
-              <Text style={[styles.propertySecondaryText, typeOfPropertyBg === 'depto' ? styles.textSelected : null]}>Depto.</Text>
+              <Text
+                style={[
+                  styles.propertySecondaryText,
+                  typeOfPropertyBg === "depto" ? styles.textSelected : null,
+                ]}
+              >
+                Depto.
+              </Text>
             </Pressable>
           </View>
-          
+
           <View style={styles.fakeIconContainer}>
-            <Pressable style={[styles.propertyCardContainer, typeOfPropertyBg === 'casa' ? styles.backgroundSelected : null]} onPress={() => handleTypeOfPropertyBg('casa')} >
+            <Pressable
+              style={[
+                styles.propertyCardContainer,
+                typeOfPropertyBg === "casa" ? styles.backgroundSelected : null,
+              ]}
+              onPress={() => handleTypeOfPropertyBg("casa")}
+            >
               <Image
                 style={styles.propertyIcon}
                 source={require("../../assets/cottage.png")}
               />
-              <Text style={[styles.propertySecondaryText, typeOfPropertyBg === 'casa' ? styles.textSelected : null]}>Casa</Text>
+              <Text
+                style={[
+                  styles.propertySecondaryText,
+                  typeOfPropertyBg === "casa" ? styles.textSelected : null,
+                ]}
+              >
+                Casa
+              </Text>
             </Pressable>
           </View>
           <View style={styles.fakeIconContainer}>
-            <Pressable style={[styles.propertyCardContainer, typeOfPropertyBg === 'terreno' ? styles.backgroundSelected : null]} onPress={() => handleTypeOfPropertyBg('terreno')}>
+            <Pressable
+              style={[
+                styles.propertyCardContainer,
+                typeOfPropertyBg === "terreno"
+                  ? styles.backgroundSelected
+                  : null,
+              ]}
+              onPress={() => handleTypeOfPropertyBg("terreno")}
+            >
               <Image
                 style={styles.propertyIcon}
                 source={require("../../assets/Vector.png")}
               />
-              <Text style={[styles.propertySecondaryText, typeOfPropertyBg === 'terreno' ? styles.textSelected : null]}>Terreno</Text>
+              <Text
+                style={[
+                  styles.propertySecondaryText,
+                  typeOfPropertyBg === "terreno" ? styles.textSelected : null,
+                ]}
+              >
+                Terreno
+              </Text>
             </Pressable>
           </View>
         </View>
-        <View style={[styles.separator, styles.separatorProperty]} />
-        <Pressable style={styles.attributesContainer} onPress={handleTogglePriceModal}>
-          <Text style={styles.primaryText}>Precio</Text>
-          <Text style={styles.secondText}>Indistinto</Text>
-        </Pressable>
-        <View style={[styles.separator, styles.separatorMargin]} />
-        <Pressable style={styles.attributesContainer} onPress={handleToggleAreaModal}>
-          <Text style={styles.primaryText}>Superficie</Text>
-          <Text style={styles.secondText}>Indistinto</Text>
-        </Pressable>
-        <View style={[styles.separator, styles.separatorMargin]} />
-        <Pressable  style={styles.attributesContainer} onPress={handleToggleEnvironmentModal}>
-          <Text style={styles.primaryText}>Ambientes</Text>
-          <Text style={styles.secondText}>Indistinto</Text>
-        </Pressable>
-        <View style={[styles.separator, styles.separatorMargin]} />
+        <ScrollView style={styles.modalsContainer}>
+          <View style={[styles.separator, styles.separatorProperty]} />
+          <Pressable
+            style={styles.attributesContainer}
+            onPress={handleTogglePriceModal}
+          >
+            <Text style={styles.primaryText}>Precio</Text>
+            <Text style={styles.secondText}>Indistinto</Text>
+          </Pressable>
+          <View style={[styles.separator, styles.separatorMargin]} />
+          <Pressable
+            style={styles.attributesContainer}
+            onPress={handleToggleAreaModal}
+          >
+            <Text style={styles.primaryText}>Superficie</Text>
+            <Text style={styles.secondText}>Indistinto</Text>
+          </Pressable>
+          <View style={[styles.separator, styles.separatorMargin]} />
+          <Pressable
+            style={styles.attributesContainer}
+            onPress={handleToggleEnvironmentModal}
+          >
+            <Text style={styles.primaryText}>Ambientes</Text>
+            <Text style={styles.secondText}>Indistinto</Text>
+          </Pressable>
+          <View style={[styles.separator, styles.separatorMargin]} />
+          <Pressable
+            style={styles.attributesContainer}
+            onPress={handleToggleGarageModal}
+          >
+            <Text style={styles.primaryText}>Garage</Text>
+            <Text style={styles.secondText}>Indistinto</Text>
+          </Pressable>
+          <View style={[styles.separator, styles.separatorMargin]} />
+          <Pressable
+            style={styles.attributesContainer}
+            onPress={handleToggleAntiquityModal}
+          >
+            <Text style={styles.primaryText}>Antigüedad</Text>
+            <Text style={styles.secondText}>Indistinto</Text>
+          </Pressable>
+          <View style={[styles.separator, styles.separatorMargin]} />
+        </ScrollView>
         <Pressable style={styles.button}>
           <GreenButton text="Aceptar" />
         </Pressable>
       </View>
       {/* MODAL */}
-      <FilterEnvironmentModal isVisible={isEnvironmentModalOpen} handleModalVisibility={handleToggleEnvironmentModal} />
-      <FilterAreaModal isVisible={isAreaModalOpen} handleModalVisibility={handleToggleAreaModal} />
-      <FilterPriceModal isVisible={isPriceModalOpen} handleModalVisibility={handleTogglePriceModal} />
+      <FilterEnvironmentModal
+        isVisible={isEnvironmentModalOpen}
+        handleModalVisibility={handleToggleEnvironmentModal}
+      />
+      <FilterAreaModal
+        isVisible={isAreaModalOpen}
+        handleModalVisibility={handleToggleAreaModal}
+      />
+      <FilterPriceModal
+        isVisible={isPriceModalOpen}
+        handleModalVisibility={handleTogglePriceModal}
+      />
+      <GarageModal
+        isVisible={isGarageModalOpen}
+        handleModalVisibility={handleToggleGarageModal}
+      />
+      <AntiquityModal
+        isVisible={isAntiquityModalOpen}
+        handleModalVisibility={handleToggleAntiquityModal}
+      />
     </View>
   );
 };
@@ -121,7 +253,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   container: {
-    paddingHorizontal: 16,
+    marginHorizontal: 16,
+    flex: 1
   },
   searchText: {
     marginTop: 7,
@@ -131,9 +264,9 @@ const styles = StyleSheet.create({
     color: "#1E1E1E",
   },
   fakeContainer: {
-    overflow: 'hidden',
+    overflow: "hidden",
     paddingBottom: 6,
-    marginTop: 12, 
+    marginTop: 12,
   },
   searchInput: {
     flexDirection: "row",
@@ -141,13 +274,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     height: 56,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderWidth: 1.5,
     borderColor: "#AAAAAA",
     borderRadius: 6,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 1, height: 4 },
-    shadowOpacity:  0.8,
+    shadowOpacity: 0.8,
     shadowRadius: 4,
     elevation: 10,
   },
@@ -220,19 +353,19 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   fakeIconContainer: {
-    overflow: 'hidden',
+    overflow: "hidden",
     height: 65,
     width: 70,
     paddingBottom: 10,
     paddingLeft: 2.5,
     borderRadius: 8,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 1, height: 4 },
-    shadowOpacity:  0.8,
+    shadowOpacity: 0.8,
     shadowRadius: 4,
   },
   propertyCardContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "space-between",
     height: 60,
@@ -240,7 +373,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 6,
     paddingVertical: 7,
-    elevation: 15
+    elevation: 15,
   },
   propertyIcon: {
     tintColor: "#018349",
@@ -252,9 +385,13 @@ const styles = StyleSheet.create({
     letterSpacing: 0.15,
   },
   separatorProperty: {
-    marginTop: 28,
+    // marginTop: 28,
     borderBottomColor: "#CAC4D0",
     borderBottomWidth: 1,
+  },
+  modalsContainer: {
+    marginTop: 35,
+    marginBottom: 15
   },
   attributesContainer: {
     flexDirection: "row",
@@ -281,17 +418,17 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "100%",
-    marginTop: 25,
+    marginBottom: 23,
     borderRadius: 4,
     alignSelf: "center",
     justifyContent: "center",
   },
   backgroundSelected: {
     borderWidth: 1,
-    backgroundColor: '#D4F9E8',
-    borderColor: '#018349'
+    backgroundColor: "#D4F9E8",
+    borderColor: "#018349",
   },
   textSelected: {
-    color: '#018349'
-  }
+    color: "#018349",
+  },
 });

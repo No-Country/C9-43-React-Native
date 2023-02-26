@@ -1,8 +1,30 @@
+import { useContext } from "react"
 import { Pressable, StyleSheet, Text, View } from "react-native"
-import { GreenButton, GreenPostButton, PostInputs, PostTopBar } from "../../components"
+import { GreenButton, PostInputs } from "../../components"
 import { IconHeader } from "../../components/layout"
+import { PublishPostContext } from "../../context/publish-post-context/PublishPostContext"
+import { PublishProgressContext } from "../../context/publish-progress-context/PublishProgressContext"
 
 export const LocationScreen = ({ navigation }) => {
+  const { publishPost, handlePublishPost } = useContext(PublishPostContext)
+  const { handlePublishProgress } = useContext(PublishProgressContext)
+
+  console.log(publishPost)
+
+
+  const handleInputs = (name, input) => {
+    handlePublishPost(name, input)
+  }
+
+  const handleAccept = () => {
+    if ( publishPost.city.length === 0 || publishPost.region.length === 0) {
+      alert('No dejes campos vacios')
+      return
+    } 
+    handlePublishProgress('location', 10)
+    navigation.goBack()
+  }
+
   return (
     <View style={ styles.container }>
 
@@ -16,16 +38,20 @@ export const LocationScreen = ({ navigation }) => {
           titleAndPlaceholder={[ 
             { 
               title: 'Indicá en que ciudad está ubicado', 
-              placeholder: 'Ej: Quilmes'
+              placeholder: 'Ej: Quilmes',
+              name: 'city'
             },
             {
               title: 'Indicá en que provincia está ubicado',
-              placeholder: 'Ej: Buenos Aires'
+              placeholder: 'Ej: Buenos Aires',
+              name: 'region'
             }
           ]}
+          handleInputs={handleInputs}
+          publishPost={publishPost}
         />
         </View>
-        <Pressable style={styles.buttonContainer} onPress={() => navigation.goBack()}>
+        <Pressable style={styles.buttonContainer} onPress={handleAccept}>
           <GreenButton text={'Aceptar'} />
         </Pressable>
 
