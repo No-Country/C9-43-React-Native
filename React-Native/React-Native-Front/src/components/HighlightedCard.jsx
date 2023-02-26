@@ -19,7 +19,7 @@ const HighlightedCard = () => {
     setIsActive(!isActive);
   };
   return (
-    <View style={[styles.cardContainer, { marginTop: 30 }]}>
+    <View style={[styles.cardContainer]}>
       <View>
         <Image
           source={require("../../assets/HighlightedData/sala-estar-lujo-loft-representacion-3d-estanteria.png")}
@@ -29,8 +29,9 @@ const HighlightedCard = () => {
             <Image
               source={
                 isActive
-                  ? require("../../assets/Home/favorite.png")
-                  : require("../../assets/Home/heartActive.png")
+                  ? require("../../assets/Home/heartActive.png")
+                  : require("../../assets/Home/favorite.png") 
+                  
               }
             />
           </TouchableOpacity>
@@ -56,7 +57,7 @@ const HighlightedCard = () => {
           style={styles.image}
           source={require("../../assets/HighlightedData/bath.png")}
         />
-        <Text>{highlightedData[0].ambientes} Baños </Text>
+        <Text>{highlightedData[0].ambientes} Baño </Text>
         <Image
           source={require("../../assets/Home/avatar.png")}
           style={styles.avatar}
@@ -71,7 +72,7 @@ export default HighlightedCard;
 const styles = StyleSheet.create({
   cardContainer: {
     borderRadius: 20,
-    marginBottom: 40,
+    marginBottom: 20,
     shadowColor: "black",
     shadowOpacity: 0.26,
     shadowOffset: { width: 0, height: 2 },
@@ -79,15 +80,8 @@ const styles = StyleSheet.create({
     elevation: 5,
     backgroundColor: "white",
     paddingBottom: 30,
-    marginLeft: 20,
-    marginRight: 15,
+    marginHorizontal: 11
   },
-  // imageContainer: {
-  //   width: '100%'
-  // },
-  // backgroundImage: {
-  //   resizeMode: "stretch"
-  // },
   image: {
     marginRight: 5,
     marginLeft: 20,

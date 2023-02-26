@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import { useContext } from "react";
 import { View, StyleSheet, Modal, Text, Pressable } from "react-native";
+import { FiltersContext } from "../../context/filters-context/FiltersContext";
 import { useOrderBy } from "../../hooks/useOrderBy";
 import { FilterTextedCheckbox } from "../layout";
-import RoundedCheckboxGroup, {
-  ICheckboxButton,
-} from "react-native-rounded-checkbox-group";
-
-//TODO preguntar por la opacidad del fondo
 
 export const FilterOrderByModal = ({ isVisible, handleModalVisibility }) => {
   const{ isRelevant, handleIsRelevant, isCheap, handleIsCheap, isExpensive, handleIsExpensive, isNew, handleIsNew } = useOrderBy()
+  const { handleFilters} = useContext(FiltersContext)
+
+  const handleOrderBySelection = (name, value, cb) => {
+    handleFilters(name, value)
+    cb()
+  }
 
   return (
     <Modal visible={isVisible} transparent={true} animationType={"fade"} >
@@ -18,16 +20,16 @@ export const FilterOrderByModal = ({ isVisible, handleModalVisibility }) => {
           <Text style={styles.textTitle}>Ordenar</Text>
           <View style={styles.optionsContainer}>
             <Pressable style={styles.optionContainer}>
-              <FilterTextedCheckbox text={'Relevancia'} isChecked={isRelevant} setIsChecked={handleIsRelevant} />
+              <FilterTextedCheckbox text={'Relevancia'} isChecked={isRelevant} setIsChecked={() => handleOrderBySelection('orderBy', 'relevancia', handleIsRelevant)} />
             </Pressable>
             <Pressable style={styles.optionContainer}>
-              <FilterTextedCheckbox text={'Más caro'} isChecked={isExpensive} setIsChecked={handleIsExpensive}/>
+              <FilterTextedCheckbox text={'Más caro'} isChecked={isExpensive} setIsChecked={() => handleOrderBySelection('orderBy', 'mas caro', handleIsExpensive)}/>
             </Pressable>
             <Pressable style={styles.optionContainer}>
-              <FilterTextedCheckbox text={'Más barato'} isChecked={isCheap} setIsChecked={handleIsCheap}/>
+              <FilterTextedCheckbox text={'Más barato'} isChecked={isCheap} setIsChecked={() => handleOrderBySelection('orderBy', 'mas barato', handleIsCheap)}/>
             </Pressable>
             <Pressable style={styles.optionContainer}>
-              <FilterTextedCheckbox text={'Más nuevo'} isChecked={isNew} setIsChecked={handleIsNew}/>
+              <FilterTextedCheckbox text={'Más nuevo'} isChecked={isNew} setIsChecked={() => handleOrderBySelection('orderBy', 'mas nuevo', handleIsNew)}/>
             </Pressable>
           </View>
           <View style={styles.buttonsContainer}>

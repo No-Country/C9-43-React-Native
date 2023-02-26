@@ -5,7 +5,6 @@ export * from './useAreaModal';
 export * from './useEnvironmentFilter';
 export * from './useEnvironmentModal';
 export * from './useFaqOptions';
-export * from './useFilters';
 export * from './useGarageModal';
 export * from './useGarageSelected';
 export * from './useLanguageModal';

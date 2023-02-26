@@ -4,18 +4,18 @@ import HighlightedCard from "../components/HighlightedCard";
 import { IconHeader } from '../components/layout'
 import { FilterPriceModal } from "../components/modal";
 import { FilterOrderByModal } from "../components/modal/FilterOrderByModal";
+import { PropertyCard } from "../components/PropertyCard";
 import { UsePriceModal, useOrderByModal } from "../hooks";
 
 export const FilteredResultScreen = ({ navigation }) => {
   const { isPriceModalOpen, handleTogglePriceModal } = UsePriceModal()
   const { isOrderByModalOpen, handleToggleOrderByModal } = useOrderByModal()
-  
 
   const HighlightedCards = [
-    { key: 1, component: <HighlightedCard /> },
-    { key: 2, component: <HighlightedCard /> },
-    { key: 3, component: <HighlightedCard /> },
-    { key: 4, component: <HighlightedCard /> },
+    { key: 1, component: <PropertyCard /> },
+    { key: 2, component: <PropertyCard /> },
+    { key: 3, component: <PropertyCard /> },
+    { key: 4, component: <PropertyCard /> },
   ];
   return (
     <View style={styles.container}>
@@ -72,10 +72,11 @@ const styles = StyleSheet.create({
   },
   internalFilterContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '68%'
+    justifyContent: 'space-around',
+    width: '75%'
   },
   filtersButtons: {
+    width: 75,
     paddingHorizontal: 14,
     paddingVertical: 8,
     borderRadius: 100,
@@ -90,6 +91,7 @@ const styles = StyleSheet.create({
   },
   scroll: {
     marginTop: 7,
+    
   }
   
 });
