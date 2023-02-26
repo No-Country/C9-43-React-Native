@@ -24,18 +24,6 @@ export const RegisterScreen = ({ navigation }) => {
 
   console.log(form)
 
-  const [input, setInput] = useState({
-    email: "",
-    password: "",
-  });
-  const handleEmail = (value) => {
-    setInput({ ...input, email: value });
-  };
-  const handlePassword = (value) => {
-    setInput({ ...input, password: value });
-  };
-  
-
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={styles.container}>
@@ -63,7 +51,8 @@ export const RegisterScreen = ({ navigation }) => {
                 placeholder="Ingresa tu contraseña"
                 placeholderTextColor="#979797"
                 secureTextEntry={secured}
-                onEndEditing={(e) => changed('password', e.nativeEvent.text)}
+                onChangeText={(text) => changed('passowrd', text)}
+                
               />
 
               <Ionicons

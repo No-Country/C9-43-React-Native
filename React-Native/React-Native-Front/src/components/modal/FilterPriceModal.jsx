@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {View, StyleSheet, Pressable, Text, TextInput, Modal} from 'react-native';
+import { FiltersContext } from '../../context/filters-context/FiltersContext';
 
-export const FilterPriceModal = ({isVisible, handleModalVisibility}) => {
+export const FilterPriceModal = ({ isVisible, handleModalVisibility }) => {
+const {filters, handleFilters} = useContext(FiltersContext)
 
   return (
     <Modal visible={isVisible} transparent={true} animationType={"fade"} >
@@ -11,11 +13,11 @@ export const FilterPriceModal = ({isVisible, handleModalVisibility}) => {
           <View style={styles.optionsContainer}>
             <View style={styles.optionContainer}>
               <Text style={styles.optionsContainerText}>Desde:</Text>
-              <TextInput placeholder='--' keyboardType='numeric'/>
+              <TextInput placeholder='--' keyboardType='numeric' value={filters.priceFrom} onChangeText={(text) => handleFilters('priceFrom', text)}/>
             </View>
             <View style={styles.optionContainer}>
               <Text style={styles.optionsContainerText}>Hasta:</Text>
-              <TextInput placeholder='--' keyboardType='numeric'/>
+              <TextInput placeholder='--' keyboardType='numeric' value={filters.priceTo}  onChangeText={(text) => handleFilters("priceTo" ,text)}/>
             </View>
           </View>
           <View style={styles.buttonsContainer}>
