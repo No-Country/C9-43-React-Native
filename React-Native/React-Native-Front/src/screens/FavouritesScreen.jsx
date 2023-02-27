@@ -1,7 +1,8 @@
 import React from "react";
 import { FlatList, StyleSheet, View } from "react-native";
-import FavouriteCard from "../components/FavoriteCard";
+import { FavouriteCard } from "../components/FavouriteCard";
 import { SimpleHeader } from "../components/layout";
+import { PropertyCard } from "../components/PropertyCard";
 
 const HighlightedCards = [
   { key: 1, component: <FavouriteCard /> },
@@ -22,6 +23,7 @@ export const FavouritesScreen = () => {
         data={HighlightedCards}
         renderItem={({ item }) => <View>{item.component}</View>}
         keyExtractor={(item) => item.key}
+        style={styles.cardsContainer}
       />
     </View>
   );
@@ -31,5 +33,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff'
+  },
+  cardsContainer: {
+    marginTop: 15
   }
 })

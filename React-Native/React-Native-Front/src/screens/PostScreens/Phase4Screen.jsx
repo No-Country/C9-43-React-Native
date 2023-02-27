@@ -121,7 +121,7 @@ export const Phase4Screen = ({ navigation }) => {
           title={"Contacto"}
           description={"Agregá por donde querés que te contacten"}
           path={"ContactScreen"}
-          isChecked
+          isChecked={publishPost.phone}
         />
 
         <Pressable style={styles.buttonContainer} onPress={handlePublish}>

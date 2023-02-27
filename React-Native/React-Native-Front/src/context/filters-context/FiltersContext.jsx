@@ -7,6 +7,7 @@ export const filtersInitialState = {
   priceTo: '',
   areaFrom: '',
   areaTo: '',
+  orderBy: '',
   ambiances: null,
   garage: null,
   antiquity: null
