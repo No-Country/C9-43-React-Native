@@ -16,7 +16,7 @@ export const MessageScreen = () => {
   const [messages, setMessages] = useState([
     {
       id: "1",
-      sender: "Juan Manuel",
+      sender: "Juan Manuela",
       subject: "Dueño de departamento en venta",
       body: "Hola buenas tardes, estoy vendiendo el departamento y estaria bueno",
       read: true,

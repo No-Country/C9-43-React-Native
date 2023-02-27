@@ -16,13 +16,50 @@ import axios from "axios";
 export const RegisterScreen = ({ navigation }) => {
   const [secured, setSecured] = useState(true);
   const [securedConfirm, setSecuredConfirm] = useState(true);
-  const [form, setForm] = useState({})
+  const [form, setForm] = useState({});
+  const [confirmError, setConfirmError] = useState(false);
 
-  const changed = (name, text) => {
-    setForm({...form, [name]: text})
-  }
+  const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  console.log(form)
+  const changed = (name, value) => {
+    setForm({ ...form, [name]: value });
+  };
+
+  console.log(form);
+
+
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const handleEmail = (value) => {
+    setInput({ ...input, email: value });
+  };
+  const handlePassword = (value) => {
+    setInput({ ...input, password: value });
+  };
+  const handleConfirmPassword = (value) => {
+    setInput({ ...input, confirmPassword: value });
+    setForm({ ...form, confirmPassword: value });
+    if (input.password !== value) {
+      setConfirmError(true);
+    } else {
+      setConfirmError(false);
+    }
+  };
+
+  const validateEmail = (email) => {
+    return EMAIL_REGEX.test(email);
+  };
+
+  const validatePassword = (password, confirmPassword) => {
+    return password === confirmPassword;
+  };
+
+  const validateForm = (form) => {
+    return form.email && form.password && form.confirmPassword;
+  };
 
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
@@ -44,41 +81,64 @@ export const RegisterScreen = ({ navigation }) => {
             placeholder="Ingresa tu E-mail"
             placeholderTextColor="#979797"
             keyboardType="email-address"
-            onEndEditing={(e) => changed('email', e.nativeEvent.text)}
+            onEndEditing={(e) => changed("email", e.nativeEvent.text)}
+            value={form.email}
           />
-            <View style={[styles.passwordInput, styles.textInputs]}>
-              <TextInput
-                placeholder="Ingresa tu contraseña"
-                placeholderTextColor="#979797"
-                secureTextEntry={secured}
-                onChangeText={(text) => changed('passowrd', text)}
-                
-              />
+          <View style={[styles.passwordInput, styles.textInputs]}>
+            <TextInput
+              placeholder="Ingresa tu contraseña"
+              placeholderTextColor="#979797"
+              secureTextEntry={secured}
+              onEndEditing={(e) => changed("password", e.nativeEvent.text)}
+            />
 
-              <Ionicons
-                style={styles.passwordInputIcon}
-                name={secured ? "eye-outline" : "eye-off-outline"}
-                size={24}
-                color="black"
-                onPress={() => setSecured((prev) => !prev)}
-              />
-            </View>
+            <Ionicons
+              style={styles.passwordInputIcon}
+              name={secured ? "eye-outline" : "eye-off-outline"}
+              size={24}
+              color="black"
+              onPress={() => setSecured((prev) => !prev)}
+            />
+          </View>
 
-            <View style={[styles.passwordInput, styles.textInputs]}>
-              <TextInput
-                placeholder="Volvé a ingresar tu contraseña"
-                placeholderTextColor="#979797"
-                secureTextEntry={securedConfirm}
-              />
-              <Ionicons
-                style={styles.passwordInputIcon}
-                name={securedConfirm ? "eye-outline" : "eye-off-outline"}
-                size={24}
-                color="black"
-                onPress={() => setSecuredConfirm((prev) => !prev)}
-              />
-            </View>
-          <Pressable style={styles.button} onPress={() => navigation.navigate('Register2Screen')}>
+          <View style={[styles.passwordInput, styles.textInputs]}>
+            <TextInput
+              placeholder="Volvé a ingresar tu contraseña"
+              placeholderTextColor="#979797"
+              secureTextEntry={securedConfirm}
+              onChangeText={(value) => handleConfirmPassword(value)}
+            />
+            <Ionicons
+              style={styles.passwordInputIcon}
+              name={securedConfirm ? "eye-outline" : "eye-off-outline"}
+              size={24}
+              color="black"
+              onPress={() => setSecuredConfirm((prev) => !prev)}
+            />
+          </View>
+          <Pressable
+            style={styles.button}
+            onPress={() => {
+              if (!validateEmail(form.email)) {
+                alert("Ingrese un correo electrónico válido");
+                return;
+              }
+
+              if (!validatePassword(form.password, form.confirmPassword)) {
+                alert("Las contraseñas no coinciden");
+                return;
+              }
+
+              if (!validateForm(form)) {
+                alert(
+                  "Por favor, complete todos los campos antes de continuar"
+                );
+                return;
+              }
+
+              navigation.navigate("Register2Screen");
+            }}
+          >
             <GreenButton text={"Registrarme"} />
           </Pressable>
         </View>
