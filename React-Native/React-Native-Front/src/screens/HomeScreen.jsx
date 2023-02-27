@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
   ImageBackground,
+  Pressable,
 } from "react-native";
 
 import HighlightedCarousel from "../components/HighlightedCarousel";
@@ -18,7 +19,7 @@ export const HomeScreen = ({ navigation }) => {
           <HomeScreenHeader navigation={navigation} />
           <View style={styles.publishView}>
             <Text style={styles.bodyTitle}>Publica tu anuncio. Es gratis!</Text>
-            <TouchableOpacity
+            <Pressable
               style={styles.publishButton}
               onPress={() => navigation.navigate("Publicar")}
             >
@@ -50,7 +51,7 @@ export const HomeScreen = ({ navigation }) => {
                   </Text>
                 </View>
               </ImageBackground>
-            </TouchableOpacity>
+            </Pressable>
           </View>
           <View style={styles.featuredView}>
             <Text style={styles.featuredTitle}>Destacados</Text>
@@ -121,6 +122,7 @@ const styles = StyleSheet.create({
   featuredView: {
     width: "100%",
     marginTop: 38,
+    marginBottom: 21
   },
   featuredTitle: {
     fontSize: 16,

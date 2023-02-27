@@ -4,13 +4,13 @@ import {
   View,
   StyleSheet,
   ImageBackground,
-  TouchableOpacity,
+  Pressable,
 } from "react-native";
 
 const HomeDirectOwners = () => {
   return (
     <View style={styles.ownersContainer}>
-      <TouchableOpacity>
+      <Pressable>
         <ImageBackground
           source={require("../../assets/HighlightedData/sala-estar-lujo-loft-representacion-3d-estanteria.png")}
           style={styles.image}
@@ -20,7 +20,7 @@ const HomeDirectOwners = () => {
             Departamentos con dueño directo
           </Text>
         </ImageBackground>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 };
@@ -31,11 +31,13 @@ const styles = StyleSheet.create({
   ownersContainer: {
     marginBottom: 0,
     margin: 2,
+
   },
   description: {
     fontSize: 14,
-    fontWeight: "500",
-    color: "#fff",
+    fontWeight: "800",
+    lineHeight: 24,
+    color: "#EDF6F9",
     paddingTop: 40,
   },
   image: {

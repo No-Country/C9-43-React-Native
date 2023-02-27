@@ -27,6 +27,7 @@ export const RegisterScreen = ({ navigation }) => {
 
   console.log(form);
 
+
   const [input, setInput] = useState({
     email: "",
     password: "",

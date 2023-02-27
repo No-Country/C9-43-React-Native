@@ -17,8 +17,6 @@ import {
   GarageModal,
 } from "../components/modal/";
 import {
-  useModal,
-  useFilters,
   UseAreaModal,
   UsePriceModal,
   UseEnvironmentModal,
@@ -26,163 +24,166 @@ import {
   useAntiquityModal,
 } from "../hooks/index";
 import { FilterHeader } from "../components/layout/";
+import { useContext } from "react";
+import { FiltersContext } from "../context/filters-context/FiltersContext";
 
 export const FilterScreen = ({ navigation }) => {
   const { isAreaModalOpen, handleToggleAreaModal } = UseAreaModal();
   const { isPriceModalOpen, handleTogglePriceModal } = UsePriceModal();
-  const { isGarageModalOpen, handleToggleGarageModal} = useGarageModal()
-  const { isAntiquityModalOpen, handleToggleAntiquityModal } = useAntiquityModal()
+  const { isGarageModalOpen, handleToggleGarageModal } = useGarageModal();
+  const { isAntiquityModalOpen, handleToggleAntiquityModal } =
+    useAntiquityModal();
   const { isEnvironmentModalOpen, handleToggleEnvironmentModal } =
     UseEnvironmentModal();
-  const {
-    operationBg,
-    typeOfPropertyBg,
-    handleOperationBg,
-    handleTypeOfPropertyBg,
-    handleCleanSelections,
-  } = useFilters();
+  
+  const {filters, handleFilters, handleCleanFilters} = useContext(FiltersContext)
 
   return (
     <View style={styles.containerScreen}>
-      <FilterHeader onPress={handleCleanSelections} navigation={navigation} />
+      <FilterHeader onPress={handleCleanFilters} navigation={navigation} />
       <View style={styles.container}>
-        <Text style={styles.searchText}>Ubicación</Text>
-        <View style={styles.fakeContainer}>
-          <View style={styles.searchInput}>
-            <MaterialIcons
-              style={styles.searchIcon}
-              name="search"
-              size={24}
-              color="#979797"
-            />
-            <TextInput
-              style={styles.searchTextInput}
-              placeholder="Inicia una nueva búsqueda"
-            />
-            <MaterialCommunityIcons
-              style={styles.searchCloseIcon}
-              name="close-circle-outline"
-              size={24}
-              color="black"
-            />
+        <ScrollView style={styles.modalsContainer}>
+          <Text style={styles.searchText}>Ubicación</Text>
+          <View style={styles.fakeContainer}>
+            <View style={styles.searchInput}>
+              <MaterialIcons
+                style={styles.searchIcon}
+                name="search"
+                size={24}
+                color="#979797"
+              />
+              <TextInput
+                style={styles.searchTextInput}
+                placeholder="Inicia una nueva búsqueda"
+              />
+              <MaterialCommunityIcons
+                style={styles.searchCloseIcon}
+                name="close-circle-outline"
+                size={24}
+                color="black"
+              />
+            </View>
+          <Text style={styles.operatorText}>Tipo de operación</Text>
           </View>
-        </View>
-        <Text style={styles.operatorText}>Tipo de operación</Text>
-        <View style={styles.operatorContainer}>
-          <Pressable
-            style={[
-              styles.typesContainer,
-              operationBg === "venta" ? styles.backgroundSelected : null,
-            ]}
-            onPress={() => handleOperationBg("venta")}
-          >
-            <Text
-              style={[
-                styles.typesText,
-                operationBg === "venta" ? styles.textSelected : null,
-              ]}
-            >
-              Venta
-            </Text>
-          </Pressable>
-          <Pressable
-            style={[
-              styles.typesContainer,
-              operationBg === "alquiler" ? styles.backgroundSelected : null,
-            ]}
-            onPress={() => handleOperationBg("alquiler")}
-          >
-            <Text
-              style={[
-                styles.typesText,
-                operationBg === "alquiler" ? styles.textSelected : null,
-              ]}
-            >
-              Alquiler
-            </Text>
-          </Pressable>
-        </View>
-        <View style={[styles.separator, styles.separatorOperator]} />
-        <Text style={styles.propertyText}>Tipo de inmueble</Text>
-        <View style={styles.propertyContainer}>
-          <View style={styles.fakeIconContainer}>
+          <View style={styles.operatorContainer}>
             <Pressable
               style={[
-                styles.propertyCardContainer,
-                typeOfPropertyBg === "depto" ? styles.backgroundSelected : null,
+                styles.typesContainer,
+                filters.operationType === "venta" ? styles.backgroundSelected : null,
               ]}
-              onPress={() => handleTypeOfPropertyBg("depto")}
+              onPress={() => handleFilters("operationType", 'venta')}
             >
-              <Image
-                style={styles.propertyIcon}
-                source={require("../../assets/domain.png")}
-              />
               <Text
                 style={[
-                  styles.propertySecondaryText,
-                  typeOfPropertyBg === "depto" ? styles.textSelected : null,
+                  styles.typesText,
+                  filters.operationType === "venta" ? styles.textSelected : null,
                 ]}
               >
-                Depto.
+                Venta
               </Text>
             </Pressable>
+            <Pressable
+              style={[
+                styles.typesContainer,
+                filters.operationType === "alquiler" ? styles.backgroundSelected : null,
+              ]}
+              onPress={() => handleFilters('operationType', "alquiler")}
+            >
+              <Text
+                style={[
+                  styles.typesText,
+                  filters.operationType === "alquiler" ? styles.textSelected : null,
+                ]}
+              >
+                Alquiler
+              </Text>
+            </Pressable>
+          </View>
+          <View style={[styles.separator, styles.separatorOperator]} />
+          <Text style={styles.propertyText}>Tipo de inmueble</Text>
+          <View style={styles.propertyContainer}>
+            <View style={styles.fakeIconContainer}>
+              <Pressable
+                style={[
+                  styles.propertyCardContainer,
+                  filters.propertyType === "departamento"
+                    ? styles.backgroundSelected
+                    : null,
+                ]}
+                onPress={() => handleFilters("propertyType", "departamento")}
+              >
+                <Image
+                  style={styles.propertyIcon}
+                  source={require("../../assets/domain.png")}
+                />
+                <Text
+                  style={[
+                    styles.propertySecondaryText,
+                    filters.propertyType === "departamento" ? styles.textSelected : null,
+                  ]}
+                >
+                  Depto.
+                </Text>
+              </Pressable>
+            </View>
+
+            <View style={styles.fakeIconContainer}>
+              <Pressable
+                style={[
+                  styles.propertyCardContainer,
+                  filters.propertyType === "casa"
+                    ? styles.backgroundSelected
+                    : null,
+                ]}
+                onPress={() => handleFilters("propertyType","casa")}
+              >
+                <Image
+                  style={styles.propertyIcon}
+                  source={require("../../assets/cottage.png")}
+                />
+                <Text
+                  style={[
+                    styles.propertySecondaryText,
+                    filters.propertyType === "casa" ? styles.textSelected : null,
+                  ]}
+                >
+                  Casa
+                </Text>
+              </Pressable>
+            </View>
+            <View style={styles.fakeIconContainer}>
+              <Pressable
+                style={[
+                  styles.propertyCardContainer,
+                  filters.propertyType === "terreno"
+                    ? styles.backgroundSelected
+                    : null,
+                ]}
+                onPress={() => handleFilters("propertyType","terreno")}
+              >
+                <Image
+                  style={styles.propertyIcon}
+                  source={require("../../assets/Vector.png")}
+                />
+                <Text
+                  style={[
+                    styles.propertySecondaryText,
+                    filters.propertyType === "terreno" ? styles.textSelected : null,
+                  ]}
+                >
+                  Terreno
+                </Text>
+              </Pressable>
+            </View>
           </View>
 
-          <View style={styles.fakeIconContainer}>
-            <Pressable
-              style={[
-                styles.propertyCardContainer,
-                typeOfPropertyBg === "casa" ? styles.backgroundSelected : null,
-              ]}
-              onPress={() => handleTypeOfPropertyBg("casa")}
-            >
-              <Image
-                style={styles.propertyIcon}
-                source={require("../../assets/cottage.png")}
-              />
-              <Text
-                style={[
-                  styles.propertySecondaryText,
-                  typeOfPropertyBg === "casa" ? styles.textSelected : null,
-                ]}
-              >
-                Casa
-              </Text>
-            </Pressable>
-          </View>
-          <View style={styles.fakeIconContainer}>
-            <Pressable
-              style={[
-                styles.propertyCardContainer,
-                typeOfPropertyBg === "terreno"
-                  ? styles.backgroundSelected
-                  : null,
-              ]}
-              onPress={() => handleTypeOfPropertyBg("terreno")}
-            >
-              <Image
-                style={styles.propertyIcon}
-                source={require("../../assets/Vector.png")}
-              />
-              <Text
-                style={[
-                  styles.propertySecondaryText,
-                  typeOfPropertyBg === "terreno" ? styles.textSelected : null,
-                ]}
-              >
-                Terreno
-              </Text>
-            </Pressable>
-          </View>
-        </View>
-        <ScrollView style={styles.modalsContainer}>
           <View style={[styles.separator, styles.separatorProperty]} />
           <Pressable
             style={styles.attributesContainer}
             onPress={handleTogglePriceModal}
           >
             <Text style={styles.primaryText}>Precio</Text>
-            <Text style={styles.secondText}>Indistinto</Text>
+            <Text style={styles.secondText}>{!filters.priceFrom && !filters.priceTo ? 'Indistinto' : `$${filters.priceFrom} - $${filters.priceTo}`}</Text>
           </Pressable>
           <View style={[styles.separator, styles.separatorMargin]} />
           <Pressable
@@ -190,7 +191,7 @@ export const FilterScreen = ({ navigation }) => {
             onPress={handleToggleAreaModal}
           >
             <Text style={styles.primaryText}>Superficie</Text>
-            <Text style={styles.secondText}>Indistinto</Text>
+            <Text style={styles.secondText}>{!filters.areaFrom && !filters.areaTo ? 'Indistinto' : `${filters.areaFrom} m² - ${filters.areaTo} m²`}</Text>
           </Pressable>
           <View style={[styles.separator, styles.separatorMargin]} />
           <Pressable
@@ -206,7 +207,7 @@ export const FilterScreen = ({ navigation }) => {
             onPress={handleToggleGarageModal}
           >
             <Text style={styles.primaryText}>Garage</Text>
-            <Text style={styles.secondText}>Indistinto</Text>
+            <Text style={styles.secondText}>{filters.garage ? 'Con garage' : filters.garage === false ? 'Sin garage' : 'Indistinto' }</Text>
           </Pressable>
           <View style={[styles.separator, styles.separatorMargin]} />
           <Pressable
@@ -214,11 +215,11 @@ export const FilterScreen = ({ navigation }) => {
             onPress={handleToggleAntiquityModal}
           >
             <Text style={styles.primaryText}>Antigüedad</Text>
-            <Text style={styles.secondText}>Indistinto</Text>
+            <Text style={styles.secondText}>{filters.antiquity ? 'Usado' : filters.antiquity === false ? 'A estrenar' : 'Indistinto'}</Text>
           </Pressable>
           <View style={[styles.separator, styles.separatorMargin]} />
         </ScrollView>
-        <Pressable style={styles.button}>
+        <Pressable style={styles.button} onPress={() => navigation.goBack()}>
           <GreenButton text="Aceptar" />
         </Pressable>
       </View>
@@ -234,6 +235,8 @@ export const FilterScreen = ({ navigation }) => {
       <FilterPriceModal
         isVisible={isPriceModalOpen}
         handleModalVisibility={handleTogglePriceModal}
+        filters={filters}
+        handleFilters={handleFilters}
       />
       <GarageModal
         isVisible={isGarageModalOpen}
@@ -254,10 +257,9 @@ const styles = StyleSheet.create({
   },
   container: {
     marginHorizontal: 16,
-    flex: 1
+    flex: 1,
   },
   searchText: {
-    marginTop: 7,
     fontWeight: "500",
     fontSize: 16,
     lineHeight: 24,
@@ -385,13 +387,13 @@ const styles = StyleSheet.create({
     letterSpacing: 0.15,
   },
   separatorProperty: {
-    // marginTop: 28,
+    marginTop: 28,
     borderBottomColor: "#CAC4D0",
     borderBottomWidth: 1,
   },
   modalsContainer: {
-    marginTop: 35,
-    marginBottom: 15
+    marginTop: 17,
+    marginBottom: 15,
   },
   attributesContainer: {
     flexDirection: "row",

@@ -51,12 +51,6 @@ const MainStack = () => {
           component={Register2Screen}
           options={{ headerShown: false }}
         />
-
-        <Stack.Screen
-          name="Filtros avanzados"
-          component={FilterScreen}
-          options={{ headerShown: false }}
-        />
 {/* 
         <Stack.Screen
           name="ContactAgency"

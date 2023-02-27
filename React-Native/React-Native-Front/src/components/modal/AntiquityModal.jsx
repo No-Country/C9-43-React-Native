@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {View, StyleSheet, Modal, Pressable, Text} from 'react-native';
+import { FiltersContext } from '../../context/filters-context/FiltersContext';
 import {  useAntiquitySelected } from '../../hooks/index';
 import { FilterTextedCheckbox } from '../layout';
 
 export const AntiquityModal = ({ isVisible, handleModalVisibility}) => {
   const {isBrandNewSelected, isUsedSelected, handleBrandNewSelected, handleUsedSelected} = useAntiquitySelected()
+  const { handleFilters } = useContext(FiltersContext)
   
+  const handleBrandNew = () => {
+    handleFilters('antiquity', false)
+    handleBrandNewSelected()
+  }
+
+  const handleUsed = () => {
+    handleFilters('antiquity', true)
+    handleUsedSelected()
+  }
 
   return (
     <Modal visible={isVisible} transparent={true} animationType={"fade"} >
@@ -14,17 +25,17 @@ export const AntiquityModal = ({ isVisible, handleModalVisibility}) => {
           <Text style={styles.textTitle}>Antigüedad</Text>
           <View style={styles.optionsContainer}>
             <Pressable style={styles.optionContainer}>
-              <FilterTextedCheckbox text={'A estrenar'} isChecked={isBrandNewSelected} setIsChecked={handleBrandNewSelected}/>
+              <FilterTextedCheckbox text={'A estrenar'} isChecked={isBrandNewSelected} setIsChecked={handleBrandNew}/>
             </Pressable>
             <Pressable style={styles.optionContainer}>
-              <FilterTextedCheckbox text={'Usado'} isChecked={isUsedSelected} setIsChecked={handleUsedSelected}/>
+              <FilterTextedCheckbox text={'Usado'} isChecked={isUsedSelected} setIsChecked={handleUsed}/>
             </Pressable>
           </View>
           <View style={styles.buttonsContainer}>
             <Pressable style={styles.button} onPress={handleModalVisibility}>
               <Text style={styles.buttonText}>Cancelar</Text>
             </Pressable>
-            <Pressable style={styles.button}>
+            <Pressable style={styles.button} onPress={handleModalVisibility}>
               <Text style={styles.buttonText}>Aceptar</Text>
             </Pressable>
           </View>

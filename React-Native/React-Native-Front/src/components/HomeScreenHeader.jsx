@@ -4,7 +4,7 @@ import {
   View,
   ImageBackground,
   StyleSheet,
-  TouchableOpacity,
+  Pressable,
 } from "react-native";
 
 const HomeScreenHeader = ({ navigation }) => {
@@ -20,7 +20,7 @@ const HomeScreenHeader = ({ navigation }) => {
         />
         <Text style={styles.headerTitle}>¡Hola!</Text>
         <Text style={styles.headerSubtitle}>¿Qué estás buscando?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Ubicacion")}>
+        <Pressable onPress={() => navigation.navigate("Ubicacion")}>
           <View style={styles.search}>
             <Image
               source={require("../../assets/icons/search-icon.png")}
@@ -28,7 +28,7 @@ const HomeScreenHeader = ({ navigation }) => {
             />
             <Text style={styles.newSearchText}>Inicia una nueva búsqueda</Text>
           </View>
-        </TouchableOpacity>
+        </Pressable>
       </ImageBackground>
     </View>
   );
@@ -69,6 +69,8 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   search: {
+    flexDirection: "row",
+    alignItems: 'center',
     width: 327,
     height: 56,
     backgroundColor: "#FFFFFF",
@@ -78,17 +80,17 @@ const styles = StyleSheet.create({
     borderColor: "#979797",
     textAlign: "center",
     borderRadius: 5,
-    flexDirection: "row",
   },
   searchIcon: {
     width: 18,
     height: 18,
-    marginTop: 18,
     margin: 15,
+    tintColor: '#979797'
   },
   newSearchText: {
-    fontSize: 16,
+    fontSize: 14,
+    lineHeight: 24,
     fontWeight: "400",
-    marginTop: 16,
+    color: '#979797'
   },
 });
