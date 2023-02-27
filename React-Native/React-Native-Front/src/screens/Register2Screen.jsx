@@ -11,56 +11,95 @@ import { GreenButton } from "../components";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { RegisterCompleteModal } from "../components/modal";
 import { useModal } from "../hooks";
+import axios from "axios";
+import { useState } from "react";
 
 // METI EL MODAL, PERO DESPUES TERMINALO DE CONFIGURAR BIEN
 export const Register2Screen = ({ navigation }) => {
-  const { isModalOpen, handleToggleModal } = useModal()
+  const { isModalOpen, handleToggleModal } = useModal();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.post(
+        "https://home-quest.onrender.com/api/v1/auth/register",
+        {
+          email: navigation.getParam("email"),
+          password: navigation.getParam("password"),
+          firstName,
+          lastName,
+        }
+      );
+      setIsLoading(false);
+      handleToggleModal();
+      alert(
+        "¡Registro completado!",
+        "Hemos enviado un email de confirmación a tu correo electrónico."
+      );
+    } catch (error) {
+      setIsLoading(false);
+      alert(
+        "Ha ocurrido un error",
+        "No se pudo completar el registro, por favor intenta de nuevo más tarde."
+      );
+    }
+  };
 
   return (
-    <KeyboardAwareScrollView style={{flex: 1, backgroundColor: '#fff'}}>
-        <View style={styles.container}>
-          <AntDesign
-            name="arrowleft"
-            size={24}
-            color="black"
-            style={styles.arrow}
-            onPress={() => navigation.goBack()}
+    <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
+      <View style={styles.container}>
+        <AntDesign
+          name="arrowleft"
+          size={24}
+          color="black"
+          style={styles.arrow}
+          onPress={() => navigation.goBack()}
+        />
+        <Image style={styles.logo} source={require("../../assets/logo.png")} />
+
+        <Text style={styles.title}>¿Cual es tu nombre?</Text>
+
+        <View style={[styles.inputs]}>
+          <TextInput
+            style={[styles.emailInput, styles.textInputs]}
+            placeholder="Ingresá tu Nombre"
+            placeholderTextColor="#979797"
+            onChangeText={setFirstName}
+            //onEndEditing={(e) => console.log(e.nativeEvent.text)}
+            value={firstName}
           />
-          <Image
-            style={styles.logo}
-            source={require("../../assets/logo.png")}
+
+          <TextInput
+            style={[styles.emailInput, styles.textInputs, { marginTop: 20 }]}
+            placeholder="Ingresá tu Apellido"
+            placeholderTextColor="#979797"
+            //onEndEditing={(e) => console.log(e.nativeEvent.text)}
+            onChangeText={setLastName}
+            value={setLastName}
           />
 
-          <Text style={styles.title}>¿Cual es tu nombre?</Text>
+          <View style={styles.separator} />
 
-          <View style={[styles.inputs]}>
-            <TextInput
-              style={[styles.emailInput, styles.textInputs]}
-              placeholder="Ingresá tu Nombre"
-              placeholderTextColor="#979797"
-              onEndEditing={e => console.log(e.nativeEvent.text)}
-            />
+          <Text style={styles.confirmationText}>Estaremos enviando un</Text>
+          <Text style={styles.confirmationGreenText}>
+            E-mail de confirmación
+          </Text>
 
-            <TextInput
-              style={[styles.emailInput, styles.textInputs, {marginTop: 20}]}
-              placeholder="Ingresá tu Apellido"
-              placeholderTextColor="#979797"
-              onEndEditing={e => console.log(e.nativeEvent.text)}
-            />
-            
-            <View style={styles.separator} />
-
-            <Text style={styles.confirmationText}>Estaremos enviando un</Text>
-            <Text style={styles.confirmationGreenText}>E-mail de confirmación</Text>
-
-            <Pressable style={styles.button} onPress={handleToggleModal}>
-              <GreenButton text={'Registrarme'} />
-            </Pressable>
-          </View>
+          <Pressable
+            style={styles.button}
+            onPress={handleSubmit}
+            disabled={isLoading}
+          >
+            <GreenButton text={isLoading ? "Cargando..." : "Registrarme"} />
+          </Pressable>
         </View>
-        {/* MODAL */}
-        <RegisterCompleteModal isOpen={isModalOpen} onPress={handleToggleModal} />
-        </KeyboardAwareScrollView>
+      </View>
+      {/* MODAL */}
+      <RegisterCompleteModal isOpen={isModalOpen} onPress={handleToggleModal} />
+    </KeyboardAwareScrollView>
   );
 };
 
@@ -71,12 +110,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: '#fff'
+    backgroundColor: "#fff",
   },
   arrow: {
     alignSelf: "flex-start",
     marginTop: 38,
-    marginLeft: 23
+    marginLeft: 23,
   },
   logo: {
     marginTop: 38,
@@ -110,24 +149,24 @@ const styles = StyleSheet.create({
   separator: {
     width: 328,
     marginTop: 28,
-    borderBottomColor: '#979797',
-    borderBottomWidth: 1
+    borderBottomColor: "#979797",
+    borderBottomWidth: 1,
   },
   confirmationText: {
     marginTop: 13,
-    color: '#1E1E1E',
-    fontWeight: '500',
+    color: "#1E1E1E",
+    fontWeight: "500",
     fontSize: 12,
-    lineHeight: 16
+    lineHeight: 16,
   },
   confirmationGreenText: {
-    color: '#018349',
-    fontWeight: '500',
+    color: "#018349",
+    fontWeight: "500",
     fontSize: 12,
-    lineHeight: 16
+    lineHeight: 16,
   },
   button: {
     marginTop: 50,
-    width: 326
-  }
+    width: 326,
+  },
 });
