@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   View,
   StyleSheet,
@@ -8,10 +8,12 @@ import {
   FlatList,
 } from "react-native";
 import { useState } from "react";
-import { SimpleHeader } from "../components/layout";
+import { SimpleHeader, UnregisteredMessage } from "../components/layout";
 import { color } from "@rneui/base";
+import { UserCredentialsContext } from "../context/user-credentials-context/UserCredentialsContext";
 
 export const MessageScreen = () => {
+  const { userCredentials } = useContext(UserCredentialsContext)
   const [isRead, setIsRead] = useState(false);
   const [messages, setMessages] = useState([
     {
@@ -62,7 +64,12 @@ export const MessageScreen = () => {
   return (
     <View style={[styles.container, isRead && styles.messageRead]}>
       <SimpleHeader title={"Mensajes"} />
-      <FlatList
+      
+      {
+        !userCredentials.email ? (<UnregisteredMessage text={'enviar un mensaje'} />)
+        :
+        (
+          <FlatList
         data={messages}
         renderItem={renderMessage}
         keyExtractor={(item) => item.id}
@@ -71,6 +78,10 @@ export const MessageScreen = () => {
           <Text style={styles.emptyText}>No messages to display</Text>
         }
       />
+        )
+      }
+
+      
     </View>
   );
 };

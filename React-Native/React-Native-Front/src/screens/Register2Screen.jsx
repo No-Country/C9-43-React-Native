@@ -12,7 +12,8 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { RegisterCompleteModal } from "../components/modal";
 import { useModal } from "../hooks";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/auth-context/AuthContext";
 
 // METI EL MODAL, PERO DESPUES TERMINALO DE CONFIGURAR BIEN
 export const Register2Screen = ({ navigation }) => {
@@ -21,24 +22,34 @@ export const Register2Screen = ({ navigation }) => {
   const [lastName, setLastName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  const { authData } = useContext(AuthContext);
+
+  const email = authData.email;
+  const password = authData.password;
+
   const handleSubmit = async () => {
+    // fetch("https://home-quest.onrender.com/api/v1/auth/register", {
+    //   method: "POST",
+    //   body: JSON.stringify(data),
+    //   headers: {
+    //     Accept: 'application.json',
+    //     "Content-type": "application/json"
+    // }
+    // }).then((response) => response.json()).then(response => console.log(response));
     setIsLoading(true);
     try {
       const response = await axios.post(
         "https://home-quest.onrender.com/api/v1/auth/register",
         {
-          email: navigation.getParam("email"),
-          password: navigation.getParam("password"),
-          firstName,
-          lastName,
+          email,
+          password,
+          username: firstName,
+          phone: lastName,
         }
       );
+      console.log(response)
       setIsLoading(false);
       handleToggleModal();
-      alert(
-        "¡Registro completado!",
-        "Hemos enviado un email de confirmación a tu correo electrónico."
-      );
     } catch (error) {
       setIsLoading(false);
       alert(
@@ -98,7 +109,7 @@ export const Register2Screen = ({ navigation }) => {
         </View>
       </View>
       {/* MODAL */}
-      <RegisterCompleteModal isOpen={isModalOpen} onPress={handleToggleModal} />
+      <RegisterCompleteModal isOpen={isModalOpen} onPress={ () => navigation.navigate('LoginScreen')} />
     </KeyboardAwareScrollView>
   );
 };

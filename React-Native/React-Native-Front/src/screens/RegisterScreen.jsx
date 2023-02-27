@@ -4,20 +4,25 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
 } from "react-native";
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { GreenButton } from "../components";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import axios from "axios";
+import { AuthContext } from "../context/auth-context/AuthContext";
 
 export const RegisterScreen = ({ navigation }) => {
+  const { login, authData } = useContext(AuthContext)
   const [secured, setSecured] = useState(true);
   const [securedConfirm, setSecuredConfirm] = useState(true);
   const [form, setForm] = useState({});
   const [confirmError, setConfirmError] = useState(false);
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
   const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -25,14 +30,8 @@ export const RegisterScreen = ({ navigation }) => {
     setForm({ ...form, [name]: value });
   };
 
-  console.log(form);
-
-
-  const [input, setInput] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+  console.log(authData);
+  
   const handleEmail = (value) => {
     setInput({ ...input, email: value });
   };
@@ -60,6 +59,29 @@ export const RegisterScreen = ({ navigation }) => {
   const validateForm = (form) => {
     return form.email && form.password && form.confirmPassword;
   };
+
+  const handleNext = () => {
+    if (!validateEmail(form.email)) {
+      alert("Ingrese un correo electrónico válido");
+      return;
+    }
+
+    if (!validatePassword(form.password, form.confirmPassword)) {
+      alert("Las contraseñas no coinciden");
+      return;
+    }
+
+    if (!validateForm(form)) {
+      alert(
+        "Por favor, complete todos los campos antes de continuar"
+      );
+      return;
+    }
+
+    login(form)
+
+    navigation.navigate("Register2Screen");
+  }
 
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
@@ -118,28 +140,9 @@ export const RegisterScreen = ({ navigation }) => {
           </View>
           <Pressable
             style={styles.button}
-            onPress={() => {
-              if (!validateEmail(form.email)) {
-                alert("Ingrese un correo electrónico válido");
-                return;
-              }
-
-              if (!validatePassword(form.password, form.confirmPassword)) {
-                alert("Las contraseñas no coinciden");
-                return;
-              }
-
-              if (!validateForm(form)) {
-                alert(
-                  "Por favor, complete todos los campos antes de continuar"
-                );
-                return;
-              }
-
-              navigation.navigate("Register2Screen");
-            }}
+            onPress={handleNext}
           >
-            <GreenButton text={"Registrarme"} />
+            <GreenButton text={"Siguiente"} />
           </Pressable>
         </View>
       </View>
