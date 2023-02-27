@@ -42,7 +42,7 @@ export const LoginScreen = ({ navigation }) => {
         "No se pudo completar el registro, por favor intenta de nuevo más tarde."
       );
     }
-    navigation.navigate('Home')
+    navigation.navigate('HomeScreen')
   }
 
   return (

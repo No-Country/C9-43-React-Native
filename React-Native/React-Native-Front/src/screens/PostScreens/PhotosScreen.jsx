@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View, Image } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { GreenButton } from "../../components";
 import { IconHeader } from "../../components/layout";
@@ -10,8 +10,10 @@ import { PublishProgressContext } from "../../context/publish-progress-context/P
 
 export const PhotosScreen = ({ navigation }) => {
   const { handlePublishPost } = useContext(PublishPostContext);
-  const { handlePublishProgress } = useContext(PublishProgressContext)
+  const { publishProgress, handlePublishProgress } = useContext(PublishProgressContext)
   const [pictures, setPictures] = useState([]);
+
+  console.log(pictures)
 
   const handlePictures = async () => {
     if (pictures.length === 10) return;
@@ -24,10 +26,14 @@ export const PhotosScreen = ({ navigation }) => {
       alert("Por favor ingrese fotos");
       return;
     }
-    handlePublishProgress('pictures', 20)
-    const URLArray = await uploadPostsImages(pictures);
-    await handlePublishPost("pictures", URLArray);
-    navigation.goBack();
+    try{
+      const URLArray = await uploadPostsImages(pictures);
+      await handlePublishPost("pictures", URLArray);
+      handlePublishProgress('pictures', 20)
+      navigation.goBack();
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
@@ -47,6 +53,7 @@ export const PhotosScreen = ({ navigation }) => {
 
         <Text style={styles.counter}>Agregadas: {pictures.length}/10</Text>
 
+        <View style={styles.picturesContainer}>
         <Pressable style={styles.photoContainer} onPress={handlePictures}>
           <Feather
             style={{ textAlign: "center" }}
@@ -55,6 +62,10 @@ export const PhotosScreen = ({ navigation }) => {
             color="black"
           />
         </Pressable>
+          {
+            pictures ? pictures.map((pic, index) => (<Image style={styles.image} key={index} source={{uri: pic.uri}} />)) : null
+          }
+        </View>
       </View>
       <Pressable style={styles.buttonContainer} onPress={handleNext}>
         <GreenButton text={"Aceptar"} />
@@ -87,10 +98,16 @@ const styles = StyleSheet.create({
     fontSize: 10,
     lineHeight: 24,
   },
+  picturesContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    marginTop: 16,
+    
+  },
   photoContainer: {
     width: 140,
     height: 96,
-    marginTop: 16,
     borderRadius: 4,
     backgroundColor: "#D9D9D9",
     justifyContent: "center",
@@ -99,4 +116,9 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 16,
   },
+  image: {
+    width: 140,
+    height: 96,
+    borderRadius: 4,
+  }
 });

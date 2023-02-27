@@ -1,8 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
 import { CheckBox } from "@rneui/base";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import * as Progress from 'react-native-progress'
 
-export const PressableStages = ({ title, description, path, isChecked }) => {
+export const PressableStages = ({ title, description, path, isChecked, loader }) => {
   const navigation = useNavigation();
 
   return (
@@ -12,13 +13,24 @@ export const PressableStages = ({ title, description, path, isChecked }) => {
     >
       <View style={styles.container}>
         <Text style={styles.pressableTitle}>{title}</Text>
-        <CheckBox
-          checked={isChecked}
-          iconType="material-community"
-          checkedIcon='check-circle'
-          uncheckedIcon={false}
-          checkedColor="#018349"
-        />
+        {
+          !loader ? (
+            <CheckBox
+              checked={isChecked}
+              iconType="material-community"
+              checkedIcon='check-circle'
+              uncheckedIcon={false}
+              checkedColor="#018349"
+            />
+          ) 
+          : 
+          (
+            <Progress.Circle
+              size={30}
+              width={200}
+            />
+          )
+        }
       </View>
       <Text style={styles.pressableSubtitle}>{description}</Text>
     </Pressable>
