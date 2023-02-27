@@ -3,12 +3,19 @@ import { Pressable, StyleSheet, Text, View } from "react-native"
 import { GreenButton, PostInputs } from "../../components"
 import { IconHeader } from "../../components/layout"
 import { PublishPostContext } from "../../context/publish-post-context/PublishPostContext"
+import { PublishProgressContext } from "../../context/publish-progress-context/PublishProgressContext"
 
 export const ContactScreen = ({ navigation }) => {
-  const [contactInputs, setContactInputs] = useState({email: '', phone: ''})
+  const { publishPost, handlePublishPost } = useContext(PublishPostContext)
+  const { handlePublishProgress } = useContext(PublishProgressContext)
 
-  const handleInputs = (name, input) => {
-    setContactInputs({...contactInputs, [name]: input})
+  const handleNext = () => {
+    if (publishPost.phone < 10) {
+      alert('No dejes campos vacios')
+      return
+    }
+    handlePublishProgress('contact', 10)
+    navigation.goBack()
   }
 
   return (
@@ -35,12 +42,14 @@ export const ContactScreen = ({ navigation }) => {
               placeholder: 'Ej: +54 11 3045-2149',
               name: 'phone',
               keyboard: 'numeric'
+              
             }
           ]}
-          handleInputs={handleInputs}
+          handleInputs={handlePublishPost}
+          publishPost={publishPost}
         />
       </View>
-      <Pressable style={styles.buttonContainer} onPress={() => navigation.goBack()}>
+      <Pressable style={styles.buttonContainer} onPress={handleNext}>
         <GreenButton text={'Aceptar'}/>
       </Pressable>
     </View>

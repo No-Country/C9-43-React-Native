@@ -15,7 +15,8 @@ export const publishPostInitialState = {
   antiquity: null,
   propertyType: '',
   businessType: '',
-  parking: false
+  parking: false,
+  phone: ''
 }
 
 export const PublishPostContext = createContext()
