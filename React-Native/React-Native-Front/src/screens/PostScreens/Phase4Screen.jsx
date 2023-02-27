@@ -11,7 +11,7 @@ import { IconHeader } from "../../components/layout";
 import { PostModal } from "../../components/modal/PostModal";
 import { useModal } from "../../hooks";
 import * as Progress from "react-native-progress";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { PublishPostContext } from "../../context/publish-post-context/PublishPostContext";
 import { PublishProgressContext } from "../../context/publish-progress-context/PublishProgressContext";
 
@@ -114,7 +114,7 @@ export const Phase4Screen = ({ navigation }) => {
           title={"Fotos"}
           description={"Agregá fotos y planos del inmueble"}
           path={"PhotosScreen"}
-          isChecked={publishPost.pictures.length >= 1}
+          isChecked={publishPost.pictures.length > 0}
         />
 
         <PressableStages

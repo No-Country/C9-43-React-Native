@@ -1,3 +1,4 @@
+import React from 'react'
 import * as SplashScreen from "expo-splash-screen";
 import MainStack from "./navigation/MainStack";
 import { UserCredentialsProvider } from "./src/context/user-credentials-context/UserCredentialsContext";
@@ -9,8 +10,10 @@ export default function App() {
   setTimeout(SplashScreen.hideAsync, 2000);
 
   return (
+    <React.StrictMode>
     <UserCredentialsProvider>
       <MainStack />
     </UserCredentialsProvider>
+    </React.StrictMode>
   );
 }

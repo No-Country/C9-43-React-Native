@@ -2,7 +2,7 @@ import { createContext, useState } from "react"
 
 export const publishProgressInitialState = {
   propertyType: 0,
-  descritpion: 0,
+  description: 0,
   location: 0,
   ambiances: 0,
   characteristics: 0,
