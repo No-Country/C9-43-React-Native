@@ -22,7 +22,6 @@ class AuthServices {
         where: { email },
         attributes: ["email", "id", "password"]
       });
-      console.log(user)
       if (user) {
         const isValid = bcrypt.compareSync(password, user.password);
         return isValid ? { isValid, user } : { isValid };

@@ -30,6 +30,10 @@ const Properties = db.define("properties", {
     type: DataTypes.STRING,
     allowNull: false
   },
+  address: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
   sqMeters: {
     type: DataTypes.FLOAT,
     allowNull: false
@@ -55,7 +59,7 @@ const Properties = db.define("properties", {
     defaultValue: true
   },
   propertyType: {
-    type: DataTypes.ENUM("casa", "departmento", "terreno"),
+    type: DataTypes.ENUM("casa", "departamento", "terreno"),
     allowNull: false
   },
   businessType: {

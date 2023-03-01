@@ -9,7 +9,6 @@ const initModels = () => {
 
   Favorites.belongsTo(Users, { as: "user", foreignKey: "userId" });
   Users.hasMany(Favorites, { as: "favorite", foreignKey: "userId" });
-
   Favorites.belongsTo(Properties, { as: "property", foreignKey: "propertyId" });
   Properties.hasMany(Favorites, { as: "favorite", foreignKey: "propertyId" });
 

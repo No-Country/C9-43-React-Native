@@ -1,20 +1,6 @@
 const PropertiesServices = require("../services/properties.services");
 const PicturesServices = require("../services/pictures.services");
 
-const getUserProperties = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const result = await UsersServices.getUserProps(id);
-    if (result) {
-      res.json(result);
-    } else {
-      next({ message: "Usuario no encontrado" });
-    }
-  } catch (error) {
-    next(error)
-  }
-};
-
 const createProperty = async (req, res, next) => {
   try {
     const newProperty = req.body;
@@ -24,7 +10,7 @@ const createProperty = async (req, res, next) => {
     const picturesArray = pictures.map(url => {
       return { url, propertyId }
     });
-    const addedPictures = await PicturesServices.create(picturesArray);
+    const addedPictures = await PicturesServices.addPictures(picturesArray);
     if (result && addedPictures) {
       res.status(201).json({ message: "Propiedad creada exitosamente" });
     } else {
@@ -64,4 +50,4 @@ const deleteProperty = async (req, res, next) => {
   }
 };
 
-module.exports = { createProperty, updateProperty, deleteProperty, getUserProperties };
+module.exports = { createProperty, updateProperty, deleteProperty };
