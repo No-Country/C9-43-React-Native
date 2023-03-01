@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import {View, StyleSheet, Text, TextInput, Pressable, KeyboardAvoidingView} from 'react-native';
 import { GreenButton } from '../components';
@@ -12,8 +13,9 @@ const initialValues = {
 
 
 export const ContactAgencyScreen = () => {
-  const { modalVisible, handleModalVisibility } = useModal()
+  const { isModalOpen, handleToggleModal } = useModal()
   const [ values, setValues] = useState(initialValues)
+  const navigation = useNavigation()
 
   const handleContact = (key, value) => {
     console.log(value)
@@ -28,7 +30,7 @@ export const ContactAgencyScreen = () => {
       keyboardVerticalOffset={40}
       style={styles.keyboard}>
     <View style={styles.container}>
-      <IconHeader icon={'close'} title={'Contactar a la agencia'} />
+      <IconHeader icon={'close'} title={'Contactar a la agencia'} navigation={navigation}/>
       <View style={styles.mainContainer}>
         <Text style={styles.titleText}>Ingresá tus datos</Text>
         <View style={styles.labelInputContainer}>
@@ -51,13 +53,12 @@ export const ContactAgencyScreen = () => {
           <TextInput value={values.message} style={styles.textAreaInput} multiline={true} numberOfLines={4} maxLength={100} placeholder='Estoy interesado en este inmueble, me gustaría recibir más información.' onChangeText={(txt) => handleContact('message', txt)} />
         </View>
         <View style={styles.separator} />
-        <Pressable onPress={handleSubmit}>
+        <Pressable onPress={handleToggleModal}>
           <GreenButton text={'Enviar'}/>
         </Pressable>
       </View>
       {/* MODAL */}
-      
-    <ContactAgencyModal isOpen={modalVisible} onPress={handleModalVisibility}/>
+      <ContactAgencyModal isOpen={isModalOpen} onPress={handleToggleModal}/>
     </View>
     </KeyboardAvoidingView>
   );

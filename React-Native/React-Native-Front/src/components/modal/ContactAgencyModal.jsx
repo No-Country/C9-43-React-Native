@@ -4,8 +4,6 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 
 export const ContactAgencyModal = ({ isOpen, onPress }) => {
-  
-
   return (
     <Modal visible={isOpen} transparent={true} animationType={'fade'}>
       <Pressable onPress={onPress} style={styles.opacityBackground}>

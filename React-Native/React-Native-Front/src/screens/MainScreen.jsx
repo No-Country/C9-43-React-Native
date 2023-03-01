@@ -14,7 +14,7 @@ export const MainScreen = ({ navigation }) => {
     <View style={styles.container}>
     <ImageBackground
       style={styles.containerImg}
-      source={require("../../assets/mainScreen-bg.png")}
+      source={require("../../assets/main-bg.png")}
       imageStyle={{ resizeMode: 'stretch' }}
     >
       <StatusBar
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   buttonsContainer: {
-    marginTop: 144,
+    marginTop: 130,
     width: "90%",
   },
   button: {
