@@ -9,6 +9,8 @@ export const ContactScreen = ({ navigation }) => {
   const { publishPost, handlePublishPost } = useContext(PublishPostContext);
   const { handlePublishProgress } = useContext(PublishProgressContext);
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
   const handleNext = () => {
     if (publishPost.phone < 10) {
       alert("No dejes campos vacios");
@@ -18,19 +20,14 @@ export const ContactScreen = ({ navigation }) => {
       alert("Ingresa un correo electrónico válido");
       return;
     }
-    
-    handlePublishProgress('contact', 15)
-    navigation.goBack()
-  }
-
-
     if (publishPost.phone.length < 10) {
       alert("El número de teléfono debe tener al menos 10 caracteres");
       return;
     }
-    handlePublishProgress("contact", 10);
-    navigation.goBack();
-  };
+    
+    handlePublishProgress('contact', 15)
+    navigation.goBack()
+  }
 
   return (
     <View style={styles.container}>

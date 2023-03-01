@@ -12,11 +12,6 @@ export const PostInputs = ({
   handleInputs,
   publishPost,
 }) => {
-  const [currency, setCurrency] = useState("pesos");
-
-  const handleCurrency = (str) => {
-    setCurrency(str);
-  };
 
   return (
     <View style={styles.container}>
@@ -42,7 +37,7 @@ export const PostInputs = ({
                   value={publishPost[name]}
                 />
 
-                <View style={styles.buttonsContainer}>
+                <View >
                   {/* <Pressable
                     style={[
                       styles.buttonPesos,
@@ -65,21 +60,10 @@ export const PostInputs = ({
                   </Pressable> */}
 
                   <Pressable
-                    style={[
-                      styles.buttonDolares,
-                      currency === "dollar"
-                        ? { backgroundColor: "#018349" }
-                        : { backgroundColor: "#fff" },
-                    ]}
-                    onPress={() => handleCurrency("dollar")}
+                    style={styles.buttonDolares}
                   >
                     <Text
-                      style={[
-                        styles.buttonText,
-                        currency === "dollar"
-                          ? { color: "#fff" }
-                          : { color: "#018349" },
-                      ]}
+                      style={styles.buttonText}
                     >
                       USD
                     </Text>
@@ -141,17 +125,19 @@ const styles = StyleSheet.create({
     letterSpacing: 0.1,
     height: 24,
   },
-  buttonsContainer: {
-    flexDirection: "row",
-    width: 35,
-    height: 20,
-    borderWidth: 1,
-    borderColor: "#018349",
-    borderRadius: 4,
-  },
+  // buttonsContainer: {
+  //   flexDirection: "row",
+  //   width: 35,
+  //   height: 20,
+  //   borderWidth: 1,
+  //   borderColor: "#018349",
+  //   borderRadius: 4,
+  // },
   buttonText: {
-    fontSize: 9,
-    textAlign: "center",
+    fontWeight: '500',
+    fontSize: 11,
+    padding: 2,
+    color: '#fff',
   },
   // buttonPesos: {
   //   justifyContent: "center",
@@ -160,11 +146,12 @@ const styles = StyleSheet.create({
   //   borderRightColor: "#018349",
   // },
   buttonDolares: {
-    // justifyContent: "center",
-    // width: 35,
     justifyContent: "center",
+    alignItems: 'center',
+    marginBottom: 12,
     width: 35,
-    borderRightWidth: 1,
-    borderRightColor: "#018349",
+    height: 28,
+    borderRadius: 7,
+    backgroundColor: '#018349'
   },
 });

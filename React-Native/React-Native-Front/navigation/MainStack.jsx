@@ -6,6 +6,7 @@ import {
   FilterScreen,
   LoginScreen,
   MainScreen,
+  PropertyScreen,
   Register2Screen,
   RegisterScreen,
 } from "../src/screens";
@@ -23,7 +24,7 @@ const MainStack = () => {
   return (
     <AuthProvider>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="MainScreen">
+        <Stack.Navigator initialRouteName="MainScreen" screenOptions={{headerShown: false}}>
           <Stack.Screen
             name="HomeScreen"
             component={TabNavigator}
@@ -53,12 +54,17 @@ const MainStack = () => {
             component={Register2Screen}
             options={{ headerShown: false }}
           />
-          {/* 
+          <Stack.Screen
+          name="PropertyScreen"
+          component={PropertyScreen}
+          
+        />
+          
         <Stack.Screen
         name="ContactAgency"
         component={ContactAgencyScreen}
         options={{ headerShown: false }}
-      /> */}
+      />
         </Stack.Navigator>
       </NavigationContainer>
     </AuthProvider>
