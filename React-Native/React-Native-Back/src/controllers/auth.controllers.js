@@ -1,20 +1,20 @@
 const AuthServices = require("../services/auth.services");
 const UsersServices = require("../services/users.services");
 const transporter = require("../utils/mailer");
-require("dotenv").config()
+require("dotenv").config();
 
 const register = async (req, res, next) => {
   try {
     const newUser = req.body;
     const result = await AuthServices.register(newUser);
     if (result) {
-      const url = `localhost:8000/api/v1/auth/confirmation/${result.id}/${result.token}`;
+      const url = `${process.env.PUBLIC_URL}/api/v1/auth/confirmation/${result.id}/${result.token}`;
       await transporter.sendMail({
-        from: process.env.G_EMAIL,
+        from: process.env.O_EMAIL,
         to: result.email,
         subject: "Confirmar Email || Home Quest",
         html: `<h1>Confirma tu email</h1> <p></p><p>Solo haz click en el siguiente <a href=${url}>${url}</a>`
-      })
+      });
       res.status(201).json({ message: "Usuario creado exitosamente" });
     } else {
       next({ message: "Usuario ya existe en la base de datos" });
@@ -35,6 +35,8 @@ const login = async (req, res, next) => {
         const userData = { id, email };
         const token = await AuthServices.genToken(userData);
         userData.token = token;
+        userData.userId = userData.id;
+        delete userData.id;
         res.json(userData);
       } else {
         next({ message: "Credendiales erroneas" });

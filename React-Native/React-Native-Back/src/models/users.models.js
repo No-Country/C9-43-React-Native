@@ -23,16 +23,17 @@ const Users = db.define("users", {
   },
   phone: {
     type: DataTypes.STRING,
-    allowNull: false
   },
   profilePicture: {
     type: DataTypes.STRING
   },
   firstName: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false
   },
   lastName: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false
   },
   documentId: {
     type: DataTypes.INTEGER
@@ -47,7 +48,7 @@ const Users = db.define("users", {
       const hash = bcrypt.hashSync(password, 10);
       user.password = hash
     }
-  },
+  }
 });
 
 module.exports = Users;
