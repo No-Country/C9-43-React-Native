@@ -1,20 +1,14 @@
-import {
-  Image,
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { AntDesign, Ionicons } from "@expo/vector-icons";
-import { useContext, useState } from "react";
-import { GreenButton } from "../components";
+import { Ionicons } from '@expo/vector-icons';
+import { useContext, useState } from 'react';
+import {View, StyleSheet, Image, Text, Pressable, TextInput} from 'react-native';
+import { UserCredentialsContext } from '../../context/user-credentials-context/UserCredentialsContext';
+import { useNavigation } from '@react-navigation/native';
+import { GreenButton } from '../GreenButton';
 import axios from 'axios'
-import { UserCredentialsContext } from "../context/user-credentials-context/UserCredentialsContext";
 
-export const LoginScreen = ({ navigation }) => {
+export const UnregisteredMessage = ({ text }) => {
   const {userCredentials, handleUserCredentials} = useContext(UserCredentialsContext)
+  const navigation = useNavigation()
   const [secured, setSecured] = useState(true);
   const [inputs, setInputs] = useState({email: '', password: ''})
 
@@ -36,32 +30,18 @@ export const LoginScreen = ({ navigation }) => {
       console.log(response.data)
       handleUserCredentials(response.data)
     } catch (error) {
-      console.log(error.response.data)
+      console.log(error)
       alert(
         "Ha ocurrido un error",
         "No se pudo completar el registro, por favor intenta de nuevo más tarde."
       );
     }
-    navigation.navigate('HomeScreen')
   }
 
   return (
-    <KeyboardAwareScrollView style={{flex: 1, backgroundColor: '#fff'}}>
     <View style={styles.container}>
-      <AntDesign
-        name="arrowleft"
-        size={24}
-        color="black"
-        style={styles.arrow}
-        onPress={() => navigation.goBack()}
-      />
-
-      <Image style={styles.logo} source={require("../../assets/logo.png")} />
-
-      <Text style={styles.title}>Bienvenido a Home Quest!</Text>
-
-      <Text style={styles.subtitle}>Ingresar con mi E-Mail</Text>
-
+      <Image source={require('../../../assets/logo.png')} />
+      <Text style={styles.titleText}>Para {text} ingresá{'\n'} con tu cuenta:</Text>
       <View style={styles.inputs}>
         <TextInput
           style={[styles.emailInput, styles.textInputs]}
@@ -96,44 +76,40 @@ export const LoginScreen = ({ navigation }) => {
         </View>
 
         <Pressable style={styles.button} onPress={handleLogin}>
-          <GreenButton text='Aceptar' />
+          <GreenButton text='Enviar' />
+        </Pressable>
+      </View>
+      <View style={styles.separator}>
+        <View style={styles.leftSeparator} />
+        <Text style={styles.textSeparator}>O</Text>
+        <View style={styles.rightSeparator} />
+      </View>
+      <View style={styles.registerContainer}>
+        <Text style={styles.secondaryText}>No tengo cuenta,</Text>
+        <Pressable onPress={() => navigation.navigate('RegisterScreen')}>
+          <Text style={styles.registerText}> Registrarme</Text>
         </Pressable>
       </View>
     </View>
-    </KeyboardAwareScrollView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: "center",
-    backgroundColor: "#FFFFFF",
+    alignItems: 'center',
+    marginTop: 20
   },
-  arrow: {
-    alignSelf: "flex-start",
-    marginTop: 38,
-    marginLeft: 23
-  },
-  logo: {
-    marginTop: 40,
-    width: 89,
-    height: 66,
-  },
-  title: {
-    fontWeight: "500",
-    fontSize: 19,
-    marginTop: 32,
-  },
-  subtitle: {
-    marginTop: 11,
-    fontWeight: "400",
-    fontSize: 16,
+  titleText: {
+    marginTop: 10,
+    textAlign: 'center',
+    fontSize: 14,
+    fontWeight: '400',
+    lineHeight: 21
   },
   inputs: {
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 45,
+    marginTop: 20,
     width: 100,
     paddingHorizontal: 16,
   },
@@ -172,29 +148,42 @@ const styles = StyleSheet.create({
   passwordInputIcon: {
     marginHorizontal: 20,
   },
-  joinButton: {
-    backgroundColor: "#018349",
-    marginTop: 30,
-    width: 328,
-    height: 49,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 4,
-    marginTop: 50,
-    shadowColor: "black",
-    shadowOpacity: 0.26,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
-    elevation: 5,
-  },
-  joinButtonText: {
-    color: "#FFFFFF",
-    fontWeight: "500",
-    letterSpacing: 1.25,
-    fontSize: 14,
-  },
   button: {
     width: 328,
-    marginTop: 44
+    marginTop: 20
+  },
+  separator: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 35
+  },
+  leftSeparator: {
+    width: 146.5,
+    borderBottomWidth: 1,
+    borderColor: '#979797'
+  },
+  rightSeparator: {
+    width: 146.5,
+    borderBottomWidth: 1,
+    borderColor: '#979797'
+  },
+  textSeparator: {
+    paddingHorizontal: 10
+  },
+  registerContainer: {
+    flexDirection: 'row', 
+    marginTop: 20
+  },
+  secondaryText: {
+    fontSize: 12,
+    color: '#1E1E1E',
+    fontWeight: '500',
+    lineHeight: 16
+  },
+  registerText: {
+    fontSize: 12,
+    color: '#018349',
+    fontWeight: '500',
+    lineHeight: 16
   }
-});
+})

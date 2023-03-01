@@ -18,6 +18,11 @@ export const ContactScreen = ({ navigation }) => {
       alert("Ingresa un correo electrónico válido");
       return;
     }
+    
+    handlePublishProgress('contact', 15)
+    navigation.goBack()
+  }
+
 
     if (publishPost.phone.length < 10) {
       alert("El número de teléfono debe tener al menos 10 caracteres");

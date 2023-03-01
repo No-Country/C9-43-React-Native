@@ -7,6 +7,6 @@ export * from './FilterOrderByModal';
 export * from './FilterPriceModal';
 export * from './GarageModal';
 export * from './LanguageModal';
-export * from './LogOutModal';
+export * from './LogOutDeleteModal';
 export * from './PostModal';
 export * from './RegisterCompleteModal';

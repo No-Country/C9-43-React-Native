@@ -4,20 +4,25 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
 } from "react-native";
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { GreenButton } from "../components";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import axios from "axios";
+import { AuthContext } from "../context/auth-context/AuthContext";
 
 export const RegisterScreen = ({ navigation }) => {
+  const { login, authData } = useContext(AuthContext)
   const [secured, setSecured] = useState(true);
   const [securedConfirm, setSecuredConfirm] = useState(true);
   const [form, setForm] = useState({});
   const [confirmError, setConfirmError] = useState(false);
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
   const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -25,24 +30,12 @@ export const RegisterScreen = ({ navigation }) => {
     setForm({ ...form, [name]: value });
   };
 
-  console.log(form);
-
-
-  const [input, setInput] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-  const handleEmail = (value) => {
-    setInput({ ...input, email: value });
-  };
-  const handlePassword = (value) => {
-    setInput({ ...input, password: value });
-  };
+  console.log(authData);
+  
   const handleConfirmPassword = (value) => {
-    setInput({ ...input, confirmPassword: value });
+    // setInput({ ...input, confirmPassword: value });
     setForm({ ...form, confirmPassword: value });
-    if (input.password !== value) {
+    if (form.password !== value) {
       setConfirmError(true);
     } else {
       setConfirmError(false);
@@ -60,6 +53,29 @@ export const RegisterScreen = ({ navigation }) => {
   const validateForm = (form) => {
     return form.email && form.password && form.confirmPassword;
   };
+
+  const handleNext = () => {
+    if (!validateEmail(form.email)) {
+      alert("Ingrese un correo electrónico válido");
+      return;
+    }
+
+    if (!validatePassword(form.password, form.confirmPassword)) {
+      alert("Las contraseñas no coinciden");
+      return;
+    }
+
+    if (!validateForm(form)) {
+      alert(
+        "Por favor, complete todos los campos antes de continuar"
+      );
+      return;
+    }
+
+    login(form)
+
+    navigation.navigate("Register2Screen");
+  }
 
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
@@ -82,7 +98,7 @@ export const RegisterScreen = ({ navigation }) => {
             placeholderTextColor="#979797"
             keyboardType="email-address"
             onEndEditing={(e) => changed("email", e.nativeEvent.text)}
-            value={form.email}
+            
           />
           <View style={[styles.passwordInput, styles.textInputs]}>
             <TextInput
@@ -90,6 +106,7 @@ export const RegisterScreen = ({ navigation }) => {
               placeholderTextColor="#979797"
               secureTextEntry={secured}
               onEndEditing={(e) => changed("password", e.nativeEvent.text)}
+              
             />
 
             <Ionicons
@@ -118,28 +135,9 @@ export const RegisterScreen = ({ navigation }) => {
           </View>
           <Pressable
             style={styles.button}
-            onPress={() => {
-              if (!validateEmail(form.email)) {
-                alert("Ingrese un correo electrónico válido");
-                return;
-              }
-
-              if (!validatePassword(form.password, form.confirmPassword)) {
-                alert("Las contraseñas no coinciden");
-                return;
-              }
-
-              if (!validateForm(form)) {
-                alert(
-                  "Por favor, complete todos los campos antes de continuar"
-                );
-                return;
-              }
-
-              navigation.navigate("Register2Screen");
-            }}
+            onPress={handleNext}
           >
-            <GreenButton text={"Registrarme"} />
+            <GreenButton text={"Siguiente"} />
           </Pressable>
         </View>
       </View>

@@ -11,25 +11,34 @@ import { IconHeader } from "../../components/layout";
 import { PostModal } from "../../components/modal/PostModal";
 import { useModal } from "../../hooks";
 import * as Progress from "react-native-progress";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { PublishPostContext } from "../../context/publish-post-context/PublishPostContext";
 import { PublishProgressContext } from "../../context/publish-progress-context/PublishProgressContext";
+import { postProperty } from "../../services/postProperty";
+import { UserCredentialsContext } from "../../context/user-credentials-context/UserCredentialsContext";
 
 export const Phase4Screen = ({ navigation }) => {
   const { publishPost } = useContext(PublishPostContext);
   const { publishProgress } = useContext(PublishProgressContext);
+  const { userCredentials } = useContext(UserCredentialsContext)
   const { isModalOpen, handleToggleModal } = useModal();
+  const [progress, setProgress] = useState(0)
 
-  const progress = Object.values(publishProgress).reduce(
+  console.log(userCredentials)
+
+  useEffect(() => {
+    const prog = Object.values(publishProgress).reduce(
     (prev, curr) => prev + curr,
     0
   );
+  setProgress(prog)
+  },[publishProgress])
   
-  console.log(publishProgress)
-
-
-  const handlePublish = () => {
+  const handlePublish = async () => {
+    const data = {...publishPost, ...userCredentials, userId: 2}
+    console.log(data)
     if (progress === 100) {
+      await postProperty(data)
       handleToggleModal()
     }
   }
@@ -114,7 +123,7 @@ export const Phase4Screen = ({ navigation }) => {
           title={"Fotos"}
           description={"Agregá fotos y planos del inmueble"}
           path={"PhotosScreen"}
-          isChecked={publishPost.pictures.length >= 1}
+          isChecked={publishProgress.pictures > 0}
         />
 
         <PressableStages

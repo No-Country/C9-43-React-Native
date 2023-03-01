@@ -5,17 +5,19 @@ import {
   ImageBackground,
   StyleSheet,
   Pressable,
+  StatusBar,
 } from "react-native";
 
 const HomeScreenHeader = ({ navigation }) => {
   return (
     <View style={styles.container}>
+      <StatusBar backgroundColor={'#fff'}/>
       <ImageBackground
-        source={require("../../assets/Home/home-background.png")}
+        source={require("../../assets/home-bg.png")}
         style={styles.header}
       >
         <Image
-          source={require("../../assets/Home/homeQuest-Logo.png")}
+          source={require("../../assets/logo-home.png")}
           style={styles.logo}
         />
         <Text style={styles.headerTitle}>¡Hola!</Text>
@@ -50,22 +52,23 @@ const styles = StyleSheet.create({
   header: {
     alignItems: "center",
     width: "100%",
+    
   },
   logo: {
-    marginTop: 50,
+    marginTop: 35,
     width: 100,
     height: 75,
   },
   headerTitle: {
-    marginTop: 18,
+    marginTop: 17,
     fontSize: 19,
-    fontWeight: "500",
+    fontWeight: "700",
     color: "#fff",
   },
   headerSubtitle: {
     marginTop: 12,
     fontSize: 16,
-    fontWeight: "400",
+    fontWeight: "700",
     color: "#fff",
   },
   search: {
@@ -74,7 +77,7 @@ const styles = StyleSheet.create({
     width: 327,
     height: 56,
     backgroundColor: "#FFFFFF",
-    marginTop: 36,
+    marginTop: 23,
     marginBottom: 53,
     borderWidth: 1,
     borderColor: "#979797",

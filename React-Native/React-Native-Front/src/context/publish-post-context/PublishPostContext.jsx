@@ -8,6 +8,7 @@ export const publishPostInitialState = {
   price: null,
   city: '',
   region: '',
+  address: '',
   sqMeters: null,
   ambiances: null,
   bedrooms: null,
@@ -16,7 +17,7 @@ export const publishPostInitialState = {
   propertyType: '',
   businessType: '',
   parking: false,
-  phone: ''
+  phone: '',
 }
 
 export const PublishPostContext = createContext()

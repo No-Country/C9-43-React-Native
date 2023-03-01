@@ -9,6 +9,7 @@ export const LocationScreen = ({ navigation }) => {
   const { publishPost, handlePublishPost } = useContext(PublishPostContext);
   const { handlePublishProgress } = useContext(PublishProgressContext);
 
+
   const MIN_DESCRIPTION_LENGTH = 20;
 
   console.log(publishPost);
@@ -54,10 +55,15 @@ export const LocationScreen = ({ navigation }) => {
               name: "city",
             },
             {
-              title: "Indicá en que provincia está ubicado",
-              placeholder: "Ej: Buenos Aires",
-              name: "region",
+              title: 'Indicá en que provincia está ubicado',
+              placeholder: 'Ej: Buenos Aires',
+              name: 'region'
             },
+            {
+              title: 'Indicá dirección aproximada',
+              placeholder: 'Ej: Colón al 300',
+              name: 'address'
+            }
           ]}
           handleInputs={handleInputs}
           publishPost={publishPost}

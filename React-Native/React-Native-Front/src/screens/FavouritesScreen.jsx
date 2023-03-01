@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import { FavouriteCard } from "../components/FavouriteCard";
-import { SimpleHeader } from "../components/layout";
+import { SimpleHeader, UnregisteredMessage } from "../components/layout";
 import { PropertyCard } from "../components/PropertyCard";
+import { UserCredentialsContext } from "../context/user-credentials-context/UserCredentialsContext";
 
 const HighlightedCards = [
   { key: 1, component: <FavouriteCard /> },
@@ -12,10 +13,15 @@ const HighlightedCards = [
 ];
 
 export const FavouritesScreen = () => {
+  const { userCredentials } = useContext(UserCredentialsContext)
+
   return (
     <View style={styles.container}>
       <SimpleHeader title={'Favoritos'} />
-      <FlatList
+
+      {
+        !userCredentials.email ? (<UnregisteredMessage text={'guardar favoritos'}/>) : (
+          <FlatList
         showsVerticalScrollIndicator={false}
         snapToInterval={365}
         horizontal={false}
@@ -25,6 +31,8 @@ export const FavouritesScreen = () => {
         keyExtractor={(item) => item.key}
         style={styles.cardsContainer}
       />
+        )
+      }
     </View>
   );
 };

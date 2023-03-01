@@ -4,7 +4,6 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 
 export const RegisterCompleteModal = ({ isOpen, onPress }) => {
-  
 
   return (
     <Modal visible={isOpen} transparent={true} animationType={'fade'}>
