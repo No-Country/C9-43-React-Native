@@ -32,16 +32,10 @@ export const RegisterScreen = ({ navigation }) => {
 
   console.log(authData);
   
-  const handleEmail = (value) => {
-    setInput({ ...input, email: value });
-  };
-  const handlePassword = (value) => {
-    setInput({ ...input, password: value });
-  };
   const handleConfirmPassword = (value) => {
-    setInput({ ...input, confirmPassword: value });
+    // setInput({ ...input, confirmPassword: value });
     setForm({ ...form, confirmPassword: value });
-    if (input.password !== value) {
+    if (form.password !== value) {
       setConfirmError(true);
     } else {
       setConfirmError(false);
@@ -104,7 +98,7 @@ export const RegisterScreen = ({ navigation }) => {
             placeholderTextColor="#979797"
             keyboardType="email-address"
             onEndEditing={(e) => changed("email", e.nativeEvent.text)}
-            value={form.email}
+            
           />
           <View style={[styles.passwordInput, styles.textInputs]}>
             <TextInput
@@ -112,6 +106,7 @@ export const RegisterScreen = ({ navigation }) => {
               placeholderTextColor="#979797"
               secureTextEntry={secured}
               onEndEditing={(e) => changed("password", e.nativeEvent.text)}
+              
             />
 
             <Ionicons

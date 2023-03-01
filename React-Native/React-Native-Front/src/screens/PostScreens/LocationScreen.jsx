@@ -9,15 +9,12 @@ export const LocationScreen = ({ navigation }) => {
   const { publishPost, handlePublishPost } = useContext(PublishPostContext)
   const { handlePublishProgress } = useContext(PublishProgressContext)
 
-  console.log(publishPost)
-
-
   const handleInputs = (name, input) => {
     handlePublishPost(name, input)
   }
 
   const handleAccept = () => {
-    if ( publishPost.city.length === 0 || publishPost.region.length === 0) {
+    if ( publishPost.city.length === 0 || publishPost.region.length === 0 || publishPost.address.length === 0) {
       alert('No dejes campos vacios')
       return
     } 
@@ -45,6 +42,11 @@ export const LocationScreen = ({ navigation }) => {
               title: 'Indicá en que provincia está ubicado',
               placeholder: 'Ej: Buenos Aires',
               name: 'region'
+            },
+            {
+              title: 'Indicá dirección aproximada',
+              placeholder: 'Ej: Colón al 300',
+              name: 'address'
             }
           ]}
           handleInputs={handleInputs}

@@ -20,12 +20,7 @@ export const FilteredResultScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <IconHeader icon={'arrow-back'} title={'Ubicación'} navigation={navigation}/>
-      <View style={styles.filterContainer}>
-        <Image
-          style={styles.imagen}
-          source={require("../../assets/icons/tune-icons.png")}
-        />
-        <View style={styles.internalFilterContainer}>
+      <View style={styles.filterContainer}>        
           <Pressable style={styles.filtersButtons} onPress={() => navigation.navigate('Filtros avanzados')}>
             <Text style={styles.filtersButtonsText}>Filtros</Text>
           </Pressable>
@@ -35,7 +30,6 @@ export const FilteredResultScreen = ({ navigation }) => {
           <Pressable style={styles.filtersButtons} onPress={handleToggleOrderByModal}>
             <Text style={styles.filtersButtonsText}>Ordenar</Text>
           </Pressable>
-        </View>
       </View>
 
       <FlatList
@@ -67,16 +61,10 @@ const styles = StyleSheet.create({
     marginTop: 8,
     alignItems:"center",
     justifyContent: 'space-evenly',
-    marginRight: 31,
     marginBottom: 10
   },
-  internalFilterContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '75%'
-  },
   filtersButtons: {
-    width: 75,
+    width: 80,
     paddingHorizontal: 14,
     paddingVertical: 8,
     borderRadius: 100,

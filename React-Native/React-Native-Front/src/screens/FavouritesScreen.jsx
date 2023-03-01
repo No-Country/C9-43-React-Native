@@ -14,7 +14,6 @@ const HighlightedCards = [
 
 export const FavouritesScreen = () => {
   const { userCredentials } = useContext(UserCredentialsContext)
-  console.log(userCredentials)
 
   return (
     <View style={styles.container}>

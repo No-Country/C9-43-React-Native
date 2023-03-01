@@ -1,19 +1,19 @@
 import {View, StyleSheet, Modal, Text, Pressable, Image} from 'react-native';
 
-export const LogOutModal = ({ isVisible, handleModalVisibility}) => {
+export const LogOutDeleteModal = ({ isVisible, handleModalVisibility, title, description, logout, onPress}) => {
   return (
     <Modal visible={isVisible} transparent={true} animationType={'fade'}>
       <Pressable onPress={handleModalVisibility} style={styles.opacityBackground}>
         <View style={styles.container}>
-          <Image source={require('../../../assets/icons/logout-icon.png')} />
-          <Text style={styles.textTitle}>Log out</Text>
-          <Text style={styles.textDescription}>¿Deseas salir de la aplicación?</Text>
+          <Image source={logout ? require('../../../assets/icons/logout-icon.png') : require('../../../assets/icons/caution-icon.png')} />
+          <Text style={styles.textTitle}>{title}</Text>
+          <Text style={styles.textDescription}>{description}</Text>
           <View style={styles.buttonsContainer}>
             <Pressable style={styles.button} onPress={handleModalVisibility}>
-              <Text style={styles.cancelText}>No</Text>
+              <Text style={styles.cancelText}>Cancelar</Text>
             </Pressable>
-            <Pressable style={styles.button} >
-              <Text style={styles.acceptText}>Sí</Text>
+            <Pressable style={styles.button} onPress={onPress}>
+              <Text style={styles.acceptText}>Aceptar</Text>
             </Pressable>
           </View>
         </View>
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     padding: 16
   },  
   cancelText: {
-    color: '#CB2D2D',
+    color: '#018349',
     fontWeight: '500',
     fontSize: 14
   },

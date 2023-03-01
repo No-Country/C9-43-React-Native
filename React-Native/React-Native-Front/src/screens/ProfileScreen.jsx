@@ -22,12 +22,12 @@ export const ProfileScreen = () => {
         <View style={styles.shadowContainer}>
           <View style={styles.middleContainer}>
             <Pressable style={styles.middleInternalContainer} onPress={() => handleOption('publish')}>
-              <Image source={option === 'publish' ? require('../../assets/icons/dollarHouseSelected-icon.png') : require('../../assets/icons/dollarHouse-icon.png')} style={option === 'publish' ? styles.dollarHouseIconSelected : styles.dollarHouseIcon}/>
+              <Image source={option === 'publish' ? require('../../assets/icons/settings-dollarHouse-icon.png') : require('../../assets/icons/dollarHouse-black-icon.png')} style={option === 'publish' ? styles.dollarHouseIconSelected : styles.dollarHouseIcon}/>
               <Text style={[styles.middleText, option === 'publish' ? styles.selectedText : null]}>Publicaciones</Text>
               <View style={styles.selectedBorderBottom} />
             </Pressable>
             <Pressable style={[styles.middleInternalContainer, styles.selected]} onPress={() => handleOption('message')}>
-              <Image source={require('../../assets/icons/message-icon.png')} style={[ option === 'message' ? styles.iconSelected : null]}/>
+              <Image source={ option === 'message' ? require('../../assets/icons/message-icon.png') : require('../../assets/icons/message-icon.png')} style={[ option === 'message' ? styles.iconSelected : null]}/>
               <Text style={[styles.middleText, option === 'message' ? styles.selectedText : null]}>Mensajes</Text>
             </Pressable>
           </View>
@@ -94,12 +94,12 @@ const styles = StyleSheet.create({
     
   },
   dollarHouseIconSelected: {
-    width: 30,
-    height: 30
+    // width: 30,
+    // height: 30
   },
   dollarHouseIcon: {
-    width: 25,
-    height: 25
+    // width: 25,
+    // height: 25
   },
   selected: {
 
