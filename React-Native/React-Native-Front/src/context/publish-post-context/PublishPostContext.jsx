@@ -8,6 +8,7 @@ export const publishPostInitialState = {
   price: null,
   city: '',
   region: '',
+  address: '',
   sqMeters: null,
   ambiances: null,
   bedrooms: null,

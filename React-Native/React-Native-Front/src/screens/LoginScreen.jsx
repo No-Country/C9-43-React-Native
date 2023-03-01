@@ -36,7 +36,7 @@ export const LoginScreen = ({ navigation }) => {
       console.log(response.data)
       handleUserCredentials(response.data)
     } catch (error) {
-      console.log(error)
+      console.log(error.response.data)
       alert(
         "Ha ocurrido un error",
         "No se pudo completar el registro, por favor intenta de nuevo más tarde."

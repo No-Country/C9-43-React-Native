@@ -14,7 +14,7 @@ export const ContactScreen = ({ navigation }) => {
       alert('No dejes campos vacios')
       return
     }
-    handlePublishProgress('contact', 10)
+    handlePublishProgress('contact', 15)
     navigation.goBack()
   }
 

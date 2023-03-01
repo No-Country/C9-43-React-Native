@@ -13,7 +13,8 @@ export const MainScreen = ({ navigation }) => {
   return (
     <ImageBackground
       style={styles.container}
-      source={require("../../assets/bg-image.png")}
+      source={require("../../assets/mainScreen-bg.png")}
+      imageStyle={{ flex: 1, resizeMode: 'stretch' }}
     >
       <StatusBar
         translucent
@@ -55,8 +56,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    paddingBottom: 100,
-    resizeMode: "cover",
+    
   },
   logoContainer: {
     paddingVertical: 55,

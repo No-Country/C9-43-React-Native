@@ -52,6 +52,7 @@ export const Register2Screen = ({ navigation }) => {
       handleToggleModal();
     } catch (error) {
       setIsLoading(false);
+      console.log(error.response.data)
       alert(
         "Ha ocurrido un error",
         "No se pudo completar el registro, por favor intenta de nuevo más tarde."
@@ -89,7 +90,7 @@ export const Register2Screen = ({ navigation }) => {
             placeholderTextColor="#979797"
             //onEndEditing={(e) => console.log(e.nativeEvent.text)}
             onChangeText={setLastName}
-            value={setLastName}
+            value={lastName}
           />
 
           <View style={styles.separator} />
