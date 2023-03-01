@@ -20,7 +20,7 @@ export const FavouritesScreen = () => {
       <SimpleHeader title={'Favoritos'} />
 
       {
-        !userCredentials.email ? (<UnregisteredMessage text={'guardar favoritos'}/>) : (
+        userCredentials.email ? (<UnregisteredMessage text={'guardar favoritos'}/>) : (
           <FlatList
         showsVerticalScrollIndicator={false}
         snapToInterval={365}

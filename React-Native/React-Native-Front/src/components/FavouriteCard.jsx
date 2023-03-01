@@ -35,15 +35,12 @@ export const FavouriteCard = () => {
         style={styles.imageBackground}
         imageStyle={styles.imageBackgroundContainer}
       >
-        <Pressable style={styles.trashIconContainer}>
-          <Image source={require("../../assets/icons/trash-icon.png")} />
-        </Pressable>
         <Pressable style={styles.heartContainer} onPress={favorite}>
           <Image
             source={
               isActive
-                ? require("../../assets/Home/heartActive.png")
-                : require("../../assets/Home/favorite.png")
+                ? require("../../assets/Home/favorite.png")
+                : require("../../assets/Home/heartActive.png")
             }
           />
         </Pressable>
@@ -109,16 +106,6 @@ const styles = StyleSheet.create({
   imageBackgroundContainer: {
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
-  },
-  trashIconContainer: {
-    position: 'absolute',
-    justifyContent: "center",
-    alignItems: "center",
-    height: 50,
-    backgroundColor: "rgba(203, 45, 45, 0.4)",
-    width: 50,
-    borderTopLeftRadius: 15,
-    borderBottomRightRadius: 10,
   },
   infoContainer: {
     marginTop: 5,

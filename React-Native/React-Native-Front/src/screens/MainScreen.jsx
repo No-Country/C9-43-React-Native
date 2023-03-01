@@ -11,10 +11,11 @@ import { GreenButton } from "../components/index";
 
 export const MainScreen = ({ navigation }) => {
   return (
+    <View style={styles.container}>
     <ImageBackground
-      style={styles.container}
+      style={styles.containerImg}
       source={require("../../assets/mainScreen-bg.png")}
-      imageStyle={{ flex: 1, resizeMode: 'stretch' }}
+      imageStyle={{ resizeMode: 'stretch' }}
     >
       <StatusBar
         translucent
@@ -49,17 +50,22 @@ export const MainScreen = ({ navigation }) => {
         </Pressable>
       </View>
     </ImageBackground>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    
     
   },
+  containerImg: {
+    flex: 1,
+    alignItems: 'center',
+  },
   logoContainer: {
-    paddingVertical: 55,
+    marginTop: 88
   },
   image: {
     width: 89,
@@ -73,7 +79,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   buttonsContainer: {
-    marginTop: 160,
+    marginTop: 144,
     width: "90%",
   },
   button: {
