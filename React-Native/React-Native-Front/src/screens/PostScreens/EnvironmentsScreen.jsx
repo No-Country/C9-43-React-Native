@@ -7,7 +7,7 @@ import { PublishProgressContext } from "../../context/publish-progress-context/P
 
 export const EnvironmentsScreen = ({ navigation }) => {
   const { publishPost, handlePublishPost } = useContext(PublishPostContext);
-  const { handlePublishProgress } = useContext(PublishProgressContext)
+  const { handlePublishProgress } = useContext(PublishProgressContext);
 
   const handleInputs = (name, input) => {
     handlePublishPost(name, input);
@@ -18,7 +18,12 @@ export const EnvironmentsScreen = ({ navigation }) => {
       alert("Seleccione una opcion valida");
       return;
     }
-    handlePublishProgress('ambiances', 10)
+    // Validar que el valor no sea menor o igual a 0
+    if (publishPost.ambiances <= 0) {
+      alert("Por favor ingrese una cantidad de ambientes valido");
+      return;
+    }
+    handlePublishProgress("ambiances", 10);
     navigation.goBack();
   };
 

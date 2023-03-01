@@ -10,7 +10,7 @@ export const PostInputs = ({
   ],
   type = "",
   handleInputs,
-  publishPost
+  publishPost,
 }) => {
   const [currency, setCurrency] = useState("pesos");
 
@@ -43,7 +43,7 @@ export const PostInputs = ({
                 />
 
                 <View style={styles.buttonsContainer}>
-                  <Pressable
+                  {/* <Pressable
                     style={[
                       styles.buttonPesos,
                       currency === "pesos"
@@ -62,7 +62,7 @@ export const PostInputs = ({
                     >
                       $
                     </Text>
-                  </Pressable>
+                  </Pressable> */}
 
                   <Pressable
                     style={[
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     flexDirection: "row",
-    width: 60,
+    width: 35,
     height: 20,
     borderWidth: 1,
     borderColor: "#018349",
@@ -153,14 +153,18 @@ const styles = StyleSheet.create({
     fontSize: 9,
     textAlign: "center",
   },
-  buttonPesos: {
-    justifyContent: "center",
-    width: 25,
-    borderRightWidth: 1,
-    borderRightColor: "#018349",
-  },
+  // buttonPesos: {
+  //   justifyContent: "center",
+  //   width: 25,
+  //   borderRightWidth: 1,
+  //   borderRightColor: "#018349",
+  // },
   buttonDolares: {
+    // justifyContent: "center",
+    // width: 35,
     justifyContent: "center",
     width: 35,
+    borderRightWidth: 1,
+    borderRightColor: "#018349",
   },
 });
