@@ -9,11 +9,8 @@ export const pickImageAsync = async () => {
   })
 
   if (!result.canceled) {
-    // console.log(result.assets[0].uri)
     const source = { uri: result.assets[0].uri }
-    console.log(source)
     return source
-    alert('Upload succesful')
   } else {
     alert('You did not select any image.')
   }
