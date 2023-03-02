@@ -13,5 +13,6 @@ export const pickImageAsync = async () => {
     return source
   } else {
     alert('You did not select any image.')
+    return null
   }
 }

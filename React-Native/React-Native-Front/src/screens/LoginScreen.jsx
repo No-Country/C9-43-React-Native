@@ -17,6 +17,7 @@ export const LoginScreen = ({ navigation }) => {
   const {userCredentials, handleUserCredentials} = useContext(UserCredentialsContext)
   const [secured, setSecured] = useState(true);
   const [inputs, setInputs] = useState({email: '', password: ''})
+  const [loading, setLoading] = useState(false)
 
   const handleChange = (name, value) => {
     setInputs({...inputs, [name]: value})
@@ -26,6 +27,7 @@ export const LoginScreen = ({ navigation }) => {
 
   const handleLogin = async () => {
     try {
+      setLoading(true)
       const response = await axios.post(
         "https://home-quest-app.onrender.com/api/v1/auth/login",
         {
@@ -35,7 +37,9 @@ export const LoginScreen = ({ navigation }) => {
       );
       console.log(response.data)
       handleUserCredentials(response.data)
+      setLoading(false)
     } catch (error) {
+      setLoading(false)
       console.log(error.response.data)
       alert(
         "Ha ocurrido un error",
@@ -96,7 +100,7 @@ export const LoginScreen = ({ navigation }) => {
         </View>
 
         <Pressable style={styles.button} onPress={handleLogin}>
-          <GreenButton text='Aceptar' />
+          <GreenButton text={!loading ? 'Aceptar' : 'Enviando...'} />
         </Pressable>
       </View>
     </View>

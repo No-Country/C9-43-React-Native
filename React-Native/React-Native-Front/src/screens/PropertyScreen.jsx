@@ -3,7 +3,6 @@ import React from "react";
 import { View, StyleSheet, Image, Text, ScrollView, Pressable } from "react-native";
 import { IconHeader } from "../components";
 import PagerView from "react-native-pager-view";
-import MapView from "react-native-maps";
 
 export const PropertyScreen = () => {
   const route = useRoute();
@@ -81,15 +80,7 @@ export const PropertyScreen = () => {
             {highlightedData[0].description}
           </Text>
           <Text style={styles.locationText}>Ubicación Aproximada</Text>
-          <MapView
-            style={styles.map}
-            region={{
-              latitude: 37.78825,
-              longitude: -122.4324,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
-            }}
-          />
+          {/* ACA VA EL MAPA QUE HAY QUE PONER TARJETA DE CREDITO */}
           <Text style={styles.characteristics}>Características</Text>
           <View style={styles.characteristicsContainer}>
             <Text style={styles.characteristicsKey}>

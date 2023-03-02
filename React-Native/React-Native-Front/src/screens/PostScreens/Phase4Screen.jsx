@@ -33,12 +33,13 @@ export const Phase4Screen = ({ navigation }) => {
   );
   setProgress(prog)
   },[publishProgress])
+
   
   const handlePublish = async () => {
-    const data = {...publishPost, ...userCredentials, userId: 2}
+    const data = {...publishPost, userId: userCredentials.userId}
     console.log(data)
     if (progress === 100) {
-      await postProperty(data)
+      await postProperty(data, userCredentials.token)
       handleToggleModal()
     }
   }
