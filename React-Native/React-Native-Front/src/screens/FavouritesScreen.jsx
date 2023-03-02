@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import { Button, FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import { FavouriteCard } from "../components/FavouriteCard";
 import { SimpleHeader, UnregisteredMessage } from "../components/layout";
 import { PropertyCard } from "../components/PropertyCard";
@@ -14,13 +15,32 @@ const HighlightedCards = [
 
 export const FavouritesScreen = () => {
   const { userCredentials } = useContext(UserCredentialsContext)
+  const [userFavourites, setUserFavourites] = useState()
+  const userId = userCredentials.userId
+  console.log(userId)
+
+  const handleFav = async () => {
+    try{
+      const response = await axios.get(`https://home-quest-app.onrender.com/api/v1/users/${userId}/favorites`, {
+        headers: {
+          'Authorization': `Bearer ${userCredentials.token}`
+        }
+      })
+      console.log(response.data)
+    } catch (error) {
+      console.log(error.response.data)
+    }
+  }
 
   return (
     <View style={styles.container}>
       <SimpleHeader title={'Favoritos'} />
 
       {
-        userCredentials.email ? (<UnregisteredMessage text={'guardar favoritos'}/>) : (
+        !userCredentials.email ? (<UnregisteredMessage text={'guardar favoritos'}/>) : (
+          <>
+          <Button title="Presionar" onPress={handleFav}/>
+          
           <FlatList
         showsVerticalScrollIndicator={false}
         snapToInterval={365}
@@ -31,6 +51,7 @@ export const FavouritesScreen = () => {
         keyExtractor={(item) => item.key}
         style={styles.cardsContainer}
       />
+      </>
         )
       }
     </View>
