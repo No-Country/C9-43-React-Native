@@ -53,6 +53,7 @@ export const PhotosScreen = ({ navigation }) => {
     }
     try {
       const URLArray = await uploadPostsImages(pictures);
+      console.log(URLArray)
       await handlePublishPost("pictures", URLArray);
       handlePublishProgress("pictures", 20);
       navigation.goBack();

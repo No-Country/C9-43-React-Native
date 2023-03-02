@@ -10,7 +10,7 @@ export const LocationScreen = ({ navigation }) => {
   const { handlePublishProgress } = useContext(PublishProgressContext);
 
 
-  const MIN_DESCRIPTION_LENGTH = 20;
+  const MIN_DESCRIPTION_LENGTH = 3;
 
   console.log(publishPost);
 

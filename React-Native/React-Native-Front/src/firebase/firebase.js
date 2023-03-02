@@ -34,3 +34,14 @@ export const uploadPostsImages = async (arr) => {
   })
   return urlArr
 }
+
+export const uploadProfileImage = async (image) => {
+  const response = await fetch(image.uri);
+  const blob = await response.blob();
+
+  const storageRef = ref(storage, 'profileImages/' + uuid.v4());
+  await uploadBytes(storageRef, blob);
+  const url = await getDownloadURL(storageRef);
+  
+  return url;
+};

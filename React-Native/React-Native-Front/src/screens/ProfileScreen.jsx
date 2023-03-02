@@ -4,24 +4,30 @@ import { useContext, useEffect, useState } from "react";
 import { View, StyleSheet, Image, Text, Pressable } from "react-native";
 import { ProfileHeader } from "../components/layout";
 import { UserCredentialsContext } from "../context/user-credentials-context/UserCredentialsContext";
-import { uploadPostsImages } from "../firebase/firebase";
+import { uploadPostsImages, uploadProfileImage } from "../firebase/firebase";
 import { pickImageAsync } from "../helpers";
+import { postAvatar } from "../services/postAvatar";
 
 export const ProfileScreen = () => {
   const { userCredentials } = useContext(UserCredentialsContext);
   const navigation = useNavigation();
   const [option, setOption] = useState("publish");
   const [userData, setUserData] = useState({});
-  const [profilePhoto, setProfilePhoto] = useState([]);
+  const [profilePhoto, setProfilePhoto] = useState();
 
   const handleOption = (str) => {
     setOption(str);
   };
 
-  const handleProfilePhoto = async () => {
-    await pickImageAsync()
-      .then((res) => uploadPostsImages([res])).then((res) => console.log(res))
-      .catch((err) => console.log(err));
+  const handleProfileImage = async () => {
+    const image = await pickImageAsync()
+    if (image) {
+      const url = await uploadProfileImage(image)
+      setProfilePhoto(url)
+    }
+    if (profilePhoto) {
+      postAvatar(profilePhoto, userCredentials.userId, userCredentials.token)
+    }
   };
 
   useEffect(() => {
@@ -50,7 +56,7 @@ export const ProfileScreen = () => {
       <ProfileHeader navigation={navigation} />
       <View style={styles.internalContainer}>
         {userData.profilePicture ? null : (
-          <Pressable onPress={handleProfilePhoto}>
+          <Pressable onPress={handleProfileImage}>
             <Image source={require("../../assets/no-profile-big.png")} />
           </Pressable>
         )}

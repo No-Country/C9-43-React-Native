@@ -11,6 +11,7 @@ export const UnregisteredMessage = ({ text }) => {
   const navigation = useNavigation()
   const [secured, setSecured] = useState(true);
   const [inputs, setInputs] = useState({email: '', password: ''})
+  const [loading, setLoading] = useState(false)
 
   const handleChange = (name, value) => {
     setInputs({...inputs, [name]: value})
@@ -20,6 +21,7 @@ export const UnregisteredMessage = ({ text }) => {
 
   const handleLogin = async () => {
     try {
+      setLoading(true)
       const response = await axios.post(
         "https://home-quest-app.onrender.com/api/v1/auth/login",
         {
@@ -29,7 +31,9 @@ export const UnregisteredMessage = ({ text }) => {
       );
       console.log(response.data)
       handleUserCredentials(response.data)
+      setLoading(false)
     } catch (error) {
+      setLoading(false)
       console.log(error.response.data)
       alert(
         "Ha ocurrido un error",
@@ -76,7 +80,7 @@ export const UnregisteredMessage = ({ text }) => {
         </View>
 
         <Pressable style={styles.button} onPress={handleLogin}>
-          <GreenButton text='Enviar' />
+          <GreenButton text={!loading ? 'Aceptar' : 'Enviando...'} />
         </Pressable>
       </View>
       <View style={styles.separator}>
