@@ -2,7 +2,6 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
   ImageBackground,
   Pressable,
@@ -14,55 +13,42 @@ import HomeDirectOwners from "../components/HomeDirectOwners";
 
 export const HomeScreen = ({ navigation }) => {
   return (
-    <ScrollView style={{backgroundColor: '#fff'}}>
-        <View style={[styles.container]}>
-          <HomeScreenHeader navigation={navigation} />
-          <View style={styles.publishView}>
-            <Text style={styles.bodyTitle}>Publica tu anuncio. Es gratis!</Text>
-            <Pressable
-              style={styles.publishButton}
-              onPress={() => navigation.navigate("Publicar")}
+    <ScrollView style={{ backgroundColor: "#fff" }}>
+      <View style={[styles.container]}>
+        <HomeScreenHeader navigation={navigation} />
+        <View style={styles.publishView}>
+          <Text style={styles.bodyTitle}>Publica tu anuncio. Es gratis!</Text>
+          <Pressable
+            style={styles.publishButton}
+            onPress={() => navigation.navigate("Publicar")}
+          >
+            <ImageBackground
+              source={require("../../assets/publish-photo.png")}
+              style={[styles.publishButton]}
             >
-              <ImageBackground
-                source={require("../../assets/Home/publish-button.png")}
-                style={[styles.publishButton]}
-              >
-                <View
-                  style={{
-                    width: 240,
-                    height: 45,
-                    backgroundColor: "#018349",
-                    position: "absolute",
-                    bottom: 0,
-                    shadowColor: "black",
-                    shadowOpacity: 0.26,
-                    shadowOffset: { width: 0, height: 2 },
-                    shadowRadius: 8,
-                    elevation: 5,
-                  }}
+              <View style={styles.buttonPublishContainer}>
+                <Text
+                  style={[
+                    styles.buttonText,
+                    { textAlign: "center", marginTop: 9 },
+                  ]}
                 >
-                  <Text
-                    style={[
-                      styles.buttonText,
-                      { textAlign: "center", marginTop: 9 },
-                    ]}
-                  >
-                    Publicar
-                  </Text>
-                </View>
-              </ImageBackground>
-            </Pressable>
-          </View>
-          <View style={styles.featuredView}>
-            <Text style={styles.featuredTitle}>Destacados</Text>
-          </View>
-          <View style={styles.carousel}>
-            <HighlightedCarousel />
-          </View>
+                  Publicar
+                </Text>
+              </View>
+            </ImageBackground>
+          </Pressable>
         </View>
-        <View style={styles.ownersContainer}>
-          <HomeDirectOwners />
+        <View style={styles.featuredView}>
+          <Text style={styles.featuredTitle}>Destacados</Text>
         </View>
+        <View style={styles.carousel}>
+          <HighlightedCarousel />
+        </View>
+      </View>
+      <View style={styles.ownersContainer}>
+        <HomeDirectOwners />
+      </View>
     </ScrollView>
   );
 };
@@ -96,9 +82,20 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     opacity: 0.9,
   },
+  buttonPublishContainer: {
+    marginTop: 238,
+    width: 240,
+    height: 45,
+    backgroundColor: "#018349",
+    shadowColor: "black",
+    shadowOpacity: 0.26,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 8,
+    elevation: 5,
+  },
 
   publishView: {
-    marginTop: 24,
+    marginTop: 13,
   },
   bodyTitle: {
     fontSize: 19,
@@ -110,7 +107,7 @@ const styles = StyleSheet.create({
     width: 246,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 24,
+    marginTop: 20,
     marginLeft: 50,
     marginRight: 50,
   },
@@ -121,8 +118,8 @@ const styles = StyleSheet.create({
   },
   featuredView: {
     width: "100%",
-    marginTop: 38,
-    marginBottom: 21
+    marginTop: 80,
+    marginBottom: 21,
   },
   featuredTitle: {
     fontSize: 16,

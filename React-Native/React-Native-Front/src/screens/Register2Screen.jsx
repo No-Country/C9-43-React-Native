@@ -39,7 +39,7 @@ export const Register2Screen = ({ navigation }) => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "https://home-quest.onrender.com/api/v1/auth/register",
+        "https://home-quest-app.onrender.com/api/v1/auth/register",
         {
           email,
           password,

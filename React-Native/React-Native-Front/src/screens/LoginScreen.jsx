@@ -27,7 +27,7 @@ export const LoginScreen = ({ navigation }) => {
   const handleLogin = async () => {
     try {
       const response = await axios.post(
-        "https://home-quest.onrender.com/api/v1/auth/login",
+        "https://home-quest-app.onrender.com/api/v1/auth/login",
         {
           email: inputs.email,
           password: inputs.password,
