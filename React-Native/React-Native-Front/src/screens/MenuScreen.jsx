@@ -34,7 +34,7 @@ export const MenuScreen = ({ navigation }) => {
           <View style={styles.profileContainer}>
             <Image
               style={styles.profilePicture}
-              source={require("../../assets/profile-picture.png")}
+              source={require("../../assets/no-avatar.png")}
             />
             <View style={styles.nameContainer}>
               <Text style={styles.nameText}>Guadalupe Gomez</Text>
@@ -107,7 +107,7 @@ export const MenuScreen = ({ navigation }) => {
               style={[styles.optionsSubContainer, { borderBottomWidth: 0 }]}
               onPress={handleToggleLogOutModal}
             >
-              <Image source={require("../../assets/icons/logout-icon.png")} />
+              <Image style={styles.logOutIcon} source={require("../../assets/icons/logout-icon.png")} />
               <Text style={styles.logoutText}>Log out</Text>
             </Pressable>
           ) : null}
@@ -201,4 +201,7 @@ const styles = StyleSheet.create({
     width: 24,
     height: 19,
   },
+  logOutIcon: {
+    marginLeft: 8
+  }
 });
