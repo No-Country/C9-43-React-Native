@@ -21,7 +21,7 @@ export const UnregisteredMessage = ({ text }) => {
   const handleLogin = async () => {
     try {
       const response = await axios.post(
-        "https://home-quest.onrender.com/api/v1/auth/login",
+        "https://home-quest-app.onrender.com/api/v1/auth/login",
         {
           email: inputs.email,
           password: inputs.password,
@@ -30,7 +30,7 @@ export const UnregisteredMessage = ({ text }) => {
       console.log(response.data)
       handleUserCredentials(response.data)
     } catch (error) {
-      console.log(error)
+      console.log(error.response.data)
       alert(
         "Ha ocurrido un error",
         "No se pudo completar el registro, por favor intenta de nuevo más tarde."
