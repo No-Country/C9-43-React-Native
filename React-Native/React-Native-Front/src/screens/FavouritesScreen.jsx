@@ -1,9 +1,8 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { Button, FlatList, Pressable, StyleSheet, Text, View } from "react-native";
+import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import { FavouriteCard } from "../components/FavouriteCard";
 import { SimpleHeader, UnregisteredMessage } from "../components/layout";
-import { PropertyCard } from "../components/PropertyCard";
 import { UserCredentialsContext } from "../context/user-credentials-context/UserCredentialsContext";
 
 const HighlightedCards = [
@@ -14,46 +13,56 @@ const HighlightedCards = [
 ];
 
 export const FavouritesScreen = () => {
-  const { userCredentials } = useContext(UserCredentialsContext)
-  const [userFavourites, setUserFavourites] = useState()
-  const userId = userCredentials.userId
-  console.log(userId)
+  const { userCredentials } = useContext(UserCredentialsContext);
+  const [userFavourites, setUserFavourites] = useState([]);
+  const userId = userCredentials.userId;
 
-  const handleFav = async () => {
-    try{
-      const response = await axios.get(`https://home-quest-app.onrender.com/api/v1/users/${userId}/favorites`, {
-        headers: {
-          'Authorization': `Bearer ${userCredentials.token}`
-        }
-      })
-      console.log(response.data)
-    } catch (error) {
-      console.log(error.response.data)
-    }
-  }
+  useEffect(() => {
+    const response = async () => {
+      await axios
+        .get(
+          `https://home-quest-app.onrender.com/api/v1/users/${userId}/favorites`,
+          {
+            headers: {
+              Authorization: `Bearer ${userCredentials.token}`,
+            },
+          }
+        )
+        .then((res) => {
+          if (res.data.favorite) {
+            setUserFavourites(res.data.favorite);
+          }
+        })
+        .catch((err) => console.log(err));
+    };
+    response();
+  }, [userCredentials]);
 
   return (
     <View style={styles.container}>
-      <SimpleHeader title={'Favoritos'} />
+      <SimpleHeader title={"Favoritos"} />
 
-      {
-        !userCredentials.email ? (<UnregisteredMessage text={'guardar favoritos'}/>) : (
-          <>
-          <Button title="Presionar" onPress={handleFav}/>
-          
-          <FlatList
-        showsVerticalScrollIndicator={false}
-        snapToInterval={365}
-        horizontal={false}
-        infinite={true}
-        data={HighlightedCards}
-        renderItem={({ item }) => <View>{item.component}</View>}
-        keyExtractor={(item) => item.key}
-        style={styles.cardsContainer}
-      />
-      </>
-        )
-      }
+      {!userCredentials.email ? (
+        <UnregisteredMessage text={"guardar favoritos"} />
+      ) : userFavourites.length > 1 ? (
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          snapToInterval={365}
+          horizontal={false}
+          infinite={true}
+          data={HighlightedCards}
+          renderItem={({ item }) => <View>{item.component}</View>}
+          keyExtractor={(item) => item.key}
+          style={styles.cardsContainer}
+        />
+      ) : (
+        <View style={styles.noFavcontainer}>
+          <Image source={require("../../assets/icons/no-fav-icon.png")} />
+          <Text style={styles.noFavText}>
+            Aquí encontrarás tus{"\n"} propiedades favoritas.
+          </Text>
+        </View>
+      )}
     </View>
   );
 };
@@ -61,9 +70,20 @@ export const FavouritesScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: "#fff",
   },
   cardsContainer: {
-    marginTop: 15
-  }
-})
+    marginTop: 15,
+  },
+  noFavcontainer: {
+    flex: 1,
+    alignItems: "center",
+    marginTop: 32,
+  },
+  noFavText: {
+    fontWeight: "500",
+    textAlign: "center",
+    fontSize: 16,
+    lineHeight: 24,
+  },
+});
