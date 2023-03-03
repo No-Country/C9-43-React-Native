@@ -6,7 +6,7 @@ import {
   Text,
   View,
 } from "react-native";
-import { GreenButton, PressableStages } from "../../components";
+import { ErrorMessage, GreenButton, PressableStages } from "../../components";
 import { IconHeader } from "../../components/layout";
 import { PostModal } from "../../components/modal/PostModal";
 import { useModal } from "../../hooks";
@@ -18,32 +18,46 @@ import { postProperty } from "../../services/postProperty";
 import { UserCredentialsContext } from "../../context/user-credentials-context/UserCredentialsContext";
 
 export const Phase4Screen = ({ navigation }) => {
-  const { publishPost } = useContext(PublishPostContext);
-  const { publishProgress } = useContext(PublishProgressContext);
-  const { userCredentials } = useContext(UserCredentialsContext)
+  const { publishPost, handleResetPublish } = useContext(PublishPostContext);
+  const { publishProgress, handleResetProgress } = useContext(
+    PublishProgressContext
+  );
+  const { userCredentials } = useContext(UserCredentialsContext);
   const { isModalOpen, handleToggleModal } = useModal();
-  const [progress, setProgress] = useState(0)
+  const [progress, setProgress] = useState(0);
+  const [isError, setIsError] = useState(false);
 
-  console.log(userCredentials)
+  console.log(userCredentials);
 
   useEffect(() => {
     const prog = Object.values(publishProgress).reduce(
-    (prev, curr) => prev + curr,
-    0
-  );
-  setProgress(prog)
-  },[publishProgress])
+      (prev, curr) => prev + curr,
+      0
+    );
+    setProgress(prog);
+  }, [publishProgress]);
 
-  
+  const handleFinishPublication = (navigation) => {
+    handleResetPublish();
+    handleResetProgress();
+    handleToggleModal();
+    navigation.navigate("Phase1Screen");
+  };
+
+  const handleError = (navigation) => {
+    setIsError(false);
+    navigation.navigate("Phase1Screen");
+  };
+
   const handlePublish = async () => {
-    const data = {...publishPost, userId: userCredentials.userId}
-    console.log(data)
+    const data = { ...publishPost, userId: userCredentials.userId };
+    console.log(data);
     if (progress === 100) {
-      await postProperty(data, userCredentials.token)
-      handleToggleModal()
+      await postProperty(data, userCredentials.token, handleToggleModal, setIsError);
+      
     }
-  }
- 
+  };
+
   return (
     <View style={styles.container}>
       <IconHeader
@@ -109,7 +123,7 @@ export const Phase4Screen = ({ navigation }) => {
             publishPost.sqMeters &&
             publishPost.bedrooms &&
             publishPost.bathrooms &&
-            publishPost.antiquity 
+            publishPost.antiquity
           }
         />
 
@@ -142,7 +156,11 @@ export const Phase4Screen = ({ navigation }) => {
       {/* MODAL */}
       <PostModal
         isModalOpen={isModalOpen}
-        handleToggleModal={handleToggleModal}
+        handleToggleModal={() => handleFinishPublication(navigation)}
+      />
+      <ErrorMessage
+        isVisible={isError}
+        handleModalVisibility={() => handleError(navigation)}
       />
     </View>
   );

@@ -9,7 +9,7 @@ export const SettingsScreen = ({ navigation }) => {
       <Pressable style={styles.optionsSubContainer} onPress={() => navigation.navigate('ProfileAndSettings')}>
           <Text style={styles.optionsText}>Perfil y configuración de la cuenta</Text>
         </Pressable>
-        <Pressable style={styles.optionsSubContainer} onPress>
+        <Pressable style={styles.optionsSubContainer} >
           <Text style={styles.optionsText}>Notificaciones</Text>
         </Pressable>
     </View>

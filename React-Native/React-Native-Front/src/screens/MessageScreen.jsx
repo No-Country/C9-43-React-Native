@@ -13,7 +13,7 @@ import { color } from "@rneui/base";
 import { UserCredentialsContext } from "../context/user-credentials-context/UserCredentialsContext";
 
 export const MessageScreen = () => {
-  const { userCredentials } = useContext(UserCredentialsContext)
+  const { userCredentials } = useContext(UserCredentialsContext);
   const [isRead, setIsRead] = useState(false);
   const [messages, setMessages] = useState([
     {
@@ -64,24 +64,24 @@ export const MessageScreen = () => {
   return (
     <View style={[styles.container, isRead && styles.messageRead]}>
       <SimpleHeader title={"Mensajes"} />
-      
-      {
-        !userCredentials.email ? (<UnregisteredMessage text={'enviar un mensaje'} />)
-        :
-        (
-          <FlatList
-        data={messages}
-        renderItem={renderMessage}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.listContent}
-        ListEmptyComponent={
-          <Text style={styles.emptyText}>No messages to display</Text>
-        }
-      />
-        )
-      }
 
-      
+      {!userCredentials.email ? (
+        <UnregisteredMessage text={"enviar un mensaje"} />
+      ) : (
+        //     <FlatList
+        //   data={messages}
+        //   renderItem={renderMessage}
+        //   keyExtractor={(item) => item.id}
+        //   contentContainerStyle={styles.listContent}
+        //   ListEmptyComponent={
+        //     <Text style={styles.emptyText}>No messages to display</Text>
+        //   }
+        // />
+        <View style={styles.noMessageContainer}>
+          <Image source={require("../../assets/icons/no-message-icon.png")} />
+          <Text style={styles.noMessageText}>Aquí encontrarás todas las consultas que hagas sobre los anuncios publicados.</Text>
+        </View>
+      )}
     </View>
   );
 };
@@ -164,12 +164,18 @@ const styles = StyleSheet.create({
     right: 10,
     top: 12,
   },
-  // readCircle: {
-  //   position: "absolute",
-  //   top: 15,
-  //   right: -5,
-  //   width: 10,
-  //   height: 10,
-  //   borderRadius: 10 / 2,
-  // },
+  noMessageContainer: {
+    alignItems: 'center',
+    marginTop: 24
+  },
+  noMessageText: {
+    marginTop: 21,
+    marginLeft: 59,
+    marginRight: 65,
+    textAlign: 'center',
+    width: 236,
+    fontWeight: '500',
+    fontSize: 16,
+    lineHeight: 24
+  }
 });

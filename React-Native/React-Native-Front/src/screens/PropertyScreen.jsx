@@ -81,6 +81,7 @@ export const PropertyScreen = () => {
           </Text>
           <Text style={styles.locationText}>Ubicación Aproximada</Text>
           {/* ACA VA EL MAPA QUE HAY QUE PONER TARJETA DE CREDITO */}
+          <Image style={styles.map} source={require('../../assets/map.png')} />
           <Text style={styles.characteristics}>Características</Text>
           <View style={styles.characteristicsContainer}>
             <Text style={styles.characteristicsKey}>

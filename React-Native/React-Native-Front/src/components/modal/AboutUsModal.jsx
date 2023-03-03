@@ -16,8 +16,8 @@ export const AboutUsModal = ({ isVisible, handleModalVisibility }) => {
               Hicimos Home Quest: {'\n'}{'\n'}
               QA: Sabrina Lorenzo Batista. {'\n'}
               UX-UI designers: Malena Hernández, Tatiana Scialabba. {'\n'}
-              Front End: Federico Birman, Pablo Marcelo Mesny, Horacio Edison.{'\n'}
-              Back End: Oscar Ardila, Ricardo Lozano, Javier Ojeda. {'\n'}
+              Front End: Federico Birman, Ricardo Lozano.{'\n'}
+              Back End: Oscar Ardila.{'\n'}
             </Text>
           </ScrollView>
           <Pressable onPress={handleModalVisibility}>

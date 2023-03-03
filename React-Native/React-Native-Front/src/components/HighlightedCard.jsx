@@ -1,6 +1,18 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { useState } from "react";
-import { View, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { View, Image, StyleSheet, Text, TouchableOpacity, Pressable } from "react-native";
+
+// const highlightedData = [
+//   {
+//     id: 1,
+//     type: "Departamento en venta",
+//     value: 85000,
+//     location: "Bolivar al 1700, Capital Federal, Argentina",
+//     ambientes: 1,
+//     baños: 1,
+//   },
+// ];
 
 const highlightedData = [
   {
@@ -8,8 +20,24 @@ const highlightedData = [
     type: "Departamento en venta",
     value: 85000,
     location: "Bolivar al 1700, Capital Federal, Argentina",
-    ambientes: 1,
+    ambientes: 3,
     baños: 1,
+    title: 'Departamento de 3 ambientes',
+    description: 'Hermoso departamento espacioso sobre Bolivar,super luminoso con poca antigüedad cercano a la linea “D” del subte y a bancos,supermercados y Hospitales.',
+    pictures: [require('../../assets/sample-pics/photo1.png'), require('../../assets/sample-pics/photo2.png'), require('../../assets/sample-pics/photo3.png'), require('../../assets/sample-pics/photo4.png')],
+    price: 85000,
+    city: 'Capital Federal',
+    region: 'Argentina',
+    address: 'Bolivar al 1700',
+    sqMeters: 70,
+    ambiances: 3,
+    bedrooms: 2,
+    bathrooms: 1,
+    antiquity: 2010,
+    propertyType: 'departamento',
+    businessType: 'venta',
+    parking: false,
+    phone: '',
   },
 ];
 
@@ -18,8 +46,10 @@ const HighlightedCard = () => {
   const favorite = () => {
     setIsActive(!isActive);
   };
+  const navigation = useNavigation()
+
   return (
-    <View style={[styles.cardContainer]}>
+    <Pressable style={[styles.cardContainer]} onPress={() => navigation.navigate('PropertyScreen', {highlightedData})}>
       <View>
         <Image
           source={require("../../assets/HighlightedData/sala-estar-lujo-loft-representacion-3d-estanteria.png")}
@@ -63,7 +93,7 @@ const HighlightedCard = () => {
           style={styles.avatar}
         />
       </View>
-    </View>
+    </Pressable>
   );
 };
 

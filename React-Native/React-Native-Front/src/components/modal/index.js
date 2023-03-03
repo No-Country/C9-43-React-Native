@@ -1,6 +1,7 @@
 export * from './AboutUsModal';
 export * from './AntiquityModal';
 export * from './ContactAgencyModal';
+export * from './ErrorMessage';
 export * from './FilterAreaModal';
 export * from './FilterEnvironmentModal';
 export * from './FilterOrderByModal';

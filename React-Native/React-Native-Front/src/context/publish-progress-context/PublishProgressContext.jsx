@@ -23,7 +23,11 @@ export const PublishProgressProvider = ({ children }) => {
     setPublishProgress({...publishProgress, [name]: value})
   }
 
-  const value = { publishProgress, handlePublishProgress }
+  const handleResetProgress = () => {
+    setPublishProgress(publishProgressInitialState)
+  }
+
+  const value = { publishProgress, handlePublishProgress, handleResetProgress }
 
   return(
     <PublishProgressContext.Provider value={value}>

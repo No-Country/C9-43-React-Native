@@ -29,7 +29,11 @@ export const PublishPostProvider = ({ children }) => {
     setPublishPost({...publishPost, [name]: value})
   }
 
-  const value = {publishPost, handlePublishPost}
+  const handleResetPublish = () => {
+    setPublishPost(publishPostInitialState)
+  }
+
+  const value = { publishPost, handlePublishPost, handleResetPublish }
 
   return(
     <PublishPostContext.Provider value={value}>

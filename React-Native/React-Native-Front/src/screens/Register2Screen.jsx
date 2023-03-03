@@ -14,6 +14,7 @@ import { useModal } from "../hooks";
 import axios from "axios";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/auth-context/AuthContext";
+import { ErrorMessage } from "../components/modal/ErrorMessage";
 
 // METI EL MODAL, PERO DESPUES TERMINALO DE CONFIGURAR BIEN
 export const Register2Screen = ({ navigation }) => {
@@ -21,21 +22,18 @@ export const Register2Screen = ({ navigation }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  const [isError, setIsError] = useState(false)
   const { authData } = useContext(AuthContext);
 
   const email = authData.email;
   const password = authData.password;
 
+  const handleErrorModal = (navigation) => {
+    setIsError(false)
+    navigation.navigate('MainScreen')
+  }
+
   const handleSubmit = async () => {
-    // fetch("https://home-quest.onrender.com/api/v1/auth/register", {
-    //   method: "POST",
-    //   body: JSON.stringify(data),
-    //   headers: {
-    //     Accept: 'application.json',
-    //     "Content-type": "application/json"
-    // }
-    // }).then((response) => response.json()).then(response => console.log(response));
     setIsLoading(true);
     try {
       const response = await axios.post(
@@ -43,8 +41,8 @@ export const Register2Screen = ({ navigation }) => {
         {
           email,
           password,
-          username: firstName,
-          phone: lastName,
+          firstName: firstName,
+          lastName: lastName,
         }
       );
       console.log(response)
@@ -53,10 +51,7 @@ export const Register2Screen = ({ navigation }) => {
     } catch (error) {
       setIsLoading(false);
       console.log(error.response.data)
-      alert(
-        "Ha ocurrido un error",
-        "No se pudo completar el registro, por favor intenta de nuevo más tarde."
-      );
+      setIsError(true)
     }
   };
 
@@ -105,12 +100,13 @@ export const Register2Screen = ({ navigation }) => {
             onPress={handleSubmit}
             disabled={isLoading}
           >
-            <GreenButton text={isLoading ? "Cargando..." : "Registrarme"} />
+            <GreenButton text={isLoading ? "Enviando..." : "Registrarme"} />
           </Pressable>
         </View>
       </View>
       {/* MODAL */}
       <RegisterCompleteModal isOpen={isModalOpen} onPress={ () => navigation.navigate('LoginScreen')} />
+      <ErrorMessage isVisible={isError} handleModalVisibility={() => handleErrorModal(navigation)} title={'Ha ocurrido un error'} description={'No se pudo establecer conexión con el servidor. Por favor, volvé a intentarlo en unos minutos.'}/>
     </KeyboardAwareScrollView>
   );
 };

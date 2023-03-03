@@ -14,7 +14,7 @@ export const ProfileAndSettings = ({ navigation }) => {
       <View style={styles.profileContainer}>
           <Image
             style={styles.profilePicture}
-            source={require("../../assets/profile-picture.png")}
+            source={require("../../assets/no-avatar.png")}
           />
           <View style={styles.nameContainer}>
             <Text style={styles.nameText}>Foto de Perfil</Text>
@@ -25,7 +25,7 @@ export const ProfileAndSettings = ({ navigation }) => {
         </View>
         <View style={styles.fullNameContainer}>
           <Text style={styles.fullNameBlackText}>Nombre Completo</Text>
-          <Text style={styles.fullNameGrayText}>Guadalupe Gomez</Text>
+          <Text style={styles.fullNameGrayText}>Oscar Ardila</Text>
 
         </View>
     </View>

@@ -9,21 +9,25 @@ import {
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { useContext, useState } from "react";
-import { GreenButton } from "../components";
+import { ErrorMessage, GreenButton } from "../components";
 import axios from 'axios'
 import { UserCredentialsContext } from "../context/user-credentials-context/UserCredentialsContext";
 
 export const LoginScreen = ({ navigation }) => {
-  const {userCredentials, handleUserCredentials} = useContext(UserCredentialsContext)
+  const { handleUserCredentials } = useContext(UserCredentialsContext)
   const [secured, setSecured] = useState(true);
   const [inputs, setInputs] = useState({email: '', password: ''})
   const [loading, setLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
 
   const handleChange = (name, value) => {
     setInputs({...inputs, [name]: value})
   }
 
-  console.log(userCredentials)
+  const handleErrorModal = (navigation) => {
+    setIsError(false)
+    navigation.navigate('MainScreen')
+  }
 
   const handleLogin = async () => {
     try {
@@ -38,15 +42,12 @@ export const LoginScreen = ({ navigation }) => {
       console.log(response.data)
       handleUserCredentials(response.data)
       setLoading(false)
+      navigation.navigate('HomeScreen')
     } catch (error) {
       setLoading(false)
       console.log(error.response.data)
-      alert(
-        "Ha ocurrido un error",
-        "No se pudo completar el registro, por favor intenta de nuevo más tarde."
-      );
+      setIsError(true)
     }
-    navigation.navigate('HomeScreen')
   }
 
   return (
@@ -104,6 +105,8 @@ export const LoginScreen = ({ navigation }) => {
         </Pressable>
       </View>
     </View>
+    {/* MODAL */}
+    <ErrorMessage isVisible={isError} handleModalVisibility={() => handleErrorModal(navigation)}/>
     </KeyboardAwareScrollView>
   );
 };
