@@ -15,7 +15,7 @@ export const Phase1Screen = ({ navigation }) => {
       {!userCredentials.email ? (
         <>
           <SimpleHeader title={"Publicar"} />
-          <UnregisteredMessage text={"publicar una propiedad"} />
+          <UnregisteredMessage text={"publicar una propiedad"} screen={'Phase1Screen'}/>
         </>
       ) : (
         <>

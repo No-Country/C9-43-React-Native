@@ -10,7 +10,7 @@ const highlightedData = [
     type: "Departamento en venta",
     value: 85000,
     location: "Bolivar al 1700, Capital Federal, Argentina",
-    ambientes: 1,
+    ambientes: 3,
     baños: 1,
     title: 'Departamento de 3 ambientes',
     description: 'Hermoso departamento espacioso sobre Bolivar,super luminoso con poca antigüedad cercano a la linea “D” del subte y a bancos,supermercados y Hospitales.',

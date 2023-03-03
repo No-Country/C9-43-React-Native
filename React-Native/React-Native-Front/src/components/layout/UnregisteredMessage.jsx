@@ -5,16 +5,24 @@ import { UserCredentialsContext } from '../../context/user-credentials-context/U
 import { useNavigation } from '@react-navigation/native';
 import { GreenButton } from '../GreenButton';
 import axios from 'axios'
+import { useModal } from '../../hooks';
+import { ErrorMessage } from '../modal';
 
-export const UnregisteredMessage = ({ text }) => {
+export const UnregisteredMessage = ({ text, screen }) => {
   const {userCredentials, handleUserCredentials} = useContext(UserCredentialsContext)
   const navigation = useNavigation()
   const [secured, setSecured] = useState(true);
   const [inputs, setInputs] = useState({email: '', password: ''})
   const [loading, setLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
+  const {isModalOpen, se} = useModal()
 
   const handleChange = (name, value) => {
     setInputs({...inputs, [name]: value})
+  }
+
+  const handleErrorModal = () => {
+    setIsError(false)
   }
 
   console.log(userCredentials)
@@ -32,13 +40,12 @@ export const UnregisteredMessage = ({ text }) => {
       console.log(response.data)
       handleUserCredentials(response.data)
       setLoading(false)
+      navigation.navigate(screen)
     } catch (error) {
       setLoading(false)
+      setIsError(true)
       console.log(error.response.data)
-      alert(
-        "Ha ocurrido un error",
-        "No se pudo completar el registro, por favor intenta de nuevo más tarde."
-      );
+      
     }
   }
 
@@ -94,6 +101,7 @@ export const UnregisteredMessage = ({ text }) => {
           <Text style={styles.registerText}> Registrarme</Text>
         </Pressable>
       </View>
+      <ErrorMessage isVisible={isError} handleModalVisibility={() => handleErrorModal(navigation)} />
     </View>
   );
 }
