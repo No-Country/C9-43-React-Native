@@ -24,7 +24,7 @@ export const LanguageModal = ({ isVisible, handleModalVisibility}) => {
             <Pressable style={styles.button} onPress={handleModalVisibility}>
               <Text style={styles.buttonText}>Cancelar</Text>
             </Pressable>
-            <Pressable style={styles.button}>
+            <Pressable style={styles.button} onPress={handleModalVisibility}>
               <Text style={styles.buttonText}>Aceptar</Text>
             </Pressable>
           </View>

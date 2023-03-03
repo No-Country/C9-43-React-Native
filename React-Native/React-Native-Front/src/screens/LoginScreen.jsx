@@ -14,7 +14,7 @@ import axios from 'axios'
 import { UserCredentialsContext } from "../context/user-credentials-context/UserCredentialsContext";
 
 export const LoginScreen = ({ navigation }) => {
-  const { handleUserCredentials } = useContext(UserCredentialsContext)
+  const { userCredentials,handleUserCredentials } = useContext(UserCredentialsContext)
   const [secured, setSecured] = useState(true);
   const [inputs, setInputs] = useState({email: '', password: ''})
   const [loading, setLoading] = useState(false)
@@ -29,6 +29,8 @@ export const LoginScreen = ({ navigation }) => {
     navigation.navigate('MainScreen')
   }
 
+  console.log(userCredentials)
+
   const handleLogin = async () => {
     try {
       setLoading(true)
@@ -39,8 +41,7 @@ export const LoginScreen = ({ navigation }) => {
           password: inputs.password,
         }
       );
-      console.log(response.data)
-      handleUserCredentials(response.data)
+      handleUserCredentials(response.data.userData)
       setLoading(false)
       navigation.navigate('HomeScreen')
     } catch (error) {

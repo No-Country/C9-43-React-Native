@@ -61,7 +61,7 @@ export const ProfileScreen = () => {
           </Pressable>
         )}
         <Text style={styles.nameText}>
-          Oscar Ardila
+          {userCredentials.firstName} {userCredentials.lastName}
         </Text>
         <View style={styles.shadowContainer}>
           <View style={styles.middleContainer}>

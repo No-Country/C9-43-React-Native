@@ -106,7 +106,7 @@ export const Register2Screen = ({ navigation }) => {
       </View>
       {/* MODAL */}
       <RegisterCompleteModal isOpen={isModalOpen} onPress={ () => navigation.navigate('LoginScreen')} />
-      <ErrorMessage isVisible={isError} handleModalVisibility={() => handleErrorModal(navigation)} title={'Ha ocurrido un error'} description={'No se pudo establecer conexión con el servidor. Por favor, volvé a intentarlo en unos minutos.'}/>
+      <ErrorMessage isVisible={isError} handleModalVisibility={() => handleErrorModal(navigation)} />
     </KeyboardAwareScrollView>
   );
 };

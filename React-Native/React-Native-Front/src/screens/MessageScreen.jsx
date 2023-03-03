@@ -66,7 +66,7 @@ export const MessageScreen = () => {
       <SimpleHeader title={"Mensajes"} />
 
       {!userCredentials.email ? (
-        <UnregisteredMessage text={"enviar un mensaje"} />
+        <UnregisteredMessage text={"enviar un mensaje"} screen={'Mensajes'}/>
       ) : (
         //     <FlatList
         //   data={messages}
