@@ -38,7 +38,7 @@ export const UnregisteredMessage = ({ text, screen }) => {
         }
       );
       console.log(response.data)
-      handleUserCredentials(response.data)
+      handleUserCredentials(response.data.userData)
       setLoading(false)
       navigation.navigate(screen)
     } catch (error) {
