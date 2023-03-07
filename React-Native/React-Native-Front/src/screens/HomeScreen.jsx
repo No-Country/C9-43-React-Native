@@ -1,133 +1,133 @@
+import React from "react";
 import {
-  ScrollView,
-  StyleSheet,
-  Text,
   View,
+  StyleSheet,
+  ScrollView,
+  Text,
   ImageBackground,
+  StatusBar,
+  Image,
   Pressable,
 } from "react-native";
+import { GreenButton, HomeDirectOwners  } from "../components";
+import InfiniteCarousel from "../components/InfiniteCarousel";
 
-import HighlightedCarousel from "../components/HighlightedCarousel";
-import HomeScreenHeader from "../components/HomeScreenHeader";
-import HomeDirectOwners from "../components/HomeDirectOwners";
 
 export const HomeScreen = ({ navigation }) => {
   return (
     <ScrollView style={{ backgroundColor: "#fff" }}>
-      <View style={[styles.container]}>
-        <HomeScreenHeader navigation={navigation} />
-        <View style={styles.publishView}>
-          <Text style={styles.bodyTitle}>Publica tu anuncio. Es gratis!</Text>
+      <StatusBar backgroundColor="#fff" />
+      <View style={styles.container}>
+        <ImageBackground
+          style={styles.imageBackground}
+          source={require("../../assets/home-bg.png")}
+        >
+          <Image
+            style={styles.logoIcon}
+            source={require("../../assets/logo-home.png")}
+          />
+          <Text style={styles.welcomeText}>¡Hola!</Text>
+          <Text style={styles.welcomeSubText}>¿Qué estás buscando?</Text>
           <Pressable
-            style={styles.publishButton}
-            onPress={() => navigation.navigate("Publicar")}
+            style={styles.searchContainer}
+            onPress={() => navigation.navigate("Ubicacion")}
           >
-            <ImageBackground
-              source={require("../../assets/publish-photo.png")}
-              style={[styles.publishButton]}
-            >
-              <View style={styles.buttonPublishContainer}>
-                <Text
-                  style={[
-                    styles.buttonText,
-                    { textAlign: "center", marginTop: 9 },
-                  ]}
-                >
-                  Publicar
-                </Text>
-              </View>
-            </ImageBackground>
+            <Image
+              style={styles.searchIcon}
+              source={require("../../assets/icons/search-icon.png")}
+            />
+            <Text style={styles.searchText}>Iniciá una nueva búsqueda</Text>
+          </Pressable>
+        </ImageBackground>
+        <View style={styles.publishContainer}>
+          <Text style={styles.publishTitle}>
+            Publica tu anuncio. ¡Es gratis!
+          </Text>
+          <Image
+            style={styles.publishImg}
+            source={require("../../assets/publish-photo.png")}
+          />
+          <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate('Publicar')}>
+            <GreenButton text={"Publicar"} />
           </Pressable>
         </View>
-        <View style={styles.featuredView}>
-          <Text style={styles.featuredTitle}>Destacados</Text>
-        </View>
-        <View style={styles.carousel}>
-          <HighlightedCarousel />
-        </View>
-      </View>
-      <View style={styles.ownersContainer}>
-        <HomeDirectOwners />
+        <Text style={styles.featuredText}>Destacados</Text>
+        <InfiniteCarousel />
+        <HomeDirectOwners style={styles.homeDirectOwners}/>
       </View>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  buttonText: {
-    fontSize: 16,
-    fontWeight: "500",
-    color: "#fff",
-  },
   container: {
     flex: 1,
-    alignItems: "center",
-  },
-  ownersContainer: {
-    flex: 1,
-    maxWidth: 326,
-    marginLeft: 30,
-    marginRight: 30,
     backgroundColor: "#fff",
+  },
+  imageBackground: {
+    height: 320,
+    resizeMode: "contain",
     alignItems: "center",
-    borderRadius: 20,
-    shadowColor: "black",
-    shadowOpacity: 0.3,
-    shadowOffset: { width: 3, height: 5 },
-    shadowRadius: 8,
-    elevation: 5,
-    padding: 2,
-    paddingLeft: 2,
-    paddingRight: 2,
-    marginBottom: 30,
-    opacity: 0.9,
   },
-  buttonPublishContainer: {
-    marginTop: 238,
-    width: 240,
-    height: 45,
-    backgroundColor: "#018349",
-    shadowColor: "black",
-    shadowOpacity: 0.26,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
-    elevation: 5,
+  logoIcon: {
+    marginTop: 38,
   },
-
-  publishView: {
+  welcomeText: {
+    marginTop: 17,
+    fontWeight: "700",
+    fontSize: 19,
+    lineHeight: 24,
+    color: "#fff",
+  },
+  welcomeSubText: {
+    marginTop: 12,
+    fontWeight: "700",
+    fontSize: 16,
+    lineHeight: 24,
+    color: "#fff",
+  },
+  searchContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 23,
+    width: "90%",
+    height: 56,
+    backgroundColor: "#fff",
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: "#AAA",
+  },
+  searchIcon: {
+    marginHorizontal: 15,
+    tintColor: "#979797",
+  },
+  searchText: {
+    fontSize: 14,
+    lineHeight: 24,
+    color: "#979797",
+  },
+  publishContainer: {
+    alignItems: "center",
     marginTop: 13,
   },
-  bodyTitle: {
+  publishTitle: {
+    fontWeight: "500",
     fontSize: 19,
-    textAlign: "center",
-    fontWeight: "500",
+    lineHeight: 24,
   },
-  publishButton: {
-    height: 198,
+  publishImg: {
+    marginTop: 27,
+  },
+  buttonContainer: {
     width: 246,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 20,
-    marginLeft: 50,
-    marginRight: 50,
+    marginTop: -3
   },
-  publishText: {
-    color: "#FFFFFF",
-    fontWeight: "500",
+  featuredText: {
+    marginTop: 40,
+    marginBottom: 15,
+    marginLeft: 29,
+    fontWeight: '500',
     fontSize: 16,
-  },
-  featuredView: {
-    width: "100%",
-    marginTop: 80,
-    marginBottom: 21,
-  },
-  featuredTitle: {
-    fontSize: 16,
-    marginLeft: 17,
-    fontWeight: "500",
-  },
-  carousel: {
-    marginLeft: 0,
-    marginRight: 0,
+    lineHeight: 24
   },
 });

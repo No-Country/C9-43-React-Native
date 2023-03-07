@@ -14,7 +14,7 @@ import axios from 'axios'
 import { UserCredentialsContext } from "../context/user-credentials-context/UserCredentialsContext";
 
 export const LoginScreen = ({ navigation }) => {
-  const { userCredentials,handleUserCredentials } = useContext(UserCredentialsContext)
+  const { userCredentials, handleUserCredentials } = useContext(UserCredentialsContext)
   const [secured, setSecured] = useState(true);
   const [inputs, setInputs] = useState({email: '', password: ''})
   const [loading, setLoading] = useState(false)
