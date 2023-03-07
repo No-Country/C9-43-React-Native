@@ -12,11 +12,11 @@ const HomeDirectOwners = () => {
     <View style={styles.ownersContainer}>
       <Pressable>
         <ImageBackground
-          source={require("../../assets/HighlightedData/sala-estar-lujo-loft-representacion-3d-estanteria.png")}
+          source={require("../../assets/homeScreen-features-img.png")}
           style={styles.image}
-          blurRadius={5}
+          blurRadius={3}
         >
-          <Text style={[styles.description, { textAlign: "center" }]}>
+          <Text style={styles.description}>
             Departamentos con dueño directo
           </Text>
         </ImageBackground>
@@ -29,22 +29,23 @@ export default HomeDirectOwners;
 
 const styles = StyleSheet.create({
   ownersContainer: {
-    marginBottom: 0,
-    margin: 2,
-
+    marginBottom: 20,
+    marginTop: 20,
+    alignSelf: 'center',
   },
   description: {
     fontSize: 14,
-    fontWeight: "800",
+    fontWeight: "500",
     lineHeight: 24,
     color: "#EDF6F9",
-    paddingTop: 40,
+    elevation: 3
   },
   image: {
+    alignItems: 'center',
+    justifyContent: 'center',
     width: 326,
     height: 96,
     borderRadius: 20,
     overflow: "hidden",
-    opacity: 0.9,
   },
 });

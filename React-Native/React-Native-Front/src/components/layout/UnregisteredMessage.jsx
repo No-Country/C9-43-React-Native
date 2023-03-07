@@ -7,6 +7,7 @@ import { GreenButton } from '../GreenButton';
 import axios from 'axios'
 import { useModal } from '../../hooks';
 import { ErrorMessage } from '../modal';
+import { Loader } from '../Loader';
 
 export const UnregisteredMessage = ({ text, screen }) => {
   const {userCredentials, handleUserCredentials} = useContext(UserCredentialsContext)
@@ -15,7 +16,7 @@ export const UnregisteredMessage = ({ text, screen }) => {
   const [inputs, setInputs] = useState({email: '', password: ''})
   const [loading, setLoading] = useState(false)
   const [isError, setIsError] = useState(false)
-  const {isModalOpen, se} = useModal()
+  const { isModalOpen, handleToggleModal } = useModal()
 
   const handleChange = (name, value) => {
     setInputs({...inputs, [name]: value})
@@ -25,11 +26,13 @@ export const UnregisteredMessage = ({ text, screen }) => {
     setIsError(false)
   }
 
+
   console.log(userCredentials)
 
   const handleLogin = async () => {
     try {
-      setLoading(true)
+      // setLoading(true)
+      handleToggleModal()
       const response = await axios.post(
         "https://home-quest-app.onrender.com/api/v1/auth/login",
         {
@@ -39,7 +42,8 @@ export const UnregisteredMessage = ({ text, screen }) => {
       );
       console.log(response.data)
       handleUserCredentials(response.data.userData)
-      setLoading(false)
+      // setLoading(false)
+      handleToggleModal()
       navigation.navigate(screen)
     } catch (error) {
       setLoading(false)
@@ -101,7 +105,9 @@ export const UnregisteredMessage = ({ text, screen }) => {
           <Text style={styles.registerText}> Registrarme</Text>
         </Pressable>
       </View>
+      {/* MODAL */}
       <ErrorMessage isVisible={isError} handleModalVisibility={() => handleErrorModal(navigation)} />
+      <Loader isVisible={isError}/>
     </View>
   );
 }
