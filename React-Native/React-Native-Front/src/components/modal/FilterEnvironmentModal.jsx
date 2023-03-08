@@ -1,10 +1,6 @@
-import React, { useState } from "react";
 import { View, StyleSheet, Modal, Text, Pressable } from "react-native";
 import { useEnvironmentFilter, useFilters } from "../../hooks";
 import { FilterTextedCheckbox } from "../layout";
-import { TextedCheckbox } from "../TextedCheckbox";
-
-//TODO preguntar bien como se va a ver el modal, sobretodo la opacidad del fondo
 
 export const FilterEnvironmentModal = ({ isVisible, handleModalVisibility }) => {
   const { isOneSelected, isTwoSelected, isThreeSelected, isFourSelected, isFiveMoreSelected, handleIsOneSelected, handleIsTwoSelected, handleIsThreeSelected, handleIsFourSelected, handleIsFiveMoreSelected} = useEnvironmentFilter()
