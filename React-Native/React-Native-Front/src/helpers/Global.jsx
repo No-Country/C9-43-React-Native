@@ -1,1 +1,0 @@
-export const Global= "https://home-quest.onrender.com/api/v1"
