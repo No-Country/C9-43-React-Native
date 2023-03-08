@@ -1,16 +1,12 @@
 export * from './FavouriteCard';
 export * from './GreenButton';
-export * from './GreenPostButton';
 export { default as HighlightedCard } from './HighlightedCard';
-export { default as HighlightedCarousel } from './HighlightedCarousel';
 export { default as HomeDirectOwners } from './HomeDirectOwners';
-export { default as HomeScreenHeader } from './HomeScreenHeader';
+export { default as InfiniteCarousel } from './InfiniteCarousel';
 export * from './Loader';
 export * from './PostInputs';
-export * from './PostTopBar';
 export * from './PressableStages';
 export * from './PropertyCard';
-export * from './TextedCheckbox';
 export * from './layout';
 export * from './modal';
 export * from './unregistered';
